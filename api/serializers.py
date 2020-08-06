@@ -18,7 +18,7 @@ class LanguageSerializer(serializers.ModelSerializer):
 class MyAppointmentListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment
-        fields = ("__str__",)
+        fields = ("display","event_id")
 
 class MentorProfileSerializer(serializers.ModelSerializer):
     class Meta:
