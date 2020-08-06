@@ -3,7 +3,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "2(x8mk5ntg6spryue!$4ls$w6zk^*i(m%r9)9o51jw2%3pnm&%"
 DEBUG = True
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["vbbportal.azurewebsites.net"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
