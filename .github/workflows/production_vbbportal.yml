@@ -31,4 +31,4 @@ jobs:
       with:
         app-name: 'vbbportal'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_f4585b7a31184f78b03b479a823c4c9a }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_ab1d5a0425a04ff3a6497d4a845cf185 }}
