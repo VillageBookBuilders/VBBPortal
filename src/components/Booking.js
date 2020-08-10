@@ -56,7 +56,7 @@ class Booking extends React.Component {
       Authorization: `Token ${this.props.token}`,
     };
     axios
-      .get("http://https://portal.villagebookbuilders.org/api/available/", {
+      .get("https://portal.villagebookbuilders.org/api/available/", {
         params: {
           library: this.state.library,
           language: this.state.language,
