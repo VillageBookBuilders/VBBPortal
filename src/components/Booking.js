@@ -22,7 +22,7 @@ class Booking extends React.Component {
 
   fetchBookingData = () => {
     axios
-      .get("http://127.0.0.1:8000/api/library/")
+      .get("https://portal.villagebookbuilders.org/api/library/")
       .then((res) => {
         this.setState({
           libraries: res.data,
@@ -32,7 +32,7 @@ class Booking extends React.Component {
         console.log(err);
       });
     axios
-      .get("http://127.0.0.1:8000/api/language/")
+      .get("https://portal.villagebookbuilders.org/api/language/")
       .then((res) => {
         this.setState({
           languages: res.data,
@@ -56,7 +56,7 @@ class Booking extends React.Component {
       Authorization: `Token ${this.props.token}`,
     };
     axios
-      .get("http://127.0.0.1:8000/api/available/", {
+      .get("http://https://portal.villagebookbuilders.org/api/available/", {
         params: {
           library: this.state.library,
           language: this.state.language,
@@ -163,7 +163,7 @@ class Booking extends React.Component {
       Authorization: `Token ${this.props.token}`,
     };
     axios
-      .post("http://127.0.0.1:8000/api/book/", null, {
+      .post("https://portal.villagebookbuilders.org/api/book/", null, {
         params: {
           library: this.state.library,
           language: this.state.language,

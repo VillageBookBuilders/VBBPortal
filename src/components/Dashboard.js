@@ -16,7 +16,7 @@ class Dashboard extends React.Component {
       Authorization: `Token ${this.props.token}`,
     };
     axios
-      .get("http://127.0.0.1:8000/api/myappointments/")
+      .get("https://portal.villagebookbuilders.org/api/myappointments/")
       .then((res) => {
         this.setState({
           appointments: res.data,

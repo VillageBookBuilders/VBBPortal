@@ -41,7 +41,7 @@ export const gAuth = (googleToken) => {
   return (dispatch) => {
     dispatch(authStart());
     axios
-      .post("http://127.0.0.1:8000/api/googlelogin/", {
+      .post("https://portal.villagebookbuilders.org/api/googlelogin/", {
         access_token: googleToken,
       })
       .then((res) => {
@@ -62,7 +62,7 @@ const checkSignIn = (token, dispatch) => {
     Authorization: `Token ${token}`,
   };
   axios
-    .get("http://127.0.0.1:8000/api/checksignin/")
+    .get("https://portal.villagebookbuilders.org/api/checksignin/")
     .then((res) => {
       if(res.data.success==="true"){
         const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
@@ -85,7 +85,7 @@ export const authSignup = (first_name, last_name, time_zone, personal_email, vbb
   return (dispatch) => {
     dispatch(authStart());
     axios
-      .post("http://127.0.0.1:8000/api/creatementorprofile/", {
+      .post("https://portal.villagebookbuilders.org/api/creatementorprofile/", {
         first_name: first_name,
         last_name: last_name,
         time_zone: time_zone,
