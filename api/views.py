@@ -83,7 +83,6 @@ class AvailableAppointmentTimeList(ListAPIView):
 
         return Response(appts)
 
-# FIXME - change to post (I think)
 @api_view(["POST"])
 def first_time_signup(request):
     """
@@ -93,18 +92,54 @@ def first_time_signup(request):
     print('request.data', request.data)
     gapi = google_apis()
     if request.data["vbb_email"] == None or request.data["vbb_email"] == '':
-        request.data["vbb_email"] = gapi.account_create(request.data["first_name"], request.data["last_name"], request.data["personal_email"])
+        request.data["vbb_email"], pwd = gapi.account_create(request.data["first_name"], request.data["last_name"], request.data["personal_email"])
         print('new vbb email: ', request.data["vbb_email"])
-        gapi.email_send(request.data["personal_email"], "test-subject", "test-text")
+        print('password: ', pwd)
+        #gapi.email_send(request.data["personal_email"], "Welcome to VBB", "api\emails\\test\\test-template.html", "api\emails\\test\\test.html", {'__first_name': request.data["first_name"]})
     serializer = MentorProfileSerializer(data = request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-# FIXME - Change to POST once stable
 @api_view(["GET"])
+def check_signin(request):
+    """
+    When a user logs in, check if they have a mentor profile before allowing them to proceed
+    """
+    if "villagementors.org" not in request.user.email and "villagebookbuilders.org" not in request.user.email:
+        return Response(
+            {
+                "success": "false",
+                "message": "Sorry, you need to use a villagementors.org Gsuite account to log in to this website. If you do not have a village mentors account, please sign up for one using the register link above.",
+            }
+        )
+    mps = MentorProfile.objects.filter(vbb_email=request.user.email)
+    if mps is None or len(mps) <1:
+        return Response(
+            {
+                "success": "false",
+                "message": "Sorry, there is no signin data associated with this account. Please sign up to be a mentor using the register link above or contact our mentor advisors at mentor@villagebookbuilders.org for assistance.",
+            }
+        )
+    if len(mps) > 1:
+        return Response(
+            {
+                "success": "false",
+                "message": "Sorry, there appears to be multiple mentors associated with this account. Please contact our mentor advisors at mentor@villagebookbuilders.org for assistance.",
+            }
+        )
+    if mps[0].user is None:
+        mps[0].user = request.user
+        mps[0].save()
+    return Response(
+        {
+            "success": "true",
+            "message": ("Welcome, "+request.user.username +"!"),
+        }
+    )
+
+@api_view(["POST"])
 def book_appointment(request):
     """
     Gets an appointment list at a given time based on preferences then randomly picks one appointment and populates it with the mentor's name (queries specific fields by primary key).
@@ -133,25 +168,23 @@ def book_appointment(request):
             }
         )
     myappt = random.choice(appts)
-    # FIXME - Once you can login to api-auth/ and stay logged in for calls, comment out the next line (assigning a random mentor to the appointment) and uncomment the one after (assigning the authenticated user to the appointment).
-    myappt.mentor = random.choice(User.objects.all())
-    myappt.mentor = User.objects.get(username="shwetha")
+    print("apt", myappt)
     myappt.mentor = request.user
     myappt.start_date = datetime.today() + timedelta(
         days=(aux_fns.diff_today_dsm(myappt.hsm) + 7)
     )
     myappt.end_date = myappt.start_date + timedelta(weeks=17)
-    myappt.save()
     gapi = google_apis()
     start_time = aux_fns.date_combine_time(str(myappt.start_date), myappt.hsm)
-    gapi.calendar_event(myappt.mentee_computer.computer_email, myappt.mentor.mentor.vbb_email, start_time)
+    event_id = gapi.calendar_event(myappt.mentee_computer.computer_email, myappt.mentor.mentor.vbb_email, myappt.mentor.mentor.personal_email, start_time, myappt.mentee_computer.library.calendar_id)
+    myappt.event_id = event_id
+    myappt.save()
     # FIXME - Add try/except/finally blocks for error checking (not logged in, appointment got taken before they refreshed)
     return Response(
         {"success": "true", "user": str(myappt.mentor), "appointment": str(myappt),}
     )
 
-# FIXME - Change to POST once stable
-@api_view(["GET"])
+@api_view(["POST"])
 def generate_appointments(request):
     """
     Generates appointments from opentime to closetime on days from startday to endday

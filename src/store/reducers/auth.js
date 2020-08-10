@@ -4,7 +4,8 @@ import { updateObject } from '../utility';
 const initialState = {
     token: localStorage.getItem('token'),
     error: null, 
-    loading: false
+    loading: false,
+    message: null
 }
 
 const authStart = (state, action) => {
@@ -24,7 +25,8 @@ const authSuccess = (state, action) => {
 
 const authFail = (state, action) => {
     return updateObject(state, {
-        error: action.error,
+        error: true,
+        message: action.error,
         loading: false
     });
 }

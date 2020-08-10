@@ -4,15 +4,16 @@ import PrivateRoute from "./components/PrivateRoute";
 
 import Booking from "./components/Booking";
 import Dashboard from "./components/Dashboard";
-import SigninGoogle from "./components/SigninGoogle";
-import MasterForm from "./components/Registration";
+import MasterForm from "./components/registration/MasterForm";
+import HomeSignin from "./components/HomeSignin";
+
 
 function Routes() {
   return (
     <div>
       <PrivateRoute exact path="/" component={Dashboard} />
       <PrivateRoute exact path="/booking/" component={Booking} />
-      <Route exact path="/signin/" component={SigninGoogle} />
+      <Route exact path="/signin/" component={HomeSignin} />
       <Route exact path="/signup/" component={MasterForm} />
     </div>
   );

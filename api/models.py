@@ -14,7 +14,28 @@ class Library(models.Model):
         verbose_name="time zone", max_length=40, null=True, blank=True
     )
     calendar_id = models.CharField(
-        verbose_name="calendar id", max_length=60, null=True, blank=True
+        verbose_name="calendar id", max_length=120, null=True, blank=True
+    )
+    calendar_name = models.CharField(
+        verbose_name="library classroom", max_length=50, null=True, blank=True
+    )
+    whatsapp_group = models.CharField(
+        verbose_name="whatsapp group", max_length=40, null=True, blank=True
+    )
+    program_director_name = models.CharField(
+        verbose_name="program director name", max_length=50, null=True, blank=True
+    )
+    program_director_phone = models.CharField(
+        verbose_name="program director phone", max_length=15, null=True, blank=True
+    )
+    program_director_email = models.EmailField(
+        verbose_name="program director email", max_length=50, null=True, blank=True
+    )
+    library_gmail_group = models.CharField(
+        verbose_name="library gmail group", max_length=50, null=True, blank=True
+    )
+    library_classroom = models.CharField(
+        verbose_name="library classroom", max_length=50, null=True, blank=True
     )
 
     class Meta:
@@ -32,7 +53,9 @@ class Language(models.Model):
 
 
 class MentorProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="mentor", null=True, blank=True)
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="mentor", null=True, blank=True
+    )
     time_zone = models.CharField(
         verbose_name="time zone", max_length=40, null=True, blank=True
     )
@@ -101,6 +124,9 @@ class Computer(models.Model):
     )
     computer_email = models.EmailField(
         verbose_name="computer email", max_length=70, null=True, blank=True
+    )
+    room_id = models.CharField(
+        verbose_name="room id", max_length=30, null=True, blank=True
     )
 
     def __str__(self):
@@ -178,12 +204,17 @@ class Appointment(models.Model):
 
     def display(self):
         today = datetime.datetime.now()
-        tz1, tz2 = timezone("US/Eastern"), timezone(self.mentor.mentor.time_zone)
+        tz2, tz1 = timezone("US/Eastern"), timezone(self.mentor.mentor.time_zone)
         diff = (tz1.localize(today) - tz2.localize(today).astimezone(tz1)).seconds//3600
+        newhsm = (self.hsm - diff+168)%168
+        tz1, tz2 = timezone("US/Eastern"), timezone(self.mentor.mentor.time_zone)
+        diff = (
+            tz1.localize(today) - tz2.localize(today).astimezone(tz1)
+        ).seconds // 3600
         return (
-            aux_fns.hsm_to_day_name(self.hsm + diff)
+            aux_fns.hsm_to_day_name(newhsm)
             + "s @ "
-            + aux_fns.hsm_to_12hr(self.hsm + diff)
+            + aux_fns.hsm_to_12hr(newhsm)
             + " until "
             + str(self.end_date.strftime("%x"))
         )

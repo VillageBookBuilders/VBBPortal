@@ -19,6 +19,10 @@ These commands (respectively)
 
 For the Youtube tutorials associated with this code (and preparing it for production), click here https://youtu.be/uZgRbnIsgrA
 
+*Note: run server on local Host : http://localhost:8000/signin
+*Note: to access, django admin, go to http://localhost:8000/admin/
+Username and Password: $$;
+Note: Discard any database changes on your local server (**DON'T PUSH**)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

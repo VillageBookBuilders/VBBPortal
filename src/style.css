@@ -3,25 +3,32 @@
 html {
   background-color: #fffff6;
 }
-.layout {
+
+.navbar {
+  border-bottom: 4px solid #ff914d;
   background-color: #fffff6;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-bottom: 10px;
-  padding-top: 5px;
+  padding-bottom: 15px;
+}
+
+#navbarTogglerDemo02 {
+  height: 65px;
+  padding-top: 20px;
 }
 
 .content {
-  min-height: calc(100vh - 200px);
+  min-height: 85vh;
+  background-color: #fffff6;
+  padding: 20px;
 }
 
-.SigninBox h3,
-.SigninBox p {
-  font-size: calc(1.5vw + 60%);
+#welcome-header {
+  font-family: "Nunito";
+  font-weight: bold;
+  color: #549bea;
 }
 
-.SigninBox h6 {
-  font-size: calc(1vw + 60%);
+#portal-purpose {
+  color: #6ac66b;
 }
 
 h1 {
@@ -46,10 +53,8 @@ p {
   padding-left: 50px;
 }
 
-.navbar {
-  border-bottom: 4px solid #ff914d;
-  background-color: #fffff6;
-  padding-bottom: 15px;
+a {
+  color: #549bea;
 }
 
 .btn {
@@ -59,12 +64,59 @@ p {
   color: white;
 }
 
-.donate-button {
+.badge {
+  background-color: #6ac66b;
+  margin-left: 20px;
+  font-size: medium;
+  font-weight: bold;
+  font-family: "Nunito", cursive;
+}
+
+#appt-change-note {
+  text-indent: -40px;
+}
+
+.donate-btn,
+.gcal-btn,
+.signup-btn {
   background-color: #549bea;
 }
 
-.signin-button {
+.book-btn,
+.gcal-btn {
+  width: 265px;
+}
+
+.donate-btn {
+  margin-right: 20px;
+}
+
+.signout-btn {
+  background-color: #ff914d;
+}
+
+.signin-btn,
+.book-btn {
   background-color: #6ac66b;
+}
+
+.goback-btn {
+  background-color: gray;
+  margin: 10px;
+}
+
+.goback-btn:hover {
+  background-color: #4c4c49;
+}
+
+.requestappt-btn {
+  background-color: #6ac66b;
+  margin: 10px;
+}
+
+.requestappt-btn:hover {
+  background-color: #549bea;
+  color: #fff;
 }
 
 hr {
@@ -72,8 +124,183 @@ hr {
 }
 
 footer {
+  background-color: #fffff6;
   font-family: "Nunito";
-  position: "absolute";
-  bottom: 0;
-  height: "2.5rem";
+  height: 40px;
+  text-align: center;
+}
+
+#bar-header-link:hover {
+  color: #549bea;
+}
+
+.twocol-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-count: 2;
+}
+
+.column {
+  flex: 2;
+  min-height: 400px;
+  min-width: 320px;
+  margin: 5vw;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+#signin-box {
+  flex: 3;
+  text-align: center;
+}
+
+#google-box {
+  border: #549bea 4px solid;
+  border-radius: 10px;
+  max-width: 362px;
+  margin: auto;
+}
+
+#create-account-box {
+  background-color: #fff;
+  border: #ff914d 4px solid;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 450px;
+  margin: auto;
+}
+
+#signin-picture-box {
+  padding: 0px;
+  max-width: 500px;
+}
+
+#mentoring-session-box {
+  border: #549bea 4px solid;
+  background-color: #fff;
+}
+
+#mentoring-resources-box {
+  border: #6ac66b 4px solid;
+  background-color: #fff;
+}
+
+.loading-spinner {
+  margin-top: 50%;
+  margin-left: 50%;
+}
+
+#full-logo {
+  display: block;
+}
+
+#mini-logo {
+  display: none;
+}
+
+/* BOOKING */
+
+.booking-fields {
+  max-width: 450px;
+  padding: 10px;
+}
+
+select {
+  float: right;
+  width: 220px;
+}
+
+label {
+  font-size: large;
+  font-weight: 500;
+  max-width: 90%;
+}
+
+#mentor,
+#commitment {
+  float: right;
+  margin-top: 10px;
+}
+
+/* DESKTOP ADJUSTMENTS */
+
+@media all and (min-width: 990px) {
+  #bar-header {
+    margin-left: 20vw;
+    width: 300px;
+  }
+
+  #signup-btn {
+    margin-left: 5vw;
+  }
+
+  .btn-pair {
+    position: absolute;
+    right: 40px;
+  }
+
+  #booking-header {
+    font-size: 40px;
+    padding-top: 30px;
+  }
+
+  .btns {
+    padding-left: 40px;
+  }
+}
+
+/* TABLET AND MOBILE ADJUSTMENTS */
+
+@media (max-width: 990px) {
+  #bar-header {
+    margin-top: -5px;
+  }
+
+  #booking-header {
+    font-size: 30px;
+  }
+
+  .badge {
+    font-size: small;
+  }
+}
+
+/* MOBILE ADJUSTMENTS */
+
+@media (max-width: 600px) {
+  #full-logo {
+    display: none;
+  }
+
+  #mini-logo {
+    display: block;
+  }
+
+  footer {
+    font-size: 13px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  #appt-change-note {
+    text-indent: 0px;
+    margin-left: -20px;
+  }
+
+  h1 {
+    font-size: 35px;
+  }
+
+  #bar-header {
+    margin-top: -20px;
+    font-size: 5px;
+  }
+
+  select {
+    width: 120px;
+  }
 }

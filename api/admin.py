@@ -7,9 +7,33 @@ admin.site.site_title = "VBB Portal"
 
 
 class LibraryAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "time_zone","calendar_id")
+    list_display = (
+        "id",
+        "name",
+        "time_zone",
+        "calendar_id",
+        "calendar_name",
+        "whatsapp_group",
+        "program_director_name",
+        "program_director_phone",
+        "program_director_email",
+        "library_gmail_group",
+        "library_classroom",
+    )
     readonly_fields = ("id",)
-    search_fields = ("id", "name", "time_zone","calendar_id")
+    search_fields = (
+        "id",
+        "name",
+        "time_zone",
+        "calendar_id",
+        "calendar_name",
+        "whatsapp_group",
+        "program_director_name",
+        "program_director_phone",
+        "program_director_email",
+        "library_gmail_group",
+        "library_classroom",
+    )
 
 
 class LanguageAdmin(admin.ModelAdmin):
@@ -46,10 +70,10 @@ class MentorProfileAdmin(admin.ModelAdmin):
     )
 
 
-class MenteeProfileAdmin(admin.ModelAdmin):
-    list_display = ("id", "__str__", "user", "library", "time_zone")
-    readonly_fields = ("id",)
-    search_fields = ("id", "user", "library", "time_zone")
+# class MenteeProfileAdmin(admin.ModelAdmin):
+#     list_display = ("id", "__str__", "user", "library", "time_zone")
+#     readonly_fields = ("id",)
+#     search_fields = ("id", "user", "library", "time_zone")
 
 
 class ComputerAdmin(admin.ModelAdmin):
@@ -60,6 +84,7 @@ class ComputerAdmin(admin.ModelAdmin):
         "language",
         "computer_num",
         "computer_email",
+        "room_id",
     )
     readonly_fields = ("id",)
     search_fields = (
@@ -68,6 +93,7 @@ class ComputerAdmin(admin.ModelAdmin):
         "language",
         "computer_num",
         "computer_email",
+        "room_id",
     )
 
 
@@ -76,7 +102,7 @@ class AppointmentAdmin(admin.ModelAdmin):
         "id",
         "__str__",
         "mentor",
-        "mentee",
+        # "mentee", #removed to avoid confusion. 
         "mentee_computer",
         "language",
         "hsm",
@@ -102,6 +128,6 @@ class AppointmentAdmin(admin.ModelAdmin):
 admin.site.register(Library, LibraryAdmin)
 admin.site.register(Language, LanguageAdmin)
 admin.site.register(MentorProfile, MentorProfileAdmin)
-admin.site.register(MenteeProfile, MenteeProfileAdmin)
+# admin.site.register(MenteeProfile, MenteeProfileAdmin)
 admin.site.register(Computer, ComputerAdmin)
 admin.site.register(Appointment, AppointmentAdmin)

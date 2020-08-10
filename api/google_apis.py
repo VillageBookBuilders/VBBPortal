@@ -12,6 +12,11 @@ import requests_oauth2
 from requests_oauth2 import OAuth2BearerToken
 
 from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from bs4 import BeautifulSoup
+import re
+import random
+# from dateutil.relativedelta import relativedelta
 class google_apis:
   ''''
   FUNCTIONS:
@@ -64,6 +69,8 @@ class google_apis:
     while(userExists(primaryEmail)):
       addedID+=1
       primaryEmail = firstName + '.' + lastName + str(addedID) + '@villagementors.org'
+    pwd = 'VBB' + str(random.randint(0, 1000)) + random.choice(['!','@','#','$','%','&'])
+
     data = ''' 
     {
       "primaryEmail": "%s",
@@ -71,25 +78,23 @@ class google_apis:
         "familyName": "%s",
         "givenName": "%s"
       },
-      "password": "villageBookBuilders",
+      "password": "%s",
       "changePasswordAtNextLogin": "true",
       "recoveryEmail": "%s",
     }
-    '''% (primaryEmail, lastName, firstName, personalEmail)
+    '''% (primaryEmail, lastName, firstName, pwd, personalEmail)
 
     with requests.Session() as s:
       s.auth = OAuth2BearerToken(self.__webdev_cred.token)
       r = s.post(url, headers=headers, data=data)
-      print('in while loop', data)
-    return primaryEmail
+    return (primaryEmail, pwd)
 
 
-  def calendar_event(self, menteeEmail, mentorEmail, start_time, duration=1):
+  def calendar_event(self, menteeEmail, mentorEmail, personalEmail, start_time, calendar_id, duration=1):
       calendar_service = build('calendar', 'v3', credentials=self.__webdev_cred)
       timezone = 'America/New_York'
       start_date_time_obj = datetime.strptime(start_time, '%Y-%m-%dT%H:%M:%S')
       end_time = start_date_time_obj + timedelta(hours=duration)
-      print('emails: ',mentorEmail, menteeEmail)
       event = {
           'summary': 'Village Book Builders Mentoring Meeting',
           'start': {
@@ -105,7 +110,8 @@ class google_apis:
           ],
           'attendees': [
               {'email': menteeEmail},
-              {'email': mentorEmail}
+              {'email': mentorEmail},
+              {'email': personalEmail}
           ],
           'reminders': {
               'useDefault': False,
@@ -115,31 +121,56 @@ class google_apis:
               ],
           },
       }
-      return calendar_service.events().insert(calendarId='primary', body=event).execute()
+      event_obj = calendar_service.events().insert(calendarId=calendar_id, body=event).execute()
+      return(event_obj['id']) 
 
-  def email_send(self, to, subject, message_text):
+  def email_send(self, to, subject, templatePath, personalizedPath, extraData=None):
     http = _auth.authorized_http(self.__mentor_cred)
     email_service = build('gmail', 'v1', http=http)
-    def create_message(to, subject, message_text):
+
+    def updatePersonalizedHTML(templatePath, personalizedPath, extraData):
+      """ Get HTML with the extraData filled in where specified. 
+      - Use Beautiful soup to find and replace the placeholder values with the proper user
+        specific info 
+      - use 'with' to write the beautifulSoup string into a newFile - the personalized version of the 
+        original templatePath. This personalized version will be sent out in the email and will be 
+        rewritten everytime the function is called.
+      """
+      f = open(templatePath, 'r')
+      template = f.read()
+      soup = BeautifulSoup(template)
+      if extraData != None:
+        for key in extraData:
+          target = soup.find_all(text=re.compile(r'%s'%key))
+          for v in target:
+            v.replace_with(v.replace('%s'%key, extraData[key]))
+        # now soup string has the proper values
+        with open(personalizedPath, "w") as file:
+          file.write(str(soup))
+
+    def create_message(to, subject, personalizedPath):
       """Create a message for an email.
 
       Args:
         sender: Email address of the sender.
         to: Email address of the receiver.
         subject: The subject of the email message.
-        message_text: The text of the email message.
+        personalizedPath: File path to email in html file with variable replaced
+                  with proper values.
 
       Returns:
         An object containing a base64url encoded email object.
       """
+      f = open(personalizedPath, 'r')
+      message_text = f.read() 
       sender = self.__mentor_cred._subject
-      message = MIMEText(message_text)
+      message = MIMEText(message_text, 'html')
       message['to'] = to
       message['from'] = sender
       message['subject'] = subject
       message_as_bytes = message.as_bytes() # the message should converted from string to bytes.
       message_as_base64 = base64.urlsafe_b64encode(message_as_bytes) #encode in base64 (printable letters coding)
-      raw = message_as_base64.decode()  # need to JSON serializable (no idea what does it means)
+      raw = message_as_base64.decode()  # need to JSON serializable
       return {'raw': raw} 
 
     def send_message(service, user_id, message):
@@ -162,13 +193,13 @@ class google_apis:
       except errors.HttpError as error:
         print('An error occurred: %s' % error)
 
-    msg = create_message(to, subject, message_text)
+    updatePersonalizedHTML(templatePath, personalizedPath, extraData)
+    msg = create_message(to, subject, personalizedPath)
     send_message(email_service, "me", msg)
 
 # FOR TESTING PURPOSES -- REMOVE LATER
-# def testFunction():
-#   g = google_apis()
-  # g.calendar_event("sohan.kalva.test2@villagementors.org", "shwetha.test1@villagebookbuilders.org", "2020-07-30T23:00:00")
-  # g.email_send('shwetha.shinju2@gmail.com', 'testagain', 'testtextagain')
-  # print(g.account_create('test','test', 'shwetha.shinju2@gmail.com'))
+def testFunction():
+  g = google_apis()
+  g.email_send("shwetha.shinju@gmail.com", "personalized", "api\emails\\test\\test-template.html", "api\emails\\test\\test.html", {'__first_name': "Shwetha"})
   
+# testFunction()

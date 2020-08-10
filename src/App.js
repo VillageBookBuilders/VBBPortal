@@ -29,6 +29,8 @@ const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.token !== null,
     isLoading: state.loading,
+    error: state.error,
+    message: state.message,
   };
 };
 

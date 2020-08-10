@@ -61,6 +61,7 @@ const mapStateToProps = (state) => {
   return {
     loading: state.loading,
     error: state.error,
+    message: state.message
   };
 };
 
