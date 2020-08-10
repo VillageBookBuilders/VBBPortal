@@ -3,6 +3,7 @@ beautifulsoup4==4.9.1
 cachetools==4.1.1
 certifi==2020.6.20
 chardet==3.0.4
+cx-Oracle==8.0.0
 defusedxml==0.6.0
 Django==3.0.8
 django-allauth==0.42.0
