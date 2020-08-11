@@ -1,11 +1,11 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import PrivateRoute from "./components/PrivateRoute";
-
-import Booking from "./components/Booking";
-import Dashboard from "./components/Dashboard";
-import MasterForm from "./components/registration/MasterForm";
-import HomeSignin from "./components/HomeSignin";
+import PrivateRoute from "./PrivateRoute";
+import Booking from "./Booking";
+import Dashboard from "./Dashboard";
+import MasterForm from "./registration/MasterForm";
+import HomeSignin from "./HomeSignin";
+// import Donation from "./registration/Donation"
 
 
 function Routes() {
@@ -15,6 +15,7 @@ function Routes() {
       <PrivateRoute exact path="/booking/" component={Booking} />
       <Route exact path="/signin/" component={HomeSignin} />
       <Route exact path="/signup/" component={MasterForm} />
+      {/* <Route exact path="/donate/" component={Donation} /> */}
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import AlertDismissable from './AlertDismissable'
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/auth";
@@ -8,7 +9,7 @@ import miniLogo from "../vbb-picture-logo.png";
 class Layout extends React.Component {
   render() {
     return (
-      <div>
+      <div id="page-container">
         <nav
           className="navbar sticky-top  navbar-expand-lg navbar-light"
           id="vbb-full-bar"
@@ -34,11 +35,8 @@ class Layout extends React.Component {
             <img src={miniLogo} alt="Logo" style={{ width: "45px" }} />
           </a>
           <a href="/" id="bar-header-link">
-            <h1
-              id="bar-header"
-              style={{ marginBottom: "-25px", fontSize: "40px" }}
-            >
-              VBB Portal
+            <h1 id="bar-header" style={{ marginBottom: "-25px" }}>
+              Vbb Portal
               <span className="badge badge-secondary">NEW</span>
             </h1>
           </a>
@@ -47,9 +45,6 @@ class Layout extends React.Component {
             type="button"
             data-toggle="collapse"
             data-target="#navbarTogglerDemo02"
-            aria-controls="navbarTogglerDemo02"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -99,7 +94,9 @@ class Layout extends React.Component {
         </nav>
 
         <div className="content">{this.props.children}</div>
-
+        <div style={{position:"fixed", margin:"10px", bottom: "0", width:"95%"}}>
+          <AlertDismissable {...this.props} style={{position: "relative", width:"80%"}}/> 
+        </div>
         <footer>&copy; Village Book Builders | All Rights Reserved</footer>
       </div>
     );

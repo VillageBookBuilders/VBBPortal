@@ -16,11 +16,11 @@ export class HomeSignin extends Component {
 
   render() {
     return (
-      <div className="twocol-container" style={{}}>
-        <div className="column leftcol" id="signin-box">
-          <h1 id="welcome-header">Welcome to the new VBB Portal !</h1>
+      <div className="twocol-container">
+        <div className="column" id="signin-box">
+          <h1 id="welcome-header">Welcome to VBB Portal!</h1>
           <h4 id="portal-purpose">
-            Now, giving hope through books is only a few clicks away.
+            Let's give hope to children through mentoring.
           </h4>
           <br />
           <div id="google-box">
@@ -30,14 +30,21 @@ export class HomeSignin extends Component {
               onSuccess={this.validateGoogle}
               onFailure={this.responseGoogle}
               cookiePolicy={"single_host_origin"}
-              style={{ width: "100%" }}
+              style={{ width: "100%", paddingTop: "30px" }}
             />
           </div>
           <br />
-          <hr />
+          <hr id="sep-bar" />
           <br />
           <div id="create-account-box">
-            <p style={{ paddingLeft: "0px", fontSize: "20px" }}>
+            <p
+              style={{
+                paddingLeft: "0px",
+                fontSize: "20px",
+                color: "#ff914d",
+                fontWeight: "bolder",
+              }}
+            >
               Don't have an account with us yet?
             </p>
             <a
@@ -49,14 +56,12 @@ export class HomeSignin extends Component {
             </a>
           </div>
         </div>
-        <div className="column rightcol" id="signin-picture-box">
-          <img
-            src={hope_books}
-            id="signin-picture"
-            alt="Pic"
-            style={{ width: "100%" }}
-          />
-        </div>
+        <img
+          src={hope_books}
+          id="signin-picture"
+          alt="Pic"
+          style={{ width: "600px", margin: "5vw" }}
+        />
       </div>
     );
   }

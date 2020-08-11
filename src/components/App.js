@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import * as actions from "./store/actions/auth";
+import * as actions from "../store/actions/auth";
 
-import Layout from "./components/Layout";
+import Layout from "./Layout";
 import Routes from "./Routes";
-import "./style.css";
+import "../style.css";
 
 class App extends Component {
   componentDidMount() {

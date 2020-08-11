@@ -56,7 +56,7 @@ class Booking extends React.Component {
       Authorization: `Token ${this.props.token}`,
     };
     axios
-      .get("http://https://portal.villagebookbuilders.org/api/available/", {
+      .get("https://portal.villagebookbuilders.org/api/available/", {
         params: {
           library: this.state.library,
           language: this.state.language,
@@ -316,11 +316,12 @@ class Booking extends React.Component {
             </div>
           )}
         </div>
-        <a href="/" type="button" className="btn btn-secondary goback-btn">
+        <a href="/" type="button" className="btn goback-btn">
           Go Back
         </a>
         <button
-          className="btn btn-light requestappt-btn"
+          className="btn btn-light"
+          id="requestappt-btn"
           disabled={!this.state.isCommitted || this.state.time === false}
           onClick={this.submitRequest}
         >

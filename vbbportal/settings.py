@@ -3,7 +3,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "2(x8mk5ntg6spryue!$4ls$w6zk^*i(m%r9)9o51jw2%3pnm&%"
 DEBUG = True
-ALLOWED_HOSTS = ["vbbportal.azurewebsites.net"]
+ALLOWED_HOSTS = ["portal.villagebookbuilders.org"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -30,6 +30,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -109,13 +110,10 @@ REST_FRAMEWORK = {
 }
 CORS_ORIGIN_WHITELIST = [
     "https://portal.villagebookbuilders.org",
-    "http://portal.villagebookbuilders.org",
-    "http://localhost:3000",
-    "http://localhost:8000",
-    "http://127.0.0.1:8000",
 ]
 
 CSRF_COOKIE_NAME = "csrftoken"
+CSRF_COOKIE_SECURE = True
 
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = "username"

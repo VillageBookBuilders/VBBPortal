@@ -1,9 +1,6 @@
 import React from 'react';
 
-/*Step 1*/
-
 function Step1(props) {
-
     if (props.currentStep !== 1) {
       return null
     }
@@ -82,7 +79,6 @@ function Step1(props) {
             <option value="No">No</option>
           </select>
         </div>
-  
       </div>
     );
   }

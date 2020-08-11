@@ -26,7 +26,7 @@ const authSuccess = (state, action) => {
 const authFail = (state, action) => {
     return updateObject(state, {
         error: true,
-        message: action.error,
+        message: action.error.message,
         loading: false
     });
 }

@@ -34,9 +34,9 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div className="twocol-container">
-        <div className="column leftcol" id="mentoring-session-box">
-          <h2 style={{ color: "#4C4C49" }}>My Weekly Mentoring Session:</h2>
+      <div className="twocol-container" id="dashboard">
+        <div className="column col-card" id="mentoring-session-box">
+          <h1 className="vbb-header">My Weekly Mentoring Session</h1>
           <h3 style={{ color: "#6AC66B", textIndent: "25px" }}>
             {this.state.appointments &&
               this.state.appointments.length > 0 &&
@@ -52,14 +52,14 @@ class Dashboard extends React.Component {
           <div className="btns">
             <a
               href="/booking/"
-              className="btn btn-light book-btn"
+              className="btn btn-light book-btn dashboard-btn"
               style={{ marginTop: "20px" }}
             >
               + Book a New Appointment
             </a>
             <br />
             <a
-              className="btn btn-light gcal-btn"
+              className="btn btn-light gcal-btn dashboard-btn"
               href="https://calendar.google.com/calendar/r"
               target="_blank"
               rel="noopener noreferrer"
@@ -68,7 +68,9 @@ class Dashboard extends React.Component {
               View My Google Calendar
             </a>
           </div>
-          <p style={{ padding: "20px", paddingLeft: "40px" }}>
+          <p
+            style={{ padding: "20px", paddingLeft: "40px", maxWidth: "650px" }}
+          >
             If you would like to change an appointment or have another question,
             please
             <a href="mailto:mentor@villagebookbuilders.org">
@@ -79,68 +81,65 @@ class Dashboard extends React.Component {
           </p>
           {/* <MentorProfile /> */}
         </div>
-        <div className="column rightcol" id="mentoring-resources-box">
-          <h2 style={{ color: "#4C4C49" }}>Mentoring Resources:</h2>
-          <div
-            style={{
-              paddingLeft: "50px",
-              fontSize: "18px",
-              paddingTop: "20px",
-            }}
-          >
+        <div className="column col-card">
+          <h1 className="vbb-header">Mentoring Resources</h1>
+          <div className="twocol-container" id="mentoring-resources-box">
             <a
+              className="btn btn-light dashboard-btn l1-btn"
               href="https://360.articulate.com/review/content/73bf3afe-47f9-4f9f-aa4d-70bf27fbe8d5/review"
               target="_blank"
               rel="noopener noreferrer"
             >
               Mentor Training
             </a>
-            <br />
             <a
+              className="btn btn-light dashboard-btn l2-btn"
               href="https://classroom.google.com/u/0/h"
               target="_blank"
               rel="noopener noreferrer"
             >
               Google Classroom
             </a>
-            <br />
             <a
+              className="btn btn-light dashboard-btn l3-btn"
               href="https://apps.google.com/meet/"
               target="_blank"
               rel="noopener noreferrer"
             >
               Google Meets
             </a>
-            <br />
             <a
+              className="btn btn-light dashboard-btn l4-btn"
               href="https://www.khanacademy.org/"
               target="_blank"
               rel="noopener noreferrer"
             >
               Khan Academy
             </a>
-            <br />
-            <a href="mailto:mentor@villagebookbuilders.org">
+            <a
+              className="btn btn-light dashboard-btn l5-btn"
+              href="mailto:mentor@villagebookbuilders.org"
+            >
               Contact your Mentor Advisor
             </a>
-            <br />
             <a
+              className="btn btn-light dashboard-btn l6-btn"
               href="https://www.facebook.com/groups/villagementors"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Village Mentors Facebook Group
+              Village Mentors FB Group
             </a>
-            <br />
             <a
+              className="btn btn-light dashboard-btn l7-btn"
               href="https://www.facebook.com/VillageBookBuilders"
               target="_blank"
               rel="noopener noreferrer"
             >
               VBB Facebook Page
             </a>
-            <br />
             <a
+              className="btn btn-light dashboard-btn l8-btn"
               href="https://www.villagebookbuilders.org/"
               target="_blank"
               rel="noopener noreferrer"
