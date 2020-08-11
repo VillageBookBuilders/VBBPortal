@@ -90,11 +90,15 @@ class google_apis:
     return (primaryEmail, pwd)
 
 
-  def calendar_event(self, menteeEmail, mentorEmail, personalEmail, start_time, calendar_id, duration=1):
+  def calendar_event(self, menteeEmail, mentorEmail, personalEmail, start_time, end_date, calendar_id, duration=.5):
       calendar_service = build('calendar', 'v3', credentials=self.__webdev_cred)
       timezone = 'America/New_York'
       start_date_time_obj = datetime.strptime(start_time, '%Y-%m-%dT%H:%M:%S')
       end_time = start_date_time_obj + timedelta(hours=duration)
+      end_date_formated = end_date.replace(':', '')
+      end_date_formated = end_date_formated.replace('-', '')
+      end_date_formated += 'Z'
+
       event = {
           'summary': 'Village Book Builders Mentoring Meeting',
           'start': {
@@ -106,7 +110,7 @@ class google_apis:
               'timeZone': timezone,
           },
           'recurrence': [
-              'RRULE:FREQ=WEEKLY;COUNT=3'
+              'RRULE:FREQ=WEEKLY;UNTIL=' + end_date_formated
           ],
           'attendees': [
               {'email': menteeEmail},
@@ -200,6 +204,7 @@ class google_apis:
 # FOR TESTING PURPOSES -- REMOVE LATER
 def testFunction():
   g = google_apis()
-  g.email_send("shwetha.shinju@gmail.com", "personalized", "api\emails\\test\\test-template.html", "api\emails\\test\\test.html", {'__first_name': "Shwetha"})
+  # g.email_send("shwetha.shinju@gmail.com", "personalized", "api\emails\\test\\test-template.html", "api\emails\\test\\test.html", {'__first_name': "Shwetha"})
+  g.calendar_event("shwetha.test1@villagebookbuilders.org", "sohan.kalva.test2@villagementors.org", "shwetha.shinju@gmail.com", "2020-08-10T22:00:00", "2020-09-10T22:00:00", "shwetha.test1@villagebookbuilders.org")
   
 # testFunction()
