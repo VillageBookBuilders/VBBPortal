@@ -1,7 +1,38 @@
 @import url("https://fonts.googleapis.com/css2?family=Caveat&family=Nunito:wght@200&display=swap");
 
+@import url("https://fonts.googleapis.com/css?family=Caveat+Brush");
+
 html {
   background-color: #fffff6;
+}
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.content {
+  background-color: #fffff6;
+  width: 100%;
+  min-height: 87vh;
+}
+
+#dashboard {
+  background-color: #f2f2e9;
+  min-height: 87vh;
+  padding-bottom: 47px;
+  width: 100%;
+}
+
+footer {
+  background-color: #fffff6;
+  font-family: "Nunito";
+  height: 50px;
+  text-align: center;
+  padding-top: 15px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .navbar {
@@ -11,29 +42,15 @@ html {
 }
 
 #navbarTogglerDemo02 {
-  height: 65px;
   padding-top: 20px;
 }
 
-.content {
-  min-height: 85vh;
-  background-color: #fffff6;
-  padding: 20px;
-}
-
-#welcome-header {
-  font-family: "Nunito";
-  font-weight: bold;
-  color: #549bea;
-}
-
-#portal-purpose {
-  color: #6ac66b;
-}
-
-h1 {
-  font-family: "Caveat", cursive;
-  font-weight: bold;
+h1,
+.vbb-header {
+  font-family: "Caveat Brush", cursive;
+  font-style: italic;
+  font-variant: small-caps;
+  letter-spacing: 3px;
   font-size: 3em;
   color: #4c4c49;
 }
@@ -47,6 +64,13 @@ h3 {
   padding-left: 25px;
 }
 
+h5 {
+  font-family: "Caveat", cursive;
+  font-weight: bold;
+  font-size: 40px;
+  padding-top: 30px;
+}
+
 p {
   font-family: "Nunito", sans-serif;
   font-size: 18px;
@@ -57,47 +81,100 @@ a {
   color: #549bea;
 }
 
-.btn {
-  font-family: "Nunito", cursive;
-  font-weight: bold;
-  font-size: 20px;
-  color: white;
-}
-
 .badge {
   background-color: #6ac66b;
   margin-left: 20px;
   font-size: medium;
-  font-weight: bold;
+  font-weight: 900;
   font-family: "Nunito", cursive;
+}
+
+#bar-header {
+  font-weight: bold;
+  color: #4c4c49;
+}
+
+#bar-header:hover {
+  color: #549bea;
+}
+
+#bar-header-link:hover {
+  color: transparent;
+}
+
+#welcome-header {
+  font-size: 60px;
+}
+
+#portal-purpose {
+  color: #6ac66b;
+  font-family: "Nunito";
+  font-weight: 900;
+  padding-top: 5px;
 }
 
 #appt-change-note {
   text-indent: -40px;
 }
 
+/* BUTTONS */
+
+.btn {
+  font-family: "Caveat Brush", cursive;
+  font-style: italic;
+  letter-spacing: 2px;
+  font-weight: 400;
+  font-size: 22px;
+  color: white;
+  border-radius: 18px;
+  padding: 8px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.btn:hover {
+  background-color: #4c4c49;
+  color: #fffff6;
+}
+
+.dashboard-btn {
+  width: 275px;
+  font-family: "Nunito", cursive;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  letter-spacing: normal;
+}
+
+.signin-btn,
+#requestappt-btn,
+.book-btn,
+.l3-btn,
+.l8-btn {
+  background-color: #6ac66b;
+}
+
 .donate-btn,
 .gcal-btn,
-.signup-btn {
+.signup-btn,
+.l1-btn,
+.l6-btn {
   background-color: #549bea;
 }
 
-.book-btn,
-.gcal-btn {
-  width: 265px;
+.signout-btn,
+.l2-btn,
+.l5-btn {
+  background-color: #ff914d;
+}
+
+.l4-btn,
+.l7-btn {
+  background-color: #ffbd59;
 }
 
 .donate-btn {
   margin-right: 20px;
-}
-
-.signout-btn {
-  background-color: #ff914d;
-}
-
-.signin-btn,
-.book-btn {
-  background-color: #6ac66b;
 }
 
 .goback-btn {
@@ -105,33 +182,16 @@ a {
   margin: 10px;
 }
 
-.goback-btn:hover {
-  background-color: #4c4c49;
-}
-
-.requestappt-btn {
-  background-color: #6ac66b;
+#requestappt-btn {
   margin: 10px;
 }
 
-.requestappt-btn:hover {
-  background-color: #549bea;
-  color: #fff;
-}
-
 hr {
-  border: 0.5px dotted #4c4c49;
+  border: 0.7px solid gainsboro;
 }
 
-footer {
-  background-color: #fffff6;
-  font-family: "Nunito";
-  height: 40px;
-  text-align: center;
-}
-
-#bar-header-link:hover {
-  color: #549bea;
+#sep-bar {
+  width: 85%;
 }
 
 .twocol-container {
@@ -142,30 +202,35 @@ footer {
   column-count: 2;
 }
 
+#mentoring-resources-box {
+  flex-direction: row;
+}
+
+.dashboard-btn {
+  margin: 20px;
+}
+
 .column {
   flex: 2;
-  min-height: 400px;
-  min-width: 320px;
-  margin: 5vw;
+  width: 100%;
+  margin: 2vw;
   padding: 30px;
-  border-radius: 10px;
+  border-radius: 30px;
 }
 
 #signin-box {
-  flex: 3;
   text-align: center;
+  position: relative;
+  bottom: 65px;
 }
 
 #google-box {
-  border: #549bea 4px solid;
   border-radius: 10px;
   max-width: 362px;
   margin: auto;
 }
 
 #create-account-box {
-  background-color: #fff;
-  border: #ff914d 4px solid;
   border-radius: 10px;
   padding: 20px;
   max-width: 450px;
@@ -173,18 +238,12 @@ footer {
 }
 
 #signin-picture-box {
-  padding: 0px;
-  max-width: 500px;
+  margin: 5vw;
+  max-width: 800px;
 }
 
-#mentoring-session-box {
-  border: #549bea 4px solid;
-  background-color: #fff;
-}
-
-#mentoring-resources-box {
-  border: #6ac66b 4px solid;
-  background-color: #fff;
+.col-card {
+  background-color: #fffff6;
 }
 
 .loading-spinner {
@@ -239,6 +298,7 @@ label {
   .btn-pair {
     position: absolute;
     right: 40px;
+    top: 20px;
   }
 
   #booking-header {
@@ -248,6 +308,15 @@ label {
 
   .btns {
     padding-left: 40px;
+  }
+
+  #signin-box {
+    min-width: 400px;
+    margin-top: 150px;
+  }
+
+  .col-card {
+    min-height: 650px;
   }
 }
 
@@ -264,6 +333,24 @@ label {
 
   .badge {
     font-size: small;
+    margin-left: 10px;
+  }
+
+  .column {
+    margin: 5vw;
+    min-width: 350px;
+  }
+
+  #signin-picture {
+    display: none;
+  }
+
+  .vbb-header {
+    font-size: 2.5em;
+  }
+
+  #signin-box {
+    top: 10px;
   }
 }
 
@@ -297,10 +384,23 @@ label {
 
   #bar-header {
     margin-top: -20px;
-    font-size: 5px;
+    font-size: 40px;
   }
 
   select {
     width: 120px;
+  }
+
+  #welcome-header {
+    width: 270px;
+    margin: auto;
+  }
+}
+
+/* SUPER MOBILE ADJUSTMENTS */
+
+@media (max-width: 355px) {
+  .badge {
+    display: none;
   }
 }
