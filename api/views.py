@@ -95,7 +95,7 @@ def first_time_signup(request):
         request.data["vbb_email"], pwd = gapi.account_create(request.data["first_name"], request.data["last_name"], request.data["personal_email"])
         print('new vbb email: ', request.data["vbb_email"])
         print('password: ', pwd)
-        #gapi.email_send(request.data["personal_email"], "Welcome to VBB", "api\emails\\test\\test-template.html", "api\emails\\test\\test.html", {'__first_name': request.data["first_name"]})
+        gapi.email_send(request.data["personal_email"], "Welcome to VBB", "api\emails\\test\\test-template.html", "api\emails\\test\\test.html", {'__first_name': request.data["first_name"]})
     serializer = MentorProfileSerializer(data = request.data)
     if serializer.is_valid():
         serializer.save()
@@ -176,7 +176,8 @@ def book_appointment(request):
     myappt.end_date = myappt.start_date + timedelta(weeks=17)
     gapi = google_apis()
     start_time = aux_fns.date_combine_time(str(myappt.start_date), myappt.hsm)
-    event_id = gapi.calendar_event(myappt.mentee_computer.computer_email, myappt.mentor.mentor.vbb_email, myappt.mentor.mentor.personal_email, start_time, myappt.mentee_computer.library.calendar_id)
+    end_date = aux_fns.date_combine_time(str(myappt.end_date), myappt.hsm)
+    event_id = gapi.calendar_event(myappt.mentee_computer.computer_email, myappt.mentor.mentor.vbb_email, myappt.mentor.mentor.personal_email, start_time, end_date, myappt.mentee_computer.library.calendar_id)
     myappt.event_id = event_id
     myappt.save()
     # FIXME - Add try/except/finally blocks for error checking (not logged in, appointment got taken before they refreshed)
