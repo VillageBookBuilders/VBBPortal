@@ -17,7 +17,7 @@ class Library(models.Model):
         verbose_name="calendar id", max_length=120, null=True, blank=True
     )
     calendar_name = models.CharField(
-        verbose_name="library classroom", max_length=50, null=True, blank=True
+        verbose_name="library calendar", max_length=50, null=True, blank=True
     )
     whatsapp_group = models.CharField(
         verbose_name="whatsapp group", max_length=40, null=True, blank=True
@@ -80,11 +80,11 @@ class MentorProfile(models.Model):
     organization = models.CharField(
         verbose_name="organization", max_length=70, null=True, blank=True
     )
-    contact_source = models.TextField(
-        verbose_name="contact source", max_length=200, null=True, blank=True
+    referral_source = models.TextField(
+        verbose_name="referral source", max_length=200, null=True, blank=True
     )
     involvement = models.TextField(
-        verbose_name="involvement", max_length=200, null=True, blank=True
+        verbose_name="additional involvement", max_length=200, null=True, blank=True
     )
 
     # def __str__(self):
@@ -126,7 +126,7 @@ class Computer(models.Model):
         verbose_name="computer email", max_length=70, null=True, blank=True
     )
     room_id = models.CharField(
-        verbose_name="room id", max_length=30, null=True, blank=True
+        verbose_name="room id", max_length=100, null=True, blank=True
     )
 
     def __str__(self):
