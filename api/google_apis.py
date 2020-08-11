@@ -1,4 +1,5 @@
 
+import os
 from oauth2client import file, client
 from google.oauth2 import service_account
 from googleapiclient import discovery
@@ -35,7 +36,7 @@ class google_apis:
         'https://www.googleapis.com/auth/gmail.compose', 
         'https://www.googleapis.com/auth/admin.directory.user'
       ]
-      SERVICE_ACCOUNT_FILE = r"api\service-account.json"
+      SERVICE_ACCOUNT_FILE = os.path.join("api","service-account.json")
       credentials = service_account.Credentials.from_service_account_file(
               SERVICE_ACCOUNT_FILE, scopes=scopes)
 
