@@ -53,7 +53,7 @@ class MentorProfileAdmin(admin.ModelAdmin):
         "phone_number",
         "occupation",
         "organization",
-        "contact_source",
+        "referral_source",
         "involvement",
     )
     readonly_fields = ("id",)
