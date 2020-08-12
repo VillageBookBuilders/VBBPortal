@@ -87,8 +87,8 @@ class MentorProfile(models.Model):
         verbose_name="additional involvement", max_length=200, null=True, blank=True
     )
 
-    # def __str__(self):
-    #     return self.user.first_name + " " + self.user.last_name
+    def __str__(self):
+        return self.user.first_name + " " + self.user.last_name
 
 
 class MenteeProfile(models.Model):
@@ -205,8 +205,10 @@ class Appointment(models.Model):
     def display(self):
         today = datetime.datetime.now()
         tz2, tz1 = timezone("US/Eastern"), timezone(self.mentor.mentor.time_zone)
-        diff = (tz1.localize(today) - tz2.localize(today).astimezone(tz1)).seconds//3600
-        newhsm = (self.hsm - diff+168)%168
+        diff = (
+            tz1.localize(today) - tz2.localize(today).astimezone(tz1)
+        ).seconds // 3600
+        newhsm = (self.hsm - diff + 168) % 168
         tz1, tz2 = timezone("US/Eastern"), timezone(self.mentor.mentor.time_zone)
         diff = (
             tz1.localize(today) - tz2.localize(today).astimezone(tz1)

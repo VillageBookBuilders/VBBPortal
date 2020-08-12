@@ -24,7 +24,7 @@ class Dashboard extends React.Component {
       })
       .catch((err) => {
         console.log(err);
-        alert("There was an error in retrieving your appointments", err);
+        alert("There was an error in retrieving your mentoring sessions", err);
       });
   };
 
@@ -38,8 +38,7 @@ class Dashboard extends React.Component {
         <div className="column col-card" id="mentoring-session-box">
           <h1 className="vbb-header">My Weekly Mentoring Session</h1>
           <h3 style={{ color: "#6AC66B", textIndent: "25px" }}>
-            {this.state.appointments &&
-              this.state.appointments.length > 0 &&
+            {this.state.appointments && this.state.appointments.length > 0 ? (
               this.state.appointments.map((apt) => {
                 return (
                   <li key={apt.event_id} value={apt.event_id}>
@@ -47,15 +46,33 @@ class Dashboard extends React.Component {
                     <br />
                   </li>
                 );
-              })}
+              })
+            ) : (
+              <>
+                <h4
+                  style={{
+                    fontSize: "22px",
+                    fontWeight: "400",
+                    fontStyle: "italic",
+                    textIndent: "0px",
+                    color: "#ff914d",
+                  }}
+                >
+                  Uh oh! You don't have any mentoring sessions booked yet.
+                </h4>
+                <h4 style={{ textIndent: "0px", fontStyle: "italic" }}>
+                  Press the green button below to make your first booking!
+                </h4>
+              </>
+            )}
           </h3>
           <div className="btns">
             <a
               href="/booking/"
               className="btn btn-light book-btn dashboard-btn"
-              style={{ marginTop: "20px" }}
+              style={{ marginTop: "20px", fontSize: "20px" }}
             >
-              + Book a New Appointment
+              + Book Mentoring Session
             </a>
             <br />
             <a
@@ -71,8 +88,8 @@ class Dashboard extends React.Component {
           <p
             style={{ padding: "20px", paddingLeft: "40px", maxWidth: "650px" }}
           >
-            If you would like to change an appointment or have another question,
-            please
+            If you would like to change a mentoring session or have another
+            question, please
             <a href="mailto:mentor@villagebookbuilders.org">
               {" "}
               contact your mentor advisor{" "}

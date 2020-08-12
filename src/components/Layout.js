@@ -1,10 +1,10 @@
 import React from "react";
-import AlertDismissable from './AlertDismissable'
+import AlertDismissable from "./AlertDismissable";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/auth";
-import fullLogo from "../vbb-full-logo.png";
-import miniLogo from "../vbb-picture-logo.png";
+import fullLogo from "../images/vbb-full-logo.png";
+import miniLogo from "../images/vbb-picture-logo.png";
 
 class Layout extends React.Component {
   render() {
@@ -93,10 +93,11 @@ class Layout extends React.Component {
           </div>
         </nav>
 
-        <div className="content">{this.props.children}</div>
-        <div style={{position:"fixed", margin:"10px", bottom: "0", width:"95%"}}>
-          <AlertDismissable {...this.props} style={{position: "relative", width:"80%"}}/> 
+        <div className="content">
+          <AlertDismissable {...this.props} />
+          {this.props.children}
         </div>
+
         <footer>&copy; Village Book Builders | All Rights Reserved</footer>
       </div>
     );

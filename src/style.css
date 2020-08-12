@@ -65,8 +65,8 @@ h3 {
 }
 
 h5 {
-  font-family: "Caveat", cursive;
-  font-weight: bold;
+  font-family: "Caveat Brush", cursive;
+  color: #4c4c49;
   font-size: 40px;
   padding-top: 30px;
 }
@@ -113,10 +113,6 @@ a {
   padding-top: 5px;
 }
 
-#appt-change-note {
-  text-indent: -40px;
-}
-
 /* BUTTONS */
 
 .btn {
@@ -147,7 +143,7 @@ a {
 }
 
 .signin-btn,
-#requestappt-btn,
+#requestsession-btn,
 .book-btn,
 .l3-btn,
 .l8-btn {
@@ -158,7 +154,8 @@ a {
 .gcal-btn,
 .signup-btn,
 .l1-btn,
-.l6-btn {
+.l6-btn,
+.next-btn {
   background-color: #549bea;
 }
 
@@ -177,13 +174,13 @@ a {
   margin-right: 20px;
 }
 
-.goback-btn {
+.goback-btn,
+.prev-btn {
   background-color: gray;
-  margin: 10px;
 }
 
-#requestappt-btn {
-  margin: 10px;
+.goback-btn {
+  margin-right: 20px;
 }
 
 hr {
@@ -244,6 +241,7 @@ hr {
 
 .col-card {
   background-color: #fffff6;
+  min-height: 650px;
 }
 
 .loading-spinner {
@@ -261,26 +259,52 @@ hr {
 
 /* BOOKING */
 
-.booking-fields {
-  max-width: 450px;
-  padding: 10px;
+#booking-box {
+  width: 550px;
+  margin-top: 20px;
+  margin-bottom: 100px;
 }
 
 select {
   float: right;
   width: 220px;
+  margin-top: 10px;
+  height: 30px;
 }
 
 label {
   font-size: large;
   font-weight: 500;
   max-width: 90%;
+  margin-top: 10px;
+}
+
+input {
+  height: 30px;
+  margin-bottom: 10px;
 }
 
 #mentor,
 #commitment {
   float: right;
   margin-top: 10px;
+}
+
+#signup-header {
+  padding: 20px;
+}
+
+.step-form {
+  padding: 20px;
+  max-width: 700px;
+  margin: auto;
+  height: 100%;
+}
+
+.signup-form {
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-bottom: 120px;
 }
 
 /* DESKTOP ADJUSTMENTS */
@@ -306,17 +330,13 @@ label {
     padding-top: 30px;
   }
 
-  .btns {
-    padding-left: 40px;
-  }
-
   #signin-box {
     min-width: 400px;
     margin-top: 150px;
   }
 
-  .col-card {
-    min-height: 650px;
+  .donate-btn {
+    width: 250px;
   }
 }
 
@@ -342,6 +362,10 @@ label {
   }
 
   #signin-picture {
+    display: none;
+  }
+
+  #booking-picture {
     display: none;
   }
 
@@ -373,11 +397,6 @@ label {
     font-size: 16px;
   }
 
-  #appt-change-note {
-    text-indent: 0px;
-    margin-left: -20px;
-  }
-
   h1 {
     font-size: 35px;
   }
@@ -388,12 +407,31 @@ label {
   }
 
   select {
-    width: 120px;
+    width: 140px;
   }
 
   #welcome-header {
     width: 270px;
     margin: auto;
+  }
+
+  #signup-header {
+    width: 350px;
+  }
+
+  .goback-btn {
+    margin-right: 100px;
+    margin-bottom: 20px;
+  }
+
+  #booking-box {
+    width: 350px;
+    padding: 10px;
+  }
+
+  .signup-form {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
