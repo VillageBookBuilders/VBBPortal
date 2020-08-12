@@ -31,11 +31,11 @@ class MasterForm extends React.Component {
       charges: "",
       commit: "",
       initials: "",
-      moreInvolved:"",
-      howInvolved: "",
+      more_involved:"",
+      desired_involvement: "",
       city: "",
       vbb_chapter: "",
-      timeZone: moment.tz.guess(),
+      time_zone: moment.tz.guess(),
     };
   }
 
@@ -46,19 +46,17 @@ class MasterForm extends React.Component {
     if (this.state.firstname === "") problems += " - first name\n";
     if (this.state.lastname === "") problems += " - last name\n";
     if (this.state.email === "") problems += " - email\n";
-    if (this.state.phone === "") problems += " - phone\n";
-    if (this.state.newsletter === "") problems += " - newsletter\n";
-    if (this.state.age === "") problems += " - age\n";
-    if (this.state.occupation === "") problems += " - occupation\n";
+    if (this.state.age === "") problems += " - whether or not you are over 18\n";
+    if (this.state.occupation === "") problems += " - what stage of life you are at\n";
     if (this.state.referral_source === "") problems += " - referral source\n";
     if (this.state.language === "") problems += " - language\n";
-    if (this.state.timeZone === "") problems += " - time zone\n";
+    if (this.state.time_zone === "") problems += " - time zone\n";
     if (this.state.termsCond === ""|| this.state.mentor4Months === "No") problems += " - accept Terms and Conditions\n";
     if (this.state.charges === "") problems += " - charged or \n";
     if (this.state.commit === "" || this.state.commit === "No")
       problems += " - mentoring commitment\n";
     if (this.state.initials === "") problems += " - initials\n";
-    if (this.state.moreInvolved === "") problems += " - get more involved?\n";
+    if (this.state.more_involved === "") problems += " - get more involved?\n";
     if (this.state.city === "") problems += " - city\n";
     if (problems === "") return false;
     return base + problems;
@@ -86,15 +84,15 @@ class MasterForm extends React.Component {
     this.props.onAuth(
       this.state.firstname,
       this.state.lastname,
-      this.state.timeZone,
+      this.state.time_zone,
       this.state.email,
       this.state.vbbemail,
       this.state.phone,
-      this.state.newsletter,
       this.state.occupation,
       this.state.affiliation,
       this.state.referral_source,
-      this.state.howInvolved
+      this.state.desired_involvement,
+      this.state.initials
     );
   };
 
@@ -212,25 +210,27 @@ const mapDispatchToProps = (dispatch) => {
     onAuth: (
       firstname,
       lastname,
-      timeZone,
+      time_zone,
       email,
       phone,
       occupation,
       affiliation,
-      contact,
-      howInvolved
+      referral_source,
+      desired_involvement,
+      initials
     ) =>
       dispatch(
         actions.authSignup(
           firstname,
           lastname,
-          timeZone,
+          time_zone,
           email,
           phone,
           occupation,
           affiliation,
-          contact,
-          howInvolved
+          referral_source,
+          desired_involvement,
+          initials
         )
       ),
   };

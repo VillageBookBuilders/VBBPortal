@@ -5,10 +5,10 @@ import { connect } from "react-redux";
 
 class Dashboard extends React.Component {
   state = {
-    appointments: [],
+    sessionslots: [],
   };
 
-  fetchAppointmentData = () => {
+  fetchSessionSlotData = () => {
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.headers = {
@@ -16,10 +16,10 @@ class Dashboard extends React.Component {
       Authorization: `Token ${this.props.token}`,
     };
     axios
-      .get("https://portal.villagebookbuilders.org/api/myappointments/")
+      .get("https://portal.villagebookbuilders.org/api/mysessionslots/")
       .then((res) => {
         this.setState({
-          appointments: res.data,
+          sessionslots: res.data,
         });
       })
       .catch((err) => {
@@ -29,7 +29,7 @@ class Dashboard extends React.Component {
   };
 
   componentDidMount() {
-    this.fetchAppointmentData();
+    this.fetchSessionSlotData();
   }
 
   render() {
@@ -38,8 +38,8 @@ class Dashboard extends React.Component {
         <div className="column col-card" id="mentoring-session-box">
           <h1 className="vbb-header">My Weekly Mentoring Session</h1>
           <h3 style={{ color: "#6AC66B", textIndent: "25px" }}>
-            {this.state.appointments && this.state.appointments.length > 0 ? (
-              this.state.appointments.map((apt) => {
+            {this.state.sessionslots && this.state.sessionslots.length > 0 ? (
+              this.state.sessionslots.map((apt) => {
                 return (
                   <li key={apt.event_id} value={apt.event_id}>
                     {apt.display}

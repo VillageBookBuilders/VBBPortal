@@ -102,14 +102,15 @@ function Step2(props) {
       />
 
       <div>
-        <label htmlFor="timeZone">What timezone are you in?</label>&nbsp;
+        <label htmlFor="time_zone">What timezone are you in?</label>&nbsp;
         <select
-          name="timeZone"
-          id="timeZone"
+          name="time_zone"
+          id="time_zone"
           onChange={props.handleChange}
-          value={props.state.timeZone}
+          value={props.state.time_zone}
         >
           {moment.tz.names().map((tz) => {
+            if(tz.includes("Etc/GMT")) return null;
             return (
               <option key={tz} value={tz}>
                 {tz}

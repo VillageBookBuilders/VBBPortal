@@ -3,6 +3,7 @@
 #django
 env
 **/*.pyc
+api/emails/templates/placeholder.html
 
 ## from create-react-app:
 
@@ -27,5 +28,3 @@ yarn-error.log*
 
 .vscode
 db.sqlite3
-
-api/emails/templates/test.html

@@ -20,9 +20,9 @@ function Step5(props) {
         <div>
           <label>Would you like to get more involved?</label>
           <select
-            name="moreInvolved"
-            id="moreInvolved"
-            value={props.state.moreInvolved}
+            name="more_involved"
+            id="more_involved"
+            value={props.state.more_involved}
             onChange={props.handleChange}
           >
             <option value="">-</option>
@@ -31,15 +31,15 @@ function Step5(props) {
           </select>
         </div>
 
-        {props.state.moreInvolved === "Yes" && (
+        {props.state.more_involved === "Yes" && (
           <div>
             <label>
               How would you like to get more involved (Select all that apply)?
             </label>
             <select
-              name="howInvolved"
-              id="howInvolved"
-              value={props.state.howInvolved}
+              name="desired_involvement"
+              id="desired_involvement"
+              value={props.state.desired_involvement}
               onChange={props.handleChange}
             >
               <option value="Fundraiser"> Run or help with a fundraiser</option>
@@ -86,7 +86,7 @@ function Step5(props) {
         disabled={props.hasProblems()}
         style={{ marginBottom: "20px", marginTop: "20px" }}
       >
-        Sign up
+        SIGN UP
       </button>
     </React.Fragment>
   );
