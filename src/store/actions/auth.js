@@ -82,11 +82,11 @@ const checkSignIn = (token, dispatch) => {
     });
 };
 
-export const authSignup = (first_name, last_name, time_zone, personal_email, vbb_email, phone_number, occupation, organization, contact_source, involvement) => {
+export const authSignup = (first_name, last_name, time_zone, personal_email, vbb_email, phone_number, occupation, affiliation, referral_source, desired_involvement, initials) => {
   return (dispatch) => {
     dispatch(authStart());
     axios
-      .post("https://portal.villagebookbuilders.org/api/creatementorprofile/", {
+      .post("https://portal.villagebookbuilders.org/api/signup/", {
         first_name: first_name,
         last_name: last_name,
         time_zone: time_zone,
@@ -94,9 +94,10 @@ export const authSignup = (first_name, last_name, time_zone, personal_email, vbb
         vbb_email: vbb_email,
         phone_number: phone_number,
         occupation: occupation,
-        organization: organization,
-        contact_source: contact_source,
-        involvement: involvement,
+        affiliation: affiliation,
+        referral_source: referral_source,
+        desired_involvement: desired_involvement,
+        initials: initials
       })
       .then((res) => {
         dispatch(checkAuthTimeout(3600));

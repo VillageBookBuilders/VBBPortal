@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { GoogleLogin } from "react-google-login";
-import hope_books from "../vbb_in_action.png";
+import vbbInAction from "../images/vbb-in-action.png";
 import * as actions from "../store/actions/auth";
 
 export class HomeSignin extends Component {
@@ -57,7 +57,7 @@ export class HomeSignin extends Component {
           </div>
         </div>
         <img
-          src={hope_books}
+          src={vbbInAction}
           id="signin-picture"
           alt="Pic"
           style={{ width: "600px", margin: "5vw" }}

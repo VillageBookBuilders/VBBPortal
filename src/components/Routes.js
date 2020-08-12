@@ -7,7 +7,6 @@ import MasterForm from "./registration/MasterForm";
 import HomeSignin from "./HomeSignin";
 // import Donation from "./registration/Donation"
 
-
 function Routes() {
   return (
     <div>

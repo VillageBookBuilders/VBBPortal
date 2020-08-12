@@ -12,7 +12,6 @@ class LibraryAdmin(admin.ModelAdmin):
         "name",
         "time_zone",
         "calendar_id",
-        "calendar_name",
         "whatsapp_group",
         "program_director_name",
         "program_director_phone",
@@ -26,7 +25,6 @@ class LibraryAdmin(admin.ModelAdmin):
         "name",
         "time_zone",
         "calendar_id",
-        "calendar_name",
         "whatsapp_group",
         "program_director_name",
         "program_director_phone",
@@ -52,9 +50,9 @@ class MentorProfileAdmin(admin.ModelAdmin):
         "vbb_email",
         "phone_number",
         "occupation",
-        "organization",
+        "affiliation",
         "referral_source",
-        "involvement",
+        "desired_involvement",
     )
     readonly_fields = ("id",)
     search_fields = (
@@ -64,25 +62,18 @@ class MentorProfileAdmin(admin.ModelAdmin):
         "personal_email",
         "vbb_email",
         "phone_number",
-        "organization",
-        "contact_source",
-        "involvement",
+        "affiliation",
+        "referral_source",
+        "desired_involvement",
     )
 
-
-# class MenteeProfileAdmin(admin.ModelAdmin):
-#     list_display = ("id", "__str__", "user", "library", "time_zone")
-#     readonly_fields = ("id",)
-#     search_fields = ("id", "user", "library", "time_zone")
-
-
-class ComputerAdmin(admin.ModelAdmin):
+class MenteeComputerAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "__str__",
         "library",
         "language",
-        "computer_num",
+        "computer_number",
         "computer_email",
         "room_id",
     )
@@ -91,34 +82,32 @@ class ComputerAdmin(admin.ModelAdmin):
         "id",
         "library",
         "language",
-        "computer_num",
+        "computer_number",
         "computer_email",
         "room_id",
     )
 
 
-class AppointmentAdmin(admin.ModelAdmin):
+class SessionSlotAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "__str__",
         "mentor",
-        # "mentee", #removed to avoid confusion. 
         "mentee_computer",
         "language",
-        "hsm",
+        "msm",
         "start_date",
         "end_date",
         "event_id",
-        "notes",
+        "mentor_notes",
     )
     readonly_fields = ("id",)
     search_fields = (
         "id",
         "mentor",
-        "mentee",
         "mentee_computer",
         "language",
-        "hsm",
+        "msm",
         "start_date",
         "end_date",
         "event_id",
@@ -128,6 +117,5 @@ class AppointmentAdmin(admin.ModelAdmin):
 admin.site.register(Library, LibraryAdmin)
 admin.site.register(Language, LanguageAdmin)
 admin.site.register(MentorProfile, MentorProfileAdmin)
-# admin.site.register(MenteeProfile, MenteeProfileAdmin)
-admin.site.register(Computer, ComputerAdmin)
-admin.site.register(Appointment, AppointmentAdmin)
+admin.site.register(MenteeComputer, MenteeComputerAdmin)
+admin.site.register(SessionSlot, SessionSlotAdmin)

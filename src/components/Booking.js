@@ -3,13 +3,14 @@ import axios from "axios";
 import moment from "moment";
 import "moment-timezone";
 import { connect } from "react-redux";
+import menteeComputer from "../images/vbb-mentee-computer.png";
 
 class Booking extends React.Component {
   state = {
     libraries: [],
     languages: {},
     times: [],
-    timezone: moment.tz.guess(),
+    time_zone: moment.tz.guess(),
     language: 1,
     weekday: 0,
     displayDay: "",
@@ -49,6 +50,7 @@ class Booking extends React.Component {
   }
 
   fetchTimes = () => {
+
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.headers = {
@@ -60,8 +62,8 @@ class Booking extends React.Component {
         params: {
           library: this.state.library,
           language: this.state.language,
-          min_hsm: this.shift_time(parseInt(this.state.weekday), false),
-          max_hsm: this.shift_time(parseInt(this.state.weekday), false) + 24,
+          min_msm: this.shift_time(parseInt(this.state.weekday), false),
+          max_msm: this.shift_time(parseInt(this.state.weekday), false) + 1440,
         },
       })
       .then((res) => {
@@ -75,48 +77,51 @@ class Booking extends React.Component {
   };
 
   display_day = (day) => {
+    day = parseInt(day)
     switch (day) {
       case 0:
         return "Monday";
-      case 24:
+      case 1440:
         return "Tuesday";
-      case 48:
+      case 2880:
         return "Wednesday";
-      case 72:
+      case 4320:
         return "Thursday";
-      case 96:
+      case 5760:
         return "Friday";
-      case 120:
+      case 7200:
         return "Saturday";
-      case 168:
+      case 8640:
         return "Sunday";
       default:
         return "--";
     }
   };
 
-  display_time = (hsm) => {
-    var tzhsm = this.shift_time(hsm, true);
-    var time24 = tzhsm % 24;
-    var time12 = tzhsm % 12;
-    if (time24 === 0) return "12 am";
-    if (time24 === 12) return "12 pm";
-    if (time24 === time12) return time12 + " am";
-    return time12 + " pm";
+  display_time = (msm) => {
+    var tzmsm = this.shift_time(msm, true);
+    let mins = ":"+(msm%60)
+    if(msm%60===0) mins = ""
+    else if(msm%60<10) mins = ":0"+(msm%60)
+    var time24 = parseInt(tzmsm/60) % 24;
+    var time12 = parseInt(tzmsm/60) % 12;
+    if (time24 === 0) return "12"+mins+"am";
+    if (time24 === 12) return "12"+mins+"pm";
+    if (time24 === time12) return time12+mins+"am";
+    return time12 + mins+"pm";
   };
 
-  shift_time = (hsm, isEastern) => {
+  shift_time = (msm, isEastern) => {
     var now = moment();
-    now.tz(this.state.timezone);
+    now.tz(this.state.time_zone);
     var localOffset = now.utcOffset();
     //eastern time zone is the server standard as of 8/1/2020
-    now.tz("America/New_York");
+    now.tz("US/Eastern");
     var easternOffset = now.utcOffset();
     var diffInMinutes = localOffset - easternOffset;
-    var diffInHours = diffInMinutes / 60;
-    //isEastern designates whether the given hsm is in Eastern or the local timezone
-    if (isEastern) return (hsm + diffInHours + 168) % 168;
-    return (hsm - diffInHours + 168) % 168;
+    //isEastern designates whether the given msm is in Eastern or the local time_zone
+    if (isEastern) return (msm + diffInMinutes + 10080) % 10080;
+    return (msm - diffInMinutes + 10080) % 10080;
   };
 
   handleMentorChange = () => {
@@ -152,7 +157,7 @@ class Booking extends React.Component {
   submitRequest = () => {
     this.handleCommitChange();
     this.postRequest();
-  }
+  };
 
   postRequest = () => {
     alert("please wait while we submit your booking request");
@@ -167,7 +172,7 @@ class Booking extends React.Component {
         params: {
           library: this.state.library,
           language: this.state.language,
-          hsm: this.state.time,
+          msm: this.state.time,
         },
       })
       .then((res) => {
@@ -182,152 +187,160 @@ class Booking extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1 id="booking-header">Book Your Mentoring Appointment Below!</h1>
-        <p>
-          Select a day and time that you have available each week.
+      <div className="twocol-container">
+        <div id="booking-box">
+          <h1 id="booking-header">Book Your Weekly Mentoring Session Below!</h1>
+          <p>
+            Select a day and time that you have available each week.
+            <br />
+            We'll match you with a child who needs you as their mentor.
+          </p>
           <br />
-          We'll match you with a child who needs you as their mentor.
-        </p>
-        <div className="booking-fields">
-          <label htmlFor="language">Mentoring Language:&nbsp;</label>
-          <select
-            name="language"
-            id="language"
-            onChange={this.handleDropDownChange}
-          >
-            {this.state.languages &&
-              this.state.languages.length > 0 &&
-              this.state.languages.map((lang) => {
-                return (
-                  <option key={lang.id} value={lang.id}>
-                    {lang.name}
-                  </option>
-                );
-              })}
-          </select>
-          <br />
-          <br />
-          <label htmlFor="timezone">Your Timezone:</label>&nbsp;
-          <select
-            name="timezone"
-            id="timezone"
-            onChange={this.handleDropDownChange}
-            value={this.state.timezone}
-          >
-            {this.state.languages &&
-              this.state.languages.length > 0 &&
+          <div className="booking-fields">
+            <label htmlFor="language">Mentoring Language:&nbsp;</label>
+            <select
+              name="language"
+              id="language"
+              onChange={this.handleDropDownChange}
+            >
+              {this.state.languages &&
+                this.state.languages.length > 0 &&
+                this.state.languages.map((lang) => {
+                  return (
+                    <option key={lang.id} value={lang.id}>
+                      {lang.name}
+                    </option>
+                  );
+                })}
+            </select>
+            <br />
+            <br />
+            <label htmlFor="time_zone">Your Timezone:</label>&nbsp;
+            <select
+              name="time_zone"
+              id="time_zone"
+              onChange={this.handleDropDownChange}
+              value={this.state.time_zone}
+            >
+            {
               moment.tz.names().map((tz) => {
                 return (
                   <option key={tz} value={tz}>
                     {tz}
                   </option>
                 );
-              })}
-          </select>
-          <br />
-          <br />
-          <input
-            type="checkbox"
-            id="mentor"
-            name="mentor"
-            onChange={this.handleMentorChange}
-          />
-          <label htmlFor="mentor">Are you a returning mentor?</label>
-          <p style={{ fontSize: "medium" }}>
-            (Check to rebook an existing appointment)
-          </p>
-          {this.state.isReturning && (
-            <div>
-              <label htmlFor="library" style={{ paddingLeft: "50px" }}>
-                If you would like to continue with the same library, select it
-                here:&nbsp;
-              </label>
-              <select
-                name="library"
-                id="library"
-                onChange={this.handleDropDownChange}
-              >
-                <option value="0">Any</option>
-                {this.state.libraries &&
-                  this.state.libraries.length > 0 &&
-                  this.state.libraries.map((lib) => {
-                    return (
-                      <option key={lib.id} value={lib.id}>
-                        {lib.name}
-                      </option>
-                    );
-                  })}
-              </select>
-              <br />
-              <br />
-              <br />
-              <br />
-            </div>
-          )}
-          <label htmlFor="weekday">Day of the Week:&nbsp;</label>
-          <select
-            name="weekday"
-            id="weekday"
-            onChange={this.handleDropDownChange}
+              })
+            }
+            </select>
+            <br />
+            <br />
+            <input
+              type="checkbox"
+              id="mentor"
+              name="mentor"
+              onChange={this.handleMentorChange}
+            />
+            <label htmlFor="mentor">Are you a returning mentor?</label>
+            {/* <p style={{ fontSize: "medium" }}>
+              (Check to rebook your current session)
+            </p> */}
+            {this.state.isReturning && (
+              <div>
+                <label htmlFor="library" style={{ paddingLeft: "50px" }}>
+                  If you would like to continue with the same library, select it
+                  here:&nbsp;
+                </label>
+                <select
+                  name="library"
+                  id="library"
+                  onChange={this.handleDropDownChange}
+                >
+                  <option value="0">Any</option>
+                  {this.state.libraries &&
+                    this.state.libraries.length > 0 &&
+                    this.state.libraries.map((lib) => {
+                      return (
+                        <option key={lib.id} value={lib.id}>
+                          {lib.name}
+                        </option>
+                      );
+                    })}
+                </select>
+                <br />
+                <br />
+              </div>
+            )}
+            <br />
+            <br />
+            <label htmlFor="weekday">Day of the Week:&nbsp;</label>
+            <select
+              name="weekday"
+              id="weekday"
+              onChange={this.handleDropDownChange}
+            >
+              <option value={0}>Monday</option>
+              <option value={1440}>Tuesday</option>
+              <option value={2880}>Wednesday</option>
+              <option value={4320}>Thursday</option>
+              <option value={5760}>Friday</option>
+              <option value={7200}>Saturday</option>
+              <option value={8640}>Sunday</option>
+            </select>
+            <br />
+            <br />
+            <label htmlFor="time">Time of Day:&nbsp;</label>
+            <select name="time" id="time" onChange={this.handleDropDownChange}>
+              <option value={false}>Select from Avaliable Times:</option>
+              {this.state.times &&
+                this.state.times.length > 0 &&
+                this.state.times.map((time) => {
+                  return (
+                    <option key={time.msm} value={time.msm}>
+                      {this.display_time(time.msm)}
+                    </option>
+                  );
+                })}
+            </select>
+            <br />
+            <br />
+            {this.state.time && (
+              <div>
+                <input
+                  type="checkbox"
+                  id="commitment"
+                  name="commitment"
+                  checked={this.state.isCommitted}
+                  onChange={this.handleCommitChange}
+                />
+                <label htmlFor="commitment">
+                  Can you commit to mentor weekly (every{" "}
+                  {this.display_day(this.state.weekday)} at{" "}
+                  {this.display_time(parseInt(this.state.time))}) for at least 4
+                  months?
+                </label>
+                <br />
+                <br />
+              </div>
+            )}
+          </div>
+          <a href="/" type="button" className="btn goback-btn">
+            GO BACK
+          </a>
+          <button
+            className="btn btn-light"
+            id="requestsession-btn"
+            disabled={!this.state.isCommitted || this.state.time === false}
+            onClick={this.submitRequest}
           >
-            <option value={0}>Monday</option>
-            <option value={24}>Tuesday</option>
-            <option value={48}>Wednesday</option>
-            <option value={72}>Thursday</option>
-            <option value={96}>Friday</option>
-            <option value={120}>Saturday</option>
-            <option value={144}>Sunday</option>
-          </select>
-          <br />
-          <br />
-          <label htmlFor="time">Time of Day:&nbsp;</label>
-          <select name="time" id="time" onChange={this.handleDropDownChange}>
-            <option value={false}>Select from Avaliable Times:</option>
-            {this.state.times &&
-              this.state.times.length > 0 &&
-              this.state.times.map((time) => {
-                return (
-                  <option key={time.hsm} value={time.hsm}>
-                    {this.display_time(time.hsm)}
-                  </option>
-                );
-              })}
-          </select>
-          <br />
-          <br />
-          {this.state.time && (
-            <div>
-              <input
-                type="checkbox"
-                id="commitment"
-                name="commitment"
-                checked={this.state.isCommitted}
-                onChange={this.handleCommitChange}
-              ></input>
-              <label htmlFor="commitment">
-                Can you commit to mentor weekly (every{" "}
-                {this.display_day(this.state.weekday)} at{" "}
-                {this.display_time(parseInt(this.state.time))}) for at least 4
-                months?
-              </label>
-              <br />
-              <br />
-            </div>
-          )}
+            REQUEST SESSION
+          </button>
         </div>
-        <a href="/" type="button" className="btn goback-btn">
-          Go Back
-        </a>
-        <button
-          className="btn btn-light"
-          id="requestappt-btn"
-          disabled={!this.state.isCommitted || this.state.time === false}
-          onClick={this.submitRequest}
-        >
-          Submit Appointment Request!
-        </button>
-        <br />
+        <img
+          src={menteeComputer}
+          id="booking-picture"
+          alt="Pic"
+          style={{ width: "600px", margin: "5vw" }}
+        />
       </div>
     );
   }
