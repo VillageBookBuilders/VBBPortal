@@ -95,6 +95,7 @@ class Layout extends React.Component {
 
         <div className="content">
           <AlertDismissable {...this.props} />
+
           {this.props.children}
         </div>
 

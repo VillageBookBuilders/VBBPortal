@@ -45,6 +45,8 @@ class MasterForm extends React.Component {
     var problems = "";
     if (this.state.firstname === "") problems += " - first name\n";
     if (this.state.lastname === "") problems += " - last name\n";
+    if (this.state.firstname.includes(' ')) problems += " - Please remove the space in your first name \n";
+    if (this.state.lastname.includes(' ')) problems += " - Please remove the space in your last name \n";
     if (this.state.email === "") problems += " - email\n";
     if (this.state.age === "") problems += " - whether or not you are over 18\n";
     if (this.state.occupation === "") problems += " - what stage of life you are at\n";
