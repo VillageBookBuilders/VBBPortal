@@ -17,6 +17,40 @@ html {
   min-height: 87vh;
 }
 
+.alert-div-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background-color: rgba(255, 255, 246, 0.8);
+  margin: auto;
+}
+
+.alert-div {
+  background-color: #f8d7da;
+  z-index: 1;
+  height: 350px;
+  width: 70%;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.alert-msg {
+  min-height: 272px;
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-top: 30px;
+  margin-right: -40px;
+}
+
 #dashboard {
   background-color: #f2f2e9;
   min-height: 87vh;
@@ -135,6 +169,7 @@ a {
 
 .dashboard-btn {
   width: 275px;
+  min-width: 260px;
   font-family: "Nunito", cursive;
   font-weight: bold;
   font-size: 20px;
@@ -183,6 +218,11 @@ a {
   margin-right: 20px;
 }
 
+.signin-btn:hover,
+.signup-btn:hover {
+  background-color: #ff914d;
+}
+
 hr {
   border: 0.7px solid gainsboro;
 }
@@ -199,20 +239,33 @@ hr {
   column-count: 2;
 }
 
-#mentoring-resources-box {
-  flex-direction: row;
-}
-
-.dashboard-btn {
-  margin: 20px;
-}
-
 .column {
   flex: 2;
   width: 100%;
   margin: 2vw;
   padding: 30px;
   border-radius: 30px;
+}
+
+.col-card {
+  background-color: #fffff6;
+  min-height: 650px;
+}
+
+#mentoring-session-box {
+  flex: 1;
+}
+
+#mentoring-resources-box {
+  max-width: 1000px;
+}
+
+#mentoring-resources-fields {
+  flex-direction: row;
+}
+
+.dashboard-btn {
+  margin: 20px;
 }
 
 #signin-box {
@@ -239,11 +292,6 @@ hr {
   max-width: 800px;
 }
 
-.col-card {
-  background-color: #fffff6;
-  min-height: 650px;
-}
-
 .loading-spinner {
   margin-top: 50%;
   margin-left: 50%;
@@ -261,6 +309,7 @@ hr {
 
 #booking-box {
   width: 550px;
+  margin: 50px;
   margin-top: 20px;
   margin-bottom: 100px;
 }
@@ -334,6 +383,23 @@ input {
     min-width: 400px;
     margin-top: 150px;
   }
+
+  #mentoring-session-box {
+    min-width: 450px;
+  }
+  #mentoring-resources-box {
+    min-width: 700px;
+  }
+}
+
+/* JUST TABLET ADJUSTMENTS */
+
+@media only screen and (min-width: 660px) and (max-width: 1270px) {
+  #mentoring-session-box,
+  #mentoring-resources-box {
+    min-width: 700px;
+    max-width: 1000px;
+  }
 }
 
 /* TABLET AND MOBILE ADJUSTMENTS */
@@ -372,6 +438,16 @@ input {
   #signin-box {
     top: 10px;
   }
+
+  #mentoring-session-box,
+  #mentoring-resources-box {
+    margin: 20px;
+  }
+
+  #booking-box {
+    padding: 10px;
+    margin-top: 40px;
+  }
 }
 
 /* MOBILE ADJUSTMENTS */
@@ -403,7 +479,7 @@ input {
   }
 
   select {
-    width: 140px;
+    width: 80%;
   }
 
   #welcome-header {
@@ -422,12 +498,27 @@ input {
 
   #booking-box {
     width: 350px;
-    padding: 10px;
   }
 
   .signup-form {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  #mentoring-resources-box {
+    min-height: 850px;
+  }
+
+  .dashboard-btn {
+    font-size: 18px;
+  }
+
+  #time_zone {
+    margin-left: 90px;
+  }
+
+  #ex-space {
+    margin-bottom: -20px;
   }
 }
 

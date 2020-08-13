@@ -1,7 +1,5 @@
 import React from "react";
 
-//Step 5
-
 function Step5(props) {
   if (props.state.currentStep !== 5) {
     return null;

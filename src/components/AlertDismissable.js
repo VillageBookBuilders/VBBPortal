@@ -7,10 +7,14 @@ function AlertDismissible(props) {
   if (show && props.message) {
     console.log("message in alert", props.message);
     return (
-      <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-        <Alert.Heading>Error:</Alert.Heading>
-        <p>{props.message}</p>
-      </Alert>
+      <div className="alert-div-container">
+        <div className="alert-div">
+          <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+            <Alert.Heading>Error</Alert.Heading>
+            <p className="alert-msg">{props.message}</p>
+          </Alert>
+        </div>
+      </div>
     );
   }
   return <div />;

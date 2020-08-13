@@ -23,9 +23,9 @@ class google_apis:
   FUNCTIONS:
   1) account_create(self, firstName, lastName, personalEmail)
     - creates a mentor account 
-  2) calendar_event(self, menteeEmail, mentorEmail, start_time, duration=1)
+  2) calendar_event(self, menteeEmail, mentorEmail, personalEmail, start_time, end_date, calendar_id, room, duration=.5)
     - creates a calendar event with a google meets link 
-  3) email_send(self, to, subject, message_text)
+  3) email_send(self, to, subject, templatePath, extraData=None, cc=None)
     - sends welcome email
   '''
   __webdev_cred=''
@@ -91,8 +91,8 @@ class google_apis:
     return (primaryEmail, pwd)
 
 
-  def calendar_event(self, menteeEmail, mentorEmail, personalEmail, start_time, end_date, calendar_id, duration=.5):
-      calendar_service = build('calendar', 'v3', credentials=self.__webdev_cred)
+  def calendar_event(self, menteeEmail, mentorEmail, personalEmail, start_time, end_date, calendar_id, room, duration=.5):
+      calendar_service = build('calendar', 'v3', credentials=self.__mentor_cred)
       timezone = 'America/New_York'
       start_date_time_obj = datetime.strptime(start_time, '%Y-%m-%dT%H:%M:%S')
       end_time = start_date_time_obj + timedelta(hours=duration)
@@ -116,7 +116,8 @@ class google_apis:
           'attendees': [
               {'email': menteeEmail},
               {'email': mentorEmail},
-              {'email': personalEmail}
+              {'email': personalEmail},
+              {'email': room, 'resource': "true"}
           ],
           'reminders': {
               'useDefault': False,
@@ -208,6 +209,61 @@ class google_apis:
     msg = create_message(to, subject, personalizedPath, cc)
     send_message(email_service, "me", msg)
 
+  
+  def group_subscribe(self, groupEmail, userEmail):
+    http = _auth.authorized_http(self.__webdev_cred)
+    self.__webdev_cred.refresh(http._request)
+    url = "https://www.googleapis.com/admin/directory/v1/groups/" + groupEmail + "/members"
+    headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+    data = ''' 
+    {
+      "email": "%s",
+      "role": "MEMBER",
+    }
+    '''% (userEmail)
+    with requests.Session() as s:
+      s.auth = OAuth2BearerToken(self.__webdev_cred.token)
+      r = s.post(url, headers=headers, data=data)
+
+  def classroom_invite(self, courseID, email, role="TEACHER"):
+    cred = self.__mentor_cred
+    http = _auth.authorized_http(cred)
+    cred.refresh(http._request)
+    url = "https://classroom.googleapis.com/v1/invitations"
+    headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+    data = ''' 
+    {
+      "userId": "%s",
+      "courseId": "%s",
+      "role": "%s",
+    }
+    '''% (email, courseID, role)
+    with requests.Session() as s:
+      s.auth = OAuth2BearerToken(cred.token)
+      r = s.post(url, headers=headers, data=data)
+
+  def course_list(self, teacherEmail):
+    cred = self.__mentor_cred
+    http = _auth.authorized_http(cred)
+    cred.refresh(http._request)
+    url = "https://classroom.googleapis.com/v1/courses?courseStates=ACTIVE&teacherId="+teacherEmail
+    headers = {
+      'Accept': 'application/json',
+    }
+    with requests.Session() as s:
+      s.auth = OAuth2BearerToken(cred.token)
+      r = s.get(url, headers=headers)
+      return r.text
+
+
+    
+    
 # # FOR TESTING PURPOSES -- REMOVE LATER
 def testFunction():
   g = google_apis()
@@ -228,14 +284,20 @@ def testFunction():
   #  },
   #  ["ed.test1@villagebookbuilders.org", "ed.ringger0@villagementors.org"]
   # )
-  print ("bark!")
+
   # g.email_send(
   #   "ed.test1@villagebookbuilders.org",        # personal email form form
   #   "Training",                
   #   training_mail,
   #   cc=["edringger@gmail.com"]
   # )
-
-#   #g.calendar_event("shwetha.test1@villagebookbuilders.org", "sohan.kalva.test2@villagementors.org", "shwetha.shinju@gmail.com", "2020-08-10T22:00:00", "2020-09-10T22:00:00", "shwetha.test1@villagebookbuilders.org")
+# def calendar_event(self, menteeEmail, mentorEmail, personalEmail, start_time, end_date, calendar_id, room, duration=.5)
+  g.calendar_event(
+    "sohan.kalva.test2@villagementors.org", 
+    "shwetha.test1@villagebookbuilders.org",
+    "shwetha.shinju@gmail.com", 
+    "2020-08-12T23:30:00", "2020-09-10T22:00:00", 
+    "c_oha2uv7abp2vs6jlrl96aeoje8@group.calendar.google.com", 
+    "c_188apa1pg08nkg9pn621lmhbfc0f04gnepkmor31ctim4rrfddh7aqbcchin4spedtp6e@resource.calendar.google.com")
   
 # testFunction()

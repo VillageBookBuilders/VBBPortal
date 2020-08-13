@@ -37,35 +37,43 @@ class Dashboard extends React.Component {
       <div className="twocol-container" id="dashboard">
         <div className="column col-card" id="mentoring-session-box">
           <h1 className="vbb-header">My Weekly Mentoring Session</h1>
-          <h3 style={{ color: "#6AC66B", textIndent: "25px" }}>
-            {this.state.sessionslots && this.state.sessionslots.length > 0 ? (
-              this.state.sessionslots.map((apt) => {
+
+          {this.state.sessionslots && this.state.sessionslots.length > 0 ? (
+            <h3 style={{ color: "#6AC66B", textIndent: "25px" }}>
+              {this.state.sessionslots.map((apt) => {
                 return (
                   <li key={apt.event_id} value={apt.event_id}>
                     {apt.display}
                     <br />
                   </li>
                 );
-              })
-            ) : (
-              <>
-                <h4
-                  style={{
-                    fontSize: "22px",
-                    fontWeight: "400",
-                    fontStyle: "italic",
-                    textIndent: "0px",
-                    color: "#ff914d",
-                  }}
-                >
-                  Uh oh! You don't have any mentoring sessions booked yet.
-                </h4>
-                <h4 style={{ textIndent: "0px", fontStyle: "italic" }}>
-                  Press the green button below to make your first booking!
-                </h4>
-              </>
-            )}
-          </h3>
+              })}
+            </h3>
+          ) : (
+            <>
+              <h4
+                style={{
+                  fontSize: "22px",
+                  fontWeight: "400",
+                  fontStyle: "italic",
+                  textIndent: "0px",
+                  color: "#ff914d",
+                }}
+              >
+                <b>Uh oh!</b> You don't have any mentoring sessions booked yet.
+              </h4>
+              <h4
+                style={{
+                  textIndent: "0px",
+                  fontStyle: "italic",
+                  color: "#6ac66b",
+                }}
+              >
+                Press the green button below to make your first booking!
+              </h4>
+            </>
+          )}
+
           <div className="btns">
             <a
               href="/booking/"
@@ -82,35 +90,55 @@ class Dashboard extends React.Component {
               rel="noopener noreferrer"
               style={{ marginTop: "5px", marginBottom: "30px" }}
             >
-              View My Google Calendar
+              View My Sessions Calendar 
             </a>
           </div>
-          <p
-            style={{ padding: "20px", paddingLeft: "40px", maxWidth: "650px" }}
-          >
-            If you would like to change a mentoring session or have another
-            question, please
-            <a href="mailto:mentor@villagebookbuilders.org">
-              {" "}
-              contact your mentor advisor{" "}
-            </a>
-            at mentor@villagebookbuilders.org
-          </p>
           {/* <MentorProfile /> */}
         </div>
-        <div className="column col-card">
+        <div className="column col-card" id="mentoring-resources-box">
           <h1 className="vbb-header">Mentoring Resources</h1>
-          <div className="twocol-container" id="mentoring-resources-box">
+          <div className="twocol-container" id="mentoring-resources-fields">
             <a
               className="btn btn-light dashboard-btn l1-btn"
               href="https://360.articulate.com/review/content/73bf3afe-47f9-4f9f-aa4d-70bf27fbe8d5/review"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Mentor Training
+              Mentor Training Module
+            </a>
+            <a
+              className="btn btn-light dashboard-btn l5-btn"
+              href="mailto:mentor@villagebookbuilders.org"
+            >
+              Contact your Mentor Advisor
+            </a>
+            {/*bold the contact*/}
+            <a
+              className="btn btn-light dashboard-btn l3-btn"
+              href="https://docs.google.com/document/d/e/2PACX-1vR5-WnzhSJ88pfh2yctr7JuRXglAD55q8eluMPnLA1fTIyeKxxrGvL4r7D7wZh8mvd6WTL9GJJ1tkdD/pub"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Mentoring Guide
+            </a>
+            <a
+              className="btn btn-light dashboard-btn l6-btn"
+              href="https://idroo.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Whiteboard
             </a>
             <a
               className="btn btn-light dashboard-btn l2-btn"
+              href="https://www.khanacademy.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Khan Academy
+            </a>
+            <a
+              className="btn btn-light dashboard-btn l4-btn"
               href="https://classroom.google.com/u/0/h"
               target="_blank"
               rel="noopener noreferrer"
@@ -119,33 +147,19 @@ class Dashboard extends React.Component {
             </a>
             <a
               className="btn btn-light dashboard-btn l3-btn"
-              href="https://apps.google.com/meet/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Google Meets
-            </a>
-            <a
-              className="btn btn-light dashboard-btn l4-btn"
-              href="https://www.khanacademy.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Khan Academy
-            </a>
-            <a
-              className="btn btn-light dashboard-btn l5-btn"
-              href="mailto:mentor@villagebookbuilders.org"
-            >
-              Contact your Mentor Advisor
-            </a>
-            <a
-              className="btn btn-light dashboard-btn l6-btn"
               href="https://www.facebook.com/groups/villagementors"
               target="_blank"
               rel="noopener noreferrer"
             >
               Village Mentors FB Group
+            </a>
+            <a
+              className="btn btn-light dashboard-btn l6-btn"
+              href="https://apps.google.com/meet/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Google Meets
             </a>
             <a
               className="btn btn-light dashboard-btn l7-btn"
@@ -164,7 +178,18 @@ class Dashboard extends React.Component {
               VBB Home Website
             </a>
           </div>
-        </div>
+          <p
+            style={{ padding: "20px", paddingLeft: "40px", maxWidth: "900px" }}
+          >
+            <b>If you would like to change a mentoring session, have questions about mentoring, or ANY QUESTIONS, 
+            please
+            <a href="mailto:mentor@villagebookbuilders.org">
+              {" "}
+              contact your mentor advisor{" "}
+            </a>
+            at mentor@villagebookbuilders.org! <br></br>
+            </b>
+          </p>        </div>
       </div>
     );
   }

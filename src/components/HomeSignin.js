@@ -7,7 +7,7 @@ import * as actions from "../store/actions/auth";
 export class HomeSignin extends Component {
   responseGoogle = (response) => {
     console.log("failure response", response);
-    alert("google authorization failed: ", response);
+    alert("Google authorization failed ", response);
   };
   validateGoogle = (response) => {
     this.props.onGauth(response.accessToken);

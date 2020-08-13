@@ -1,7 +1,5 @@
 import React from "react";
 
-/*Step 3 */
-
 function Step3(props) {
   if (props.state.currentStep !== 3) {
     return null;
@@ -204,7 +202,7 @@ function Step3(props) {
 
       <div>
         <label htmlFor="commit">
-          Can you commit to being a mentor for a minimun of 4 months?
+          Can you commit to being a mentor for a minimum of 4 months?
         </label>
         <select
           name="commit"

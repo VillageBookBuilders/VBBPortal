@@ -53,6 +53,8 @@ class MentorProfileAdmin(admin.ModelAdmin):
         "affiliation",
         "referral_source",
         "desired_involvement",
+        "initials",
+        "advisor_notes",
     )
     readonly_fields = ("id",)
     search_fields = (
@@ -65,6 +67,8 @@ class MentorProfileAdmin(admin.ModelAdmin):
         "affiliation",
         "referral_source",
         "desired_involvement",
+        "initials",
+        "advisor_notes",
     )
 
 class MenteeComputerAdmin(admin.ModelAdmin):
