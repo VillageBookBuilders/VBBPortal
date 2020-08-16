@@ -15,9 +15,14 @@ class Command(BaseCommand):
         ).count()
 
         if num_expired_appts > 0:
+            #FIXME send them an email notifying them
             SessionSlot.objects.filter(end_date__lt=datetime.datetime.today()).update(
                 mentor=None
             )
             return str(num_expired_appts) + " expired sessionslot(s) unbooked."
         else:
             return "No sessions have expired."
+
+#FIXME add a weeks warning
+#FIXME add a command for checking all session slots against their corresponding google event 
+# and make sure the google event is extended appropriately

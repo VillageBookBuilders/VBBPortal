@@ -27,6 +27,7 @@ export const logout = () => {
   localStorage.removeItem("expirationDate");
   return {
     type: actionTypes.AUTH_LOGOUT,
+    message: null,
   };
 };
 
@@ -100,9 +101,12 @@ export const authSignup = (first_name, last_name, time_zone, personal_email, vbb
         initials: initials
       })
       .then((res) => {
-        dispatch(checkAuthTimeout(3600));
+        if(res.success) dispatch(checkAuthTimeout(3600));
+        else dispatch(authFail(res.data))
       })
       .catch((err) => {
+        console.log(err);
+        alert(err)
         dispatch(authFail(err));
       });
   };

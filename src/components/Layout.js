@@ -55,7 +55,7 @@ class Layout extends React.Component {
                 <a
                   className="btn btn-light donate-btn"
                   type="button"
-                  href="https://www.villagebookbuilders.org/giftabook/"
+                  href="https://www.villagebookbuilders.org/donate/"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{ marginRight: "20px" }}
@@ -94,7 +94,7 @@ class Layout extends React.Component {
         </nav>
 
         <div className="content">
-          <AlertDismissable {...this.props} />
+          <AlertDismissable close={this.props.logout} {...this.props} />
 
           {this.props.children}
         </div>

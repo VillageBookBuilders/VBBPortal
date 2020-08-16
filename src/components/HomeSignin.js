@@ -22,11 +22,22 @@ export class HomeSignin extends Component {
           <h4 id="portal-purpose">
             Let's give hope to children through mentoring.
           </h4>
+          <h3>
+            Please&nbsp;
+            <a
+              href="https://accounts.google.com/AddSession"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+             make sure you are logged in
+            </a> 
+            &nbsp;to your villagementors.org or villagebookbuilders.org GSuite account before attempting to signin:
+          </h3>
           <br />
           <div id="google-box">
             <GoogleLogin
               clientId="711431548719-lpoc2lbr4bmruqo7d9emua5huvpsvqgk.apps.googleusercontent.com"
-              buttonText="Sign in with VBB G Suite (@villagementors.org)"
+              buttonText="Click here to Validate and Continue to the Portal"
               onSuccess={this.validateGoogle}
               onFailure={this.responseGoogle}
               cookiePolicy={"single_host_origin"}
