@@ -55,7 +55,7 @@ class google_apis:
       'Content-Type': 'application/json'
     }
     # checking if the email id already exists, adds an id to the end to differentiate
-    addedID = -1
+    addedID = 0 #on repeat, email will start from firstname.lastname1@villagementors.org
     def userExists(email):
       url = 'https://www.googleapis.com/admin/directory/v1/users/' + email
       with requests.Session() as s:

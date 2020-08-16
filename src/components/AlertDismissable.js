@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import Alert from "react-bootstrap/Alert";
 
 function AlertDismissible(props) {
-  const [show, setShow] = useState(true);
   console.log("message outside of alert", props);
-  if (show && props.message) {
+  if (props.message) {
     console.log("message in alert", props.message);
     return (
       <div className="alert-div-container">
         <div className="alert-div">
-          <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+          <Alert variant="danger" onClose={() => props.close()} dismissible>
             <Alert.Heading>Error</Alert.Heading>
             <p className="alert-msg">{props.message}</p>
           </Alert>

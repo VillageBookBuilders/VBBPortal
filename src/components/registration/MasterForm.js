@@ -66,14 +66,9 @@ class MasterForm extends React.Component {
 
   handleChange = (event) => {
     const { name, value } = event.target;
-    this.setState(
-      {
+    this.setState({
         [name]: value,
-      },
-      () => {
-        console.log(this.state);
-      }
-    );
+    });
   };
 
   handleSubmit = (event) => {
@@ -81,7 +76,6 @@ class MasterForm extends React.Component {
     this.setState({
       currentStep: 6
     })
-    console.log("submit");
 
     this.props.onAuth(
       this.state.firstname,

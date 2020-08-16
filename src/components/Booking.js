@@ -160,7 +160,7 @@ class Booking extends React.Component {
   };
 
   postRequest = () => {
-    alert("Please wait while we submit your booking request");
+    alert("Please wait while we submit your booking request, then refresh the page (this might take 10 or 20 seconds)");
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.headers = {
@@ -177,12 +177,15 @@ class Booking extends React.Component {
       })
       .then((res) => {
         console.log("Success: ", res.success);
-        alert("Success:", res.success);
+        alert("Success!");
         this.props.history.push("/");
+        window.location.reload(false);
       })
       .catch((err) => {
+        alert("We're sorry! Something went wrong while booking your appointment. Please contact your mentor advisor to find out more.");
         console.log(err);
       });
+      this.props.history.push("/");
   };
 
   render() {
