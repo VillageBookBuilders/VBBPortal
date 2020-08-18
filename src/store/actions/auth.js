@@ -98,7 +98,7 @@ export const authSignup = (first_name, last_name, time_zone, personal_email, vbb
         affiliation: affiliation,
         referral_source: referral_source,
         desired_involvement: desired_involvement,
-        initials: initials
+        initials: initials,
       })
       .then((res) => {
         if(res.success) dispatch(checkAuthTimeout(3600));

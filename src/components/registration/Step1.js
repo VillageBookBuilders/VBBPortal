@@ -46,7 +46,7 @@ function Step1(props) {
       />
 
       <label htmlFor="vbbemail">
-        VBB Mentor Email (if you already have one)
+        @villagebookbuilders.org or @villagementors.org email (if you already have one)
       </label>
       <input
         className="form-control"
