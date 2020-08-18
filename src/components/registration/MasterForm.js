@@ -48,18 +48,20 @@ class MasterForm extends React.Component {
     if (this.state.firstname.includes(' ')) problems += " - Please remove the space in your first name \n";
     if (this.state.lastname.includes(' ')) problems += " - Please remove the space in your last name \n";
     if (this.state.email === "") problems += " - email\n";
+    if (isNaN(this.state.phone)) problems += " - Please remove any non-numeric characters from your phone number\n"
+    if (this.state.phone.length>15) problems += " - Please enter a phone number less than 16 digits long\n"
     if (this.state.age === "") problems += " - whether or not you are over 18\n";
     if (this.state.occupation === "") problems += " - what stage of life you are at\n";
     if (this.state.referral_source === "") problems += " - referral source\n";
     if (this.state.language === "") problems += " - language\n";
     if (this.state.time_zone === "") problems += " - time zone\n";
     if (this.state.termsCond === ""|| this.state.mentor4Months === "No") problems += " - accept Terms and Conditions\n";
-    if (this.state.charges === "") problems += " - charged or \n";
+    if (this.state.charges === "") problems += " - charged or convicted\n";
     if (this.state.commit === "" || this.state.commit === "No")
       problems += " - mentoring commitment\n";
     if (this.state.initials === "") problems += " - initials\n";
     if (this.state.more_involved === "") problems += " - get more involved?\n";
-    if (this.state.city === "") problems += " - city\n";
+    // if (this.state.city === "") problems += " - city\n";
     if (problems === "") return false;
     return base + problems;
   };
