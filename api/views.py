@@ -40,7 +40,7 @@ def first_time_signup(request):
             })#FIXME use proper protocol and add a status
         request.data["vbb_email"] = request.data["vbb_email"].lower()
         mps = MentorProfile.objects.filter(vbb_email=request.data["vbb_email"])
-        if len(mps) > 0 or mps is not None:
+        if mps is not None and len(mps) > 0 :
             return Response({
                 "success": "false", 
                 "message": "Sorry, this VBB email has already been used to create a mentor profile."}#,
