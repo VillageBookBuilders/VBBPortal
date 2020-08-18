@@ -39,7 +39,7 @@ class MentorProfile(models.Model):
     last_name = models.CharField(max_length=60, null=True)
     personal_email = models.EmailField(max_length=60, null=True, unique=True)
     vbb_email = models.EmailField(max_length=60, null=True, unique=True)
-    phone_number = models.CharField(max_length=12, null=True, blank=True)
+    phone_number = models.CharField(max_length=15, null=True, blank=True)
     occupation = models.CharField(max_length=70, null=True, blank=True)
     affiliation = models.CharField(max_length=70, null=True, blank=True)
     referral_source = models.TextField(max_length=200, null=True, blank=True)

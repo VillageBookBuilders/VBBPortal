@@ -76,7 +76,6 @@ class MasterForm extends React.Component {
     this.setState({
       currentStep: 6
     })
-
     this.props.onAuth(
       this.state.firstname,
       this.state.lastname,
@@ -208,6 +207,7 @@ const mapDispatchToProps = (dispatch) => {
       lastname,
       time_zone,
       email,
+      vemail,
       phone,
       occupation,
       affiliation,
@@ -221,6 +221,7 @@ const mapDispatchToProps = (dispatch) => {
           lastname,
           time_zone,
           email,
+          vemail,
           phone,
           occupation,
           affiliation,

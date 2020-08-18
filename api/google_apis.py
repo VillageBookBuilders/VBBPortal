@@ -23,7 +23,7 @@ class google_apis:
   FUNCTIONS:
   1) account_create(self, firstName, lastName, personalEmail)
     - creates a mentor account 
-  2) calendar_event(self, menteeEmail, mentorEmail, personalEmail, start_time, end_date, calendar_id, room, duration=.5)
+  2) calendar_event(self, menteeEmail, mentorEmail, personalEmail, directorEmail, start_time, end_date, calendar_id, room, duration=.5)
     - creates a calendar event with a google meets link 
   3) email_send(self, to, subject, templatePath, extraData=None, cc=None)
     - sends welcome email
@@ -91,7 +91,7 @@ class google_apis:
     return (primaryEmail, pwd)
 
 
-  def calendar_event(self, menteeEmail, mentorEmail, personalEmail, start_time, end_date, calendar_id, room, duration=.5):
+  def calendar_event(self, mentorFirstName, menteeEmail, mentorEmail, personalEmail, directorEmail, start_time, end_date, calendar_id, room, duration=.5):
       calendar_service = build('calendar', 'v3', credentials=self.__mentor_cred)
       timezone = 'America/New_York'
       start_date_time_obj = datetime.strptime(start_time, '%Y-%m-%dT%H:%M:%S')
@@ -101,7 +101,7 @@ class google_apis:
       end_date_formated += 'Z'
 
       event = {
-          'summary': 'Village Book Builders Mentoring Meeting',
+          'summary': mentorFirstName + ' - VBB Mentoring Session',
           'start': {
               'dateTime': start_date_time_obj.strftime("%Y-%m-%dT%H:%M:%S"),
               'timeZone': timezone,
@@ -117,6 +117,7 @@ class google_apis:
               {'email': menteeEmail},
               {'email': mentorEmail},
               {'email': personalEmail},
+              {'email': directorEmail},
               {'email': room, 'resource': "true"}
           ],
           'reminders': {
@@ -291,13 +292,15 @@ def testFunction():
   #   training_mail,
   #   cc=["edringger@gmail.com"]
   # )
-# def calendar_event(self, menteeEmail, mentorEmail, personalEmail, start_time, end_date, calendar_id, room, duration=.5)
+
   g.calendar_event(
+    "TestShwetha",
     "sohan.kalva.test2@villagementors.org", 
     "shwetha.test1@villagebookbuilders.org",
     "shwetha.shinju@gmail.com", 
+    "shwetha.shinju2@gmail.com",
     "2020-08-12T23:30:00", "2020-09-10T22:00:00", 
     "c_oha2uv7abp2vs6jlrl96aeoje8@group.calendar.google.com", 
     "c_188apa1pg08nkg9pn621lmhbfc0f04gnepkmor31ctim4rrfddh7aqbcchin4spedtp6e@resource.calendar.google.com")
   
-# testFunction()
+testFunction()

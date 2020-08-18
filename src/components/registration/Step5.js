@@ -40,6 +40,7 @@ function Step5(props) {
               value={props.state.desired_involvement}
               onChange={props.handleChange}
             >
+              <option value="">--</option>
               <option value="Fundraiser"> Run or help with a fundraiser</option>
               <option value="Ambassador">
                 {" "}
@@ -75,7 +76,7 @@ function Step5(props) {
         />
       </div>
 
-      <div style={{ "white-space": "pre-wrap", color: "red" }}>
+      <div style={{ "whiteSpace": "pre-wrap", color: "red" }}>
         {props.hasProblems() && props.hasProblems()}
       </div>
 

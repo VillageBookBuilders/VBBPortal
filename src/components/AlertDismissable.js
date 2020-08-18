@@ -2,9 +2,7 @@ import React from "react";
 import Alert from "react-bootstrap/Alert";
 
 function AlertDismissible(props) {
-  console.log("message outside of alert", props);
   if (props.message) {
-    console.log("message in alert", props.message);
     return (
       <div className="alert-div-container">
         <div className="alert-div">
