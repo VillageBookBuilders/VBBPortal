@@ -46,6 +46,17 @@ def first_time_signup(request):
                 "message": "Sorry, this VBB email has already been used to create a mentor profile."}#,
                 # status=status.HTTP_400_BAD_REQUEST #FIXME include status
             )
+        welcome_mail = os.path.join("api", "emails", "templates", "welcomeLetterExisting.html")
+        gapi.email_send(
+            pemail,  # personal email form form
+            "Welcome to the New VBB Portal!",#FIXME change back to welcome to the VBB family when we start registering new mentors
+            welcome_mail,
+            {
+            '__first_name': fname,                 # first name from form
+            '__new_email': request.data["vbb_email"],  
+            }
+            ,[request.data["vbb_email"]]
+        )
     else:
         #check to see if the serializer works
         request.data["vbb_email"]="mentor@villagebookbuilders.org"
@@ -59,7 +70,7 @@ def first_time_signup(request):
         welcome_mail = os.path.join("api", "emails", "templates", "welcomeLetter.html")
         gapi.email_send(
             pemail,  # personal email form form
-            "Welcome to the VBB Family!",
+            "Welcome to the New VBB Portal!",#FIXME change back to welcome to the VBB family when we start registering new mentors
             welcome_mail,
             {
             '__first_name': fname,                 # first name from form
