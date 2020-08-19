@@ -160,6 +160,7 @@ a {
   padding: 8px;
   padding-left: 15px;
   padding-right: 15px;
+  -webkit-appearance: none;
 }
 
 .btn:hover {

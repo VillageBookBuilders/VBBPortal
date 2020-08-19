@@ -22,17 +22,6 @@ export class HomeSignin extends Component {
           <h4 id="portal-purpose">
             Let's give hope to children through mentoring.
           </h4>
-          <h3>
-            Please&nbsp;
-            <a
-              href="https://accounts.google.com/AddSession"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-             make sure you are logged in
-            </a> 
-            &nbsp;to your villagementors.org or villagebookbuilders.org GSuite account before attempting to signin:
-          </h3>
           <br />
           <div id="google-box">
             <GoogleLogin
