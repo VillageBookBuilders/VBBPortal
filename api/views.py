@@ -125,28 +125,34 @@ def check_signin(request):
 def generate_sessionslots(request):
     """
     Generates session slots from opentime to closetime on days from startday to endday
-    URL example:  api/generate/?computer=3&language=1&startday=0&endday=4&opentime=5&closetime=6
+    example - to generate hour long slots from monday to friday in library 3 from 5 to 11 am: (library opens at 5 closes at 11)
+    URL example:  api/generate/?library=3&startday=1&endday=5&opentime=300&closetime=660&increment=60
     """
-    computer_params = request.query_params.get("computer")
-    language_params = request.query_params.get("language")
-    startday_params = int(request.query_params.get("startday"))
-    endday_params = int(request.query_params.get("endday"))
-    opentime_params = int(request.query_params.get("opentime"))
-    closetime_params = int(request.query_params.get("closetime"))
+    # OLD URL example:  api/generate/?computer=3&language=1&startday=0&endday=4&opentime=5&closetime=6
+    # computer_params = request.query_params.get("computer")
+    library = request.query_params.get("library")
+    language = request.query_params.get("language")
+    startday = int(request.query_params.get("startday"))
+    endday = int(request.query_params.get("endday"))
+    opentime = int(request.query_params.get("opentime"))
+    closetime = int(request.query_params.get("closetime"))
+    increment = int(request.query_params.get("increment"))
 
-    computer = MenteeComputer.objects.get(pk=computer_params)
-    if language_params is None:
-        lang = computer.language
-    else:
-        lang = Language.objects.get(pk=language_params)
-    for i in range(opentime_params, closetime_params):
-        for j in range(startday_params, endday_params + 1):
+    daymsms = [i*24*60 for i in range(startday-1, endday)]
+    msms = [(j + daymsm) for daymsm in daymsms for j in range(opentime, closetime, increment) ]
+    computers = MenteeComputer.objects.filter(library=library).order_by("-computer_number")
+    for msm in msms[::-1]:
+        for computer in computers:
+            if language is None:
+                lang = computer.language
+            else:
+                lang = Language.objects.get(pk=language)
             apt = SessionSlot()
             apt.mentee_computer = computer
             apt.language = lang
-            apt.msm = (i + (j * 24))*60
+            apt.msm = msm
             apt.save()
-
+    
     return Response({"success": "true"})
 
 class LibraryListView(ListAPIView):

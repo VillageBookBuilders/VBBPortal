@@ -83,22 +83,30 @@ const checkSignIn = (token, dispatch) => {
     });
 };
 
-export const authSignup = (first_name, last_name, time_zone, personal_email, vbb_email, phone_number, occupation, affiliation, referral_source, desired_involvement, initials) => {
+export const authSignup = (first_name, last_name, 
+  personal_email, vbb_email, phone, adult, occupation, 
+  vbb_chapter, affiliation, referral_source, languages, 
+  time_zone, charged, initials, desired_involvement, city) => {
   return (dispatch) => {
     dispatch(authStart());
     axios
       .post("https://portal.villagebookbuilders.org/api/signup/", {
         first_name: first_name,
         last_name: last_name,
-        time_zone: time_zone,
         personal_email: personal_email,
         vbb_email: vbb_email,
-        phone_number: phone_number,
+        phone: phone,
+        adult: adult,
         occupation: occupation,
+        vbb_chapter: vbb_chapter,
         affiliation: affiliation,
         referral_source: referral_source,
-        desired_involvement: desired_involvement,
+        languages: languages,
+        time_zone: time_zone,
+        charged: charged,
         initials: initials,
+        desired_involvement: desired_involvement,
+        city: city,
       })
       .then((res) => {
         if(res.success) dispatch(checkAuthTimeout(3600));
