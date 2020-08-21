@@ -10,9 +10,9 @@ function Step2(props) {
       <div>
         <label>Are you 18 years or older?</label>
         <select
-          name="age"
-          id="age"
-          value={props.state.age}
+          name="adult"
+          id="adult"
+          value={props.state.adult}
           onChange={props.handleChange}
         >
           <option value="No choice">-</option>
@@ -93,11 +93,11 @@ function Step2(props) {
       </label>
       <input
         className="form-control"
-        id="language"
-        name="language"
-        type="language"
+        id="languages"
+        name="languages"
+        type="languages"
         placeholder="English, Spanish, Portuguese, Italian, etc"
-        value={props.state.language}
+        value={props.state.languages}
         onChange={props.handleChange}
       />
 

@@ -34,18 +34,23 @@ class Language(models.Model):
 
 class MentorProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.SET_NULL, related_name="mp", null=True, blank=True)
-    time_zone = models.CharField(max_length=40, null=True)
     first_name = models.CharField(max_length=60, null=True)
     last_name = models.CharField(max_length=60, null=True)
     personal_email = models.EmailField(max_length=60, null=True, unique=True)
     vbb_email = models.EmailField(max_length=60, null=True, unique=True)
-    phone_number = models.CharField(max_length=15, null=True, blank=True)
+    phone = models.CharField(max_length=15, null=True, blank=True)
+    adult = models.CharField(max_length=3, null=True)
     occupation = models.CharField(max_length=70, null=True, blank=True)
+    vbb_chapter = models.CharField(max_length=40, null=True, blank=True)
     affiliation = models.CharField(max_length=70, null=True, blank=True)
-    referral_source = models.TextField(max_length=200, null=True, blank=True)
-    desired_involvement = models.TextField(max_length=200, null=True, blank=True)
+    referral_source = models.CharField(max_length=200, null=True, blank=True)
+    languages = models.CharField(max_length=70, null=True, blank=True)
+    time_zone = models.CharField(max_length=40, null=True)
+    charged = models.CharField(max_length=3, null=True)
     initials = models.CharField(max_length=6, null=True)
-    advisor_notes = models.TextField(max_length=256,null=True,blank=True)
+    desired_involvement = models.CharField(max_length=200, null=True, blank=True)
+    city = models.CharField(max_length=70, null=True, blank=True)
+    advisor_notes = models.TextField(max_length=512,null=True,blank=True)
 
     def __str__(self):
         return self.first_name + " " + self.last_name

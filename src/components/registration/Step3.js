@@ -184,14 +184,14 @@ function Step3(props) {
       </div>
 
       <div>
-        <label htmlFor="charges">
+        <label htmlFor="charged">
           Have you ever been arrested, charged, or convicted of child abuse or
           molestation of any form?
         </label>
         <select
-          name="charges"
-          id="charges"
-          value={props.state.charges}
+          name="charged"
+          id="charged"
+          value={props.state.charged}
           onChange={props.handleChange}
         >
           <option value="No choice">-</option>

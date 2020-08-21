@@ -19,23 +19,23 @@ class MasterForm extends React.Component {
       firstname: "",
       lastname: "",
       email: "",
-      phone: "",
       vbbemail: "",
+      phone: "",
       newsletter: "",
-      age: "",
+      adult: "",
       occupation: "",
+      vbb_chapter: "",
       affiliation: "",
       referral_source: "",
-      language: "",
+      languages: "",
+      time_zone: moment.tz.guess(),
       termsCond: "",
-      charges: "",
+      charged: "",
       commit: "",
       initials: "",
       more_involved:"",
       desired_involvement: "",
       city: "",
-      vbb_chapter: "",
-      time_zone: moment.tz.guess(),
     };
   }
 
@@ -50,18 +50,18 @@ class MasterForm extends React.Component {
     if (this.state.email === "") problems += " - email\n";
     if (isNaN(this.state.phone)) problems += " - Please remove any non-numeric characters from your phone number\n"
     if (this.state.phone.length>15) problems += " - Please enter a phone number less than 16 digits long\n"
-    if (this.state.age === "") problems += " - whether or not you are over 18\n";
+    if (this.state.adult === "") problems += " - whether or not you are over 18\n";
     if (this.state.occupation === "") problems += " - what stage of life you are at\n";
     if (this.state.referral_source === "") problems += " - referral source\n";
-    if (this.state.language === "") problems += " - language\n";
+    if (this.state.languages === "") problems += " - languages\n";
     if (this.state.time_zone === "") problems += " - time zone\n";
     if (this.state.termsCond === ""|| this.state.mentor4Months === "No") problems += " - accept Terms and Conditions\n";
-    if (this.state.charges === "") problems += " - charged or convicted\n";
+    if (this.state.charged === "") problems += " - charged or convicted\n";
     if (this.state.commit === "" || this.state.commit === "No")
       problems += " - mentoring commitment\n";
     if (this.state.initials === "") problems += " - initials\n";
     if (this.state.more_involved === "") problems += " - get more involved?\n";
-    // if (this.state.city === "") problems += " - city\n";
+    if (this.state.city === "") problems += " - city\n";
     if (problems === "") return false;
     return base + problems;
   };
@@ -81,15 +81,20 @@ class MasterForm extends React.Component {
     this.props.onAuth(
       this.state.firstname,
       this.state.lastname,
-      this.state.time_zone,
       this.state.email,
       this.state.vbbemail,
       this.state.phone,
+      this.state.adult,
       this.state.occupation,
+      this.state.vbb_chapter,
       this.state.affiliation,
       this.state.referral_source,
+      this.state.languages,
+      this.state.time_zone,
+      this.state.charged,
+      this.state.initials,
       this.state.desired_involvement,
-      this.state.initials
+      this.state.city
     );
   };
 
@@ -207,29 +212,39 @@ const mapDispatchToProps = (dispatch) => {
     onAuth: (
       firstname,
       lastname,
-      time_zone,
       email,
       vemail,
       phone,
+      adult,
       occupation,
+      vbb_chapter,
       affiliation,
       referral_source,
+      languages,
+      time_zone,
+      charged,
+      initials,
       desired_involvement,
-      initials
+      city
     ) =>
       dispatch(
         actions.authSignup(
           firstname,
           lastname,
-          time_zone,
           email,
           vemail,
           phone,
+          adult,
           occupation,
+          vbb_chapter,
           affiliation,
           referral_source,
+          languages,
+          time_zone,
+          charged,
+          initials,
           desired_involvement,
-          initials
+          city
         )
       ),
   };
