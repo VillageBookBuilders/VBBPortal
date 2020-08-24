@@ -266,13 +266,13 @@ class google_apis:
     
     
 # # FOR TESTING PURPOSES -- REMOVE LATER
-def testFunction():
-  g = google_apis()
-  welcome_mail = os.path.join("api", "emails", "templates", "welcomeLetter.html")
+# def testFunction():
+#   g = google_apis()
+#   welcome_mail = os.path.join("api", "emails", "templates", "welcomeLetter.html")
   
-  sessionConfirm_mail = os.path.join("api","emails","templates", "sessionConfirm.html")
-  training_mail = os.path.join("api","emails","templates", "training.html")
-  newMentorNotice_mail = os.path.join("api","emails","templates", "newMentorNotice.html")
+#   sessionConfirm_mail = os.path.join("api","emails","templates", "sessionConfirm.html")
+#   training_mail = os.path.join("api","emails","templates", "training.html")
+#   newMentorNotice_mail = os.path.join("api","emails","templates", "newMentorNotice.html")
 
   # g.email_send(
   #  "edringger@gmail.com",        # personal email form form
@@ -293,14 +293,14 @@ def testFunction():
   #   cc=["edringger@gmail.com"]
   # )
 
-  g.calendar_event(
-    "TestShwetha",
-    "sohan.kalva.test2@villagementors.org", 
-    "shwetha.test1@villagebookbuilders.org",
-    "shwetha.shinju@gmail.com", 
-    "shwetha.shinju2@gmail.com",
-    "2020-08-12T23:30:00", "2020-09-10T22:00:00", 
-    "c_oha2uv7abp2vs6jlrl96aeoje8@group.calendar.google.com", 
-    "c_188apa1pg08nkg9pn621lmhbfc0f04gnepkmor31ctim4rrfddh7aqbcchin4spedtp6e@resource.calendar.google.com")
+  # g.calendar_event(
+  #   "TestShwetha",
+  #   "sohan.kalva.test2@villagementors.org", 
+  #   "shwetha.test1@villagebookbuilders.org",
+  #   "shwetha.shinju@gmail.com", 
+  #   "shwetha.shinju2@gmail.com",
+  #   "2020-08-12T23:30:00", "2020-09-10T22:00:00", 
+  #   "c_oha2uv7abp2vs6jlrl96aeoje8@group.calendar.google.com", 
+  #   "c_188apa1pg08nkg9pn621lmhbfc0f04gnepkmor31ctim4rrfddh7aqbcchin4spedtp6e@resource.calendar.google.com")
   
-testFunction()
+# testFunction()

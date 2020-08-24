@@ -46,7 +46,7 @@ function Step1(props) {
       />
 
       <label htmlFor="vbbemail">
-        @villagementors.org email (if you already have one)
+        @villagementors.org email (ONLY if you ALREADY have one)
       </label>
       <input
         className="form-control"
@@ -54,7 +54,7 @@ function Step1(props) {
         name="vbbemail"
         required
         type="mail"
-        placeholder="Enter VBB email"
+        placeholder="Enter your current/existing villagementors.org email - ie john.doe@villagementors.org"
         value={props.state.vbbemail}
         onChange={props.handleChange}
       />
@@ -65,7 +65,7 @@ function Step1(props) {
         id="phone"
         name="phone"
         type="tel"
-        placeholder="Enter phone number"
+        placeholder="Enter phone number (digits only) ie 1234567890"
         value={props.state.phone}
         onChange={props.handleChange}
       />
