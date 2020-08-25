@@ -16,8 +16,8 @@ class LibraryAdmin(admin.ModelAdmin):
         "program_director_name",
         "program_director_phone",
         "program_director_email",
-        "library_gmail_group",
-        "library_classroom",
+        "announcements_group",
+        "collaboration_group",
     )
     readonly_fields = ("id",)
     search_fields = (
@@ -29,8 +29,8 @@ class LibraryAdmin(admin.ModelAdmin):
         "program_director_name",
         "program_director_phone",
         "program_director_email",
-        "library_gmail_group",
-        "library_classroom",
+        "announcements_group",
+        "collaboration_group",
     )
 
 

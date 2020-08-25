@@ -220,13 +220,19 @@ function Step3(props) {
         Do you agree to the above terms and conditions, and to 4-month
         commitment to your mentoring session?
       </label>
-      <p>Sign by putting your initials.</p>
+      {
+        props.adult==="No" ?
+        <p>Sign by putting your initials.</p>
+        :
+        <p>Please have a Parent or Guardian sign by putting their initials.</p>
+      }
+     
       <input
         className="form-control"
         id="initials"
         name="initials"
         type="text"
-        placeholder="Initials"
+        placeholder="Initials - ie 'JTD'"
         value={props.state.initials}
         onChange={props.handleChange}
       />

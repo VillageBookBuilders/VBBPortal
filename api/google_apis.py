@@ -31,19 +31,19 @@ class google_apis:
   __webdev_cred=''
   __mentor_cred=''
   def __init__(self):
-      scopes = [
-        'https://www.googleapis.com/auth/calendar',
-        'https://www.googleapis.com/auth/gmail.compose', 
-        'https://www.googleapis.com/auth/admin.directory.user'
-      ]
-      SERVICE_ACCOUNT_FILE = os.path.join("api","service-account.json")
-      credentials = service_account.Credentials.from_service_account_file(
-              SERVICE_ACCOUNT_FILE, scopes=scopes)
-
-      self.__webdev_cred = credentials.with_subject('webdevelopment@villagebookbuilders.org')
-      
-
-      self.__mentor_cred = credentials.with_subject('mentor@villagebookbuilders.org')
+    #the proper scopes are needed to access specific Google APIs
+    #see https://developers.google.com/identity/protocols/oauth2/scopes 
+    scopes = [
+      'https://www.googleapis.com/auth/calendar',
+      'https://www.googleapis.com/auth/gmail.compose', 
+      'https://www.googleapis.com/auth/admin.directory.user',
+      'https://www.googleapis.com/auth/admin.directory.group',
+    ]
+    SERVICE_ACCOUNT_FILE = os.path.join("api","service-account.json")
+    credentials = service_account.Credentials.from_service_account_file(
+            SERVICE_ACCOUNT_FILE, scopes=scopes)
+    self.__webdev_cred = credentials.with_subject('webdevelopment@villagebookbuilders.org')
+    self.__mentor_cred = credentials.with_subject('mentor@villagebookbuilders.org')
 
   def account_create(self, firstName, lastName, personalEmail):
     http = _auth.authorized_http(self.__webdev_cred)
@@ -92,44 +92,44 @@ class google_apis:
 
 
   def calendar_event(self, mentorFirstName, menteeEmail, mentorEmail, personalEmail, directorEmail, start_time, end_date, calendar_id, room, duration=.5):
-      calendar_service = build('calendar', 'v3', credentials=self.__mentor_cred)
-      timezone = 'America/New_York'
-      start_date_time_obj = datetime.strptime(start_time, '%Y-%m-%dT%H:%M:%S')
-      end_time = start_date_time_obj + timedelta(hours=duration)
-      end_date_formated = end_date.replace(':', '')
-      end_date_formated = end_date_formated.replace('-', '')
-      end_date_formated += 'Z'
+    calendar_service = build('calendar', 'v3', credentials=self.__mentor_cred)
+    timezone = 'America/New_York'
+    start_date_time_obj = datetime.strptime(start_time, '%Y-%m-%dT%H:%M:%S')
+    end_time = start_date_time_obj + timedelta(hours=duration)
+    end_date_formated = end_date.replace(':', '')
+    end_date_formated = end_date_formated.replace('-', '')
+    end_date_formated += 'Z'
 
-      event = {
-          'summary': mentorFirstName + ' - VBB Mentoring Session',
-          'start': {
-              'dateTime': start_date_time_obj.strftime("%Y-%m-%dT%H:%M:%S"),
-              'timeZone': timezone,
-          },
-          'end': {
-              'dateTime': end_time.strftime("%Y-%m-%dT%H:%M:%S"),
-              'timeZone': timezone,
-          },
-          'recurrence': [
-              'RRULE:FREQ=WEEKLY;UNTIL=' + end_date_formated
-          ],
-          'attendees': [
-              {'email': menteeEmail},
-              {'email': mentorEmail},
-              {'email': personalEmail},
-              {'email': directorEmail},
-              {'email': room, 'resource': "true"}
-          ],
-          'reminders': {
-              'useDefault': False,
-              'overrides': [
-              {'method': 'email', 'minutes': 24 * 60}, # reminder 24 hrs before event
-              {'method': 'popup', 'minutes': 10}, # pop up reminder, 10 min before event
-              ],
-          },
-      }
-      event_obj = calendar_service.events().insert(calendarId=calendar_id, body=event).execute()
-      return(event_obj['id']) 
+    event = {
+      'summary': mentorFirstName + ' - VBB Mentoring Session',
+      'start': {
+        'dateTime': start_date_time_obj.strftime("%Y-%m-%dT%H:%M:%S"),
+        'timeZone': timezone,
+      },
+      'end': {
+        'dateTime': end_time.strftime("%Y-%m-%dT%H:%M:%S"),
+        'timeZone': timezone,
+      },
+      'recurrence': [
+        'RRULE:FREQ=WEEKLY;UNTIL=' + end_date_formated
+      ],
+      'attendees': [
+        {'email': menteeEmail},
+        {'email': mentorEmail},
+        {'email': personalEmail},
+        {'email': directorEmail},
+        {'email': room, 'resource': "true"}
+      ],
+      'reminders': {
+        'useDefault': False,
+        'overrides': [
+        {'method': 'email', 'minutes': 24 * 60}, # reminder 24 hrs before event
+        {'method': 'popup', 'minutes': 10}, # pop up reminder, 10 min before event
+        ],
+      },
+    }
+    event_obj = calendar_service.events().insert(calendarId=calendar_id, body=event).execute()
+    return(event_obj['id']) 
 
   def email_send(self, to, subject, templatePath, extraData=None, cc=None):
     """
@@ -228,6 +228,7 @@ class google_apis:
     with requests.Session() as s:
       s.auth = OAuth2BearerToken(self.__webdev_cred.token)
       r = s.post(url, headers=headers, data=data)
+      # print(r.text)
 
   def classroom_invite(self, courseID, email, role="TEACHER"):
     cred = self.__mentor_cred
@@ -268,6 +269,8 @@ class google_apis:
 # # FOR TESTING PURPOSES -- REMOVE LATER
 # def testFunction():
 #   g = google_apis()
+#   print("subscribing")
+#   g.group_subscribe("mentor.collaboration@villagebookbuilders.org", "ed.ringger@villagementors.org")
 #   welcome_mail = os.path.join("api", "emails", "templates", "welcomeLetter.html")
   
 #   sessionConfirm_mail = os.path.join("api","emails","templates", "sessionConfirm.html")

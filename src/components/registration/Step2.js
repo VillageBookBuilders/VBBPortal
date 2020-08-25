@@ -49,6 +49,7 @@ function Step2(props) {
             <option value="No choice">-</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
+            <option value="Interested">No, but I'm interested!</option>
           </select>
         </div>
       )}
@@ -60,7 +61,7 @@ function Step2(props) {
         id="affiliation"
         name="affiliation"
         type="affiliation"
-        placeholder="If none, leave blank"
+        placeholder="ie 'NYU' - If none, leave blank"
         value={props.state.affiliation}
         onChange={props.handleChange}
       />
@@ -96,7 +97,7 @@ function Step2(props) {
         id="languages"
         name="languages"
         type="languages"
-        placeholder="English, Spanish, Portuguese, Italian, etc"
+        placeholder="ie 'Spanish, English, Some Portuguese'"
         value={props.state.languages}
         onChange={props.handleChange}
       />

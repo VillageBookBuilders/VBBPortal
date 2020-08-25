@@ -70,7 +70,7 @@ function Step5(props) {
           name="city"
           required
           type="text"
-          placeholder="Philadelphia, PA"
+          placeholder="ie 'Philadelphia, PA'"
           value={props.state.city}
           onChange={props.handleChange}
         />
