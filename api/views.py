@@ -79,6 +79,9 @@ def first_time_signup(request):
             }
             ,[request.data["vbb_email"]]
         )
+    gapi.group_subscribe("mentor.announcements@villagebookbuilders.org", request.data["vbb_email"])
+    gapi.group_subscribe("mentor.announcements@villagebookbuilders.org", pemail)
+    gapi.group_subscribe("mentor.collaboration@villagebookbuilders.org", request.data["vbb_email"])
     serializer = MentorProfileSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -268,20 +271,13 @@ def book_sessionslot(request):
     )
     myappt.event_id = event_id
     myappt.save()
-    #print("mentee computer", myappt.mentee_computer) #debug statement
-    #print("library", myappt.mentee_computer.library) #debug statement
-
-
-    g = google_apis()
     library_time = aux_fns.display_day(
         myappt.mentee_computer.library.time_zone,
         myappt.msm,
         myappt.end_date)
     newMentorNotice_mail = os.path.join("api","emails","templates", "newMentorNotice.html")
     sessionConfirm_mail = os.path.join("api","emails","templates", "sessionConfirm.html")
-    #print("library time", library_time) #debugging
-    #print("director email", myappt.mentee_computer.library.program_director_email) #debugging
-    g.email_send(
+    gapi.email_send(
         myappt.mentee_computer.library.program_director_email,
         "New Mentoring Session Booked for "+ library_time,
         newMentorNotice_mail,
@@ -291,7 +287,7 @@ def book_sessionslot(request):
             '__mentorname': myappt.mentor.first_name +" "+ myappt.mentor.last_name,
         } 
     )
-    g.email_send(
+    gapi.email_send(
         myappt.mentor.mp.vbb_email,
         "New Mentoring Session Booked for "+ myappt.display(),
         sessionConfirm_mail,
@@ -313,6 +309,9 @@ def book_sessionslot(request):
         },
         cc=[myappt.mentor.mp.personal_email]
     )
+    gapi.group_subscribe(myappt.mentee_computer.library.announcements_group, myappt.mentor.mp.personal_email)
+    gapi.group_subscribe(myappt.mentee_computer.library.announcements_group, myappt.mentor.mp.vbb_email)
+    gapi.group_subscribe(myappt.mentee_computer.library.collaboration_group, myappt.mentor.mp.vbb_email)
     # FIXME - Add try/except/finally blocks for error checking (not logged in, sessionslot got taken before they refreshed)
     return Response(
         {"success": "true", "user": str(myappt.mentor), "sessionslot": str(myappt),}

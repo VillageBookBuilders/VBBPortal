@@ -16,7 +16,7 @@ function Step1(props) {
         name="firstname"
         required
         type="text"
-        placeholder="Enter first name"
+        placeholder="Enter first name - ie 'John'"
         value={props.state.firstname}
         onChange={props.handleChange}
       />
@@ -28,7 +28,7 @@ function Step1(props) {
         id="lastname"
         name="lastname"
         type="text"
-        placeholder="Enter last name"
+        placeholder="Enter last name - ie 'Doe'"
         value={props.state.lastname}
         onChange={props.handleChange}
       />
@@ -40,7 +40,7 @@ function Step1(props) {
         name="email"
         required
         type="mail"
-        placeholder="Enter email"
+        placeholder="Enter email (please triple-check spelling!) - ie 'johndoe@gmail.com'"
         value={props.state.email}
         onChange={props.handleChange}
       />
@@ -54,7 +54,7 @@ function Step1(props) {
         name="vbbemail"
         required
         type="mail"
-        placeholder="Enter your current/existing villagementors.org email - ie john.doe@villagementors.org"
+        placeholder="Enter your current/existing villagementors.org email - ie 'john.doe@villagementors.org'"
         value={props.state.vbbemail}
         onChange={props.handleChange}
       />
@@ -65,7 +65,7 @@ function Step1(props) {
         id="phone"
         name="phone"
         type="tel"
-        placeholder="Enter phone number (digits only) ie 1234567890"
+        placeholder="Enter phone number (digits only) ie '1234567890'"
         value={props.state.phone}
         onChange={props.handleChange}
       />

@@ -15,8 +15,8 @@ class Library(models.Model):
     program_director_name = models.CharField(max_length=50, null=True, blank=True)
     program_director_phone = models.CharField(max_length=15, null=True, blank=True)
     program_director_email = models.EmailField(max_length=50, null=True, blank=True)
-    library_gmail_group = models.CharField(max_length=50, null=True, blank=True)
-    library_classroom = models.CharField(max_length=50, null=True, blank=True)
+    announcements_group = models.CharField(max_length=50, null=True, blank=True)
+    collaboration_group = models.CharField(max_length=50, null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Libraries"
@@ -104,6 +104,7 @@ class SessionSlot(models.Model):
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     event_id = models.CharField(max_length=60, null=True, blank=True)
+    hangouts_link = models.CharField(max_length=60, null=True, blank=True)
     mentor_notes = models.TextField(max_length=500, null=True, blank=True)
 
     def __str__(self):
