@@ -24,6 +24,7 @@ class MasterForm extends React.Component {
       phone: "",
       newsletter: "",
       adult: "",
+      parent_name: "",
       occupation: "",
       vbb_chapter: "",
       affiliation: "",
@@ -31,7 +32,8 @@ class MasterForm extends React.Component {
       languages: "",
       time_zone: moment.tz.guess(),
       termsCond: "",
-      charged: "",
+      was_charged: "",
+      charged:"",
       commit: "",
       initials: "",
       more_involved:"",
@@ -55,8 +57,8 @@ class MasterForm extends React.Component {
     if (this.state.email === "") 
       problems += " - email\n";
     if (this.state.vbbemail !== "" 
-      && (vbbemail.endswith("villagementors.org")
-        ||vbbemail.endswith("villagebookbuilders.org.org"))) 
+      && (this.state.vbbemail.endswith("villagementors.org")
+        ||this.state.vbbemail.endswith("villagebookbuilders.org.org"))) 
       problems += " - vbb email must end in villagementors.org or villagebookbuilders.org\n";
     if (isNaN(this.state.phone)) 
       problems += " - Please remove any non-numeric characters from your phone number\n"
@@ -74,8 +76,8 @@ class MasterForm extends React.Component {
       problems += " - time zone\n";
     if (this.state.termsCond === ""|| this.state.mentor4Months === "No") 
       problems += " - accept Terms and Conditions\n";
-    if (this.state.charged === "") 
-      problems += " - charged or convicted\n";
+    if (this.state.was_charged === "") 
+      problems += " - 'charged or convicted' left unfilled\n";
     if (this.state.commit === "" || this.state.commit === "No")
       problems += " - mentoring commitment\n";
     if (this.state.initials === "") 
@@ -100,6 +102,10 @@ class MasterForm extends React.Component {
     this.setState({
       currentStep: 6
     })
+    var charged = this.state.was_charged
+    if (this.state.was_charged==="yes"){
+      charged = this.state.charged
+    }
     this.props.onAuth(
       this.state.firstname,
       this.state.lastname,
@@ -113,7 +119,7 @@ class MasterForm extends React.Component {
       this.state.referral_source,
       this.state.languages,
       this.state.time_zone,
-      this.state.charged,
+      charged,
       this.state.initials,
       this.state.desired_involvement,
       this.state.city

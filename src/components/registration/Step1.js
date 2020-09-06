@@ -44,9 +44,20 @@ function Step1(props) {
         value={props.state.email}
         onChange={props.handleChange}
       />
+
+      <label htmlFor="phone">Phone Number</label>
+      <input
+        className="form-control"
+        id="phone"
+        name="phone"
+        type="tel"
+        placeholder="Enter phone number (digits only) ie '1234567890'"
+        value={props.state.phone}
+        onChange={props.handleChange}
+      />
+      <br />
       <div>
-        <label>Have you already been given access to a VBB email account 
-          (@villagementors.org or @villagebookbuilders.org)</label>
+        <label>Are you currently using a VBB email account?</label>
         <select
           name="has_vemail"
           id="has_vemail"
@@ -59,34 +70,23 @@ function Step1(props) {
         </select>
       </div>
       { props.state.has_vemail==="yes" && (
-        <label htmlFor="vbbemail">
-          @villagementors.org email (ONLY if you ALREADY have one)
-        </label>
-        <input
-          className="form-control"
-          id="vbbemail"
-          name="vbbemail"
-          required
-          type="mail"
-          placeholder="ie 'john.doe@villagementors.org' - please tripple check!"
-          value={props.state.vbbemail}
-          onChange={props.handleChange}
-        />
-      )}  
-
-      <label htmlFor="phone">Phone Number</label>
-      <input
-        className="form-control"
-        id="phone"
-        name="phone"
-        type="tel"
-        placeholder="Enter phone number (digits only) ie '1234567890'"
-        value={props.state.phone}
-        onChange={props.handleChange}
-      />
-
-      <br />
-
+        <div>
+          <label htmlFor="vbbemail">
+            @villagementors.org email (only if you already have one)
+          </label>
+          <input
+            className="form-control"
+            id="vbbemail"
+            name="vbbemail"
+            type="mail"
+            placeholder="ie 'john.doe@villagementors.org' - please tripple check!"
+            value={props.state.vbbemail}
+            onChange={props.handleChange}
+          />
+          <br/>
+        </div>
+      )} 
+      <br/> 
       <div>
         <label>Sign up for newsletter? &nbsp;</label>
         <select
