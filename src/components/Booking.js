@@ -19,7 +19,6 @@ class Booking extends React.Component {
     displayTime: "",
     isReturning: "no",
     isCommitted: false,
-    sameAppointment: "no",
   };
 
   fetchBookingData = () => {
@@ -122,21 +121,6 @@ class Booking extends React.Component {
     //isEastern designates whether the given msm is in Eastern or the local time_zone
     if (isEastern) return (msm + diffInMinutes + 10080) % 10080;
     return (msm - diffInMinutes + 10080) % 10080;
-  };
-
-  handleMentorChange = () => {
-    this.setState(
-      {
-        isReturning: !this.state.isReturning,
-      },
-      () => {
-        if (!this.state.isReturning) {
-          this.setState({
-            library: 0,
-          });
-        }
-      }
-    );
   };
 
   handleCommitChange = (e) => {
