@@ -114,7 +114,7 @@ class SessionSlotAdmin(admin.ModelAdmin):
         "msm",
         "start_date",
         "end_date",
-        "event_id",
+        "hangouts_link",
         "mentor_notes",
     )
     readonly_fields = ("id",)
