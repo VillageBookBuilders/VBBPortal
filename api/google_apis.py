@@ -17,6 +17,7 @@ from email.mime.multipart import MIMEMultipart
 from bs4 import BeautifulSoup
 import re
 import random
+import string
 # from dateutil.relativedelta import relativedelta
 class google_apis:
   ''''
@@ -127,9 +128,14 @@ class google_apis:
         {'method': 'popup', 'minutes': 10}, # pop up reminder, 10 min before event
         ],
       },
+      'conferenceData': {
+        'createRequest': {
+          'requestId': ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+        }
+      },
     }
-    event_obj = calendar_service.events().insert(calendarId=calendar_id, body=event).execute()
-    return(event_obj['id']) 
+    event_obj = calendar_service.events().insert(calendarId=calendar_id, body=event, sendUpdates="all", conferenceDataVersion=1).execute()
+    return(event_obj['id'], event_obj['hangoutLink']) 
 
   def email_send(self, to, subject, templatePath, extraData=None, cc=None):
     """
@@ -268,7 +274,7 @@ class google_apis:
     
 # # FOR TESTING PURPOSES -- REMOVE LATER
 # def testFunction():
-#   g = google_apis()
+  # g = google_apis()
 #   print("subscribing")
 #   g.group_subscribe("mentor.collaboration@villagebookbuilders.org", "ed.ringger@villagementors.org")
 #   welcome_mail = os.path.join("api", "emails", "templates", "welcomeLetter.html")
@@ -295,7 +301,15 @@ class google_apis:
   #   training_mail,
   #   cc=["edringger@gmail.com"]
   # )
-
+  # g.calendar_event(
+  #   "TestShwetha",
+  #   "ed.ringger@villagementors.org", 
+  #   "edringger@gmail.com",
+  #   "edringger@gmail.com", 
+  #   "edringger@gmail.com",
+  #   "2020-09-12T12:30:00", "2020-09-20T22:00:00", 
+  #   "villagebookbuilders.org_eee2mt82196fil8qvsn7mvqn9k@group.calendar.google.com", 
+  #   "c_188apa1pg08nkg9pn621lmhbfc0f04gnepkmor31ctim4rrfddh7aqbcchin4spedtp6e@resource.calendar.google.com")
   # g.calendar_event(
   #   "TestShwetha",
   #   "sohan.kalva.test2@villagementors.org", 
@@ -303,7 +317,7 @@ class google_apis:
   #   "shwetha.shinju@gmail.com", 
   #   "shwetha.shinju2@gmail.com",
   #   "2020-08-12T23:30:00", "2020-09-10T22:00:00", 
-  #   "c_oha2uv7abp2vs6jlrl96aeoje8@group.calendar.google.com", 
+  #   "villagebookbuilders.org_eee2mt82196fil8qvsn7mvqn9k@group.calendar.google.com", 
   #   "c_188apa1pg08nkg9pn621lmhbfc0f04gnepkmor31ctim4rrfddh7aqbcchin4spedtp6e@resource.calendar.google.com")
   
-# testFunction()
+# testFunction()#TODO: DO NOT FORGET TO COMMENT THIS OUT WHEN YOU ARE DONE TESTING!

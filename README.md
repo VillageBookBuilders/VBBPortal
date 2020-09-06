@@ -12,6 +12,7 @@ python manage.py runserver
 
 These commands (respectively)
 1. virtualenv env (create a virual environment for all of your python packages)
+  (you will then need to enterthat environment with source env/bin/activate
 2. pip install -r requirements.txt (install all of the python packages listed in requirements.txt)
 3. npm i (install the node_js modules) (node js needs to be installed on your computer first)
 4. npm run build (this will create a static build file so that django can host the react app)
