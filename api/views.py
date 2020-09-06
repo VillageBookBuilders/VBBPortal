@@ -187,7 +187,7 @@ class AvailableSessionSlotList(ListAPIView):
         # library and mentor filtering
         if library_params is None or library_params == "0":
             appts = (
-                appts.filter(mentor=None, language=language_params,msm__gte=1000000000)
+                appts.filter(mentor=None, language=language_params)
                 .values("msm")
                 .distinct()
             )
