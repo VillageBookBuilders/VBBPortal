@@ -44,20 +44,35 @@ function Step1(props) {
         value={props.state.email}
         onChange={props.handleChange}
       />
-
-      <label htmlFor="vbbemail">
-        @villagementors.org email (ONLY if you ALREADY have one)
-      </label>
-      <input
-        className="form-control"
-        id="vbbemail"
-        name="vbbemail"
-        required
-        type="mail"
-        placeholder="Enter your current/existing villagementors.org email - ie 'john.doe@villagementors.org'"
-        value={props.state.vbbemail}
-        onChange={props.handleChange}
-      />
+      <div>
+        <label>Have you already been given access to a VBB email account 
+          (@villagementors.org or @villagebookbuilders.org)</label>
+        <select
+          name="has_vemail"
+          id="has_vemail"
+          onChange={props.handleChange}
+          value={props.state.has_vemail}
+        >
+          <option value="no">No</option>
+          <option value="unsure">I am unsure.</option>
+          <option value="yes">Yes</option>
+        </select>
+      </div>
+      { props.state.has_vemail==="yes" && (
+        <label htmlFor="vbbemail">
+          @villagementors.org email (ONLY if you ALREADY have one)
+        </label>
+        <input
+          className="form-control"
+          id="vbbemail"
+          name="vbbemail"
+          required
+          type="mail"
+          placeholder="ie 'john.doe@villagementors.org' - please tripple check!"
+          value={props.state.vbbemail}
+          onChange={props.handleChange}
+        />
+      )}  
 
       <label htmlFor="phone">Phone Number</label>
       <input

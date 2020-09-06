@@ -19,6 +19,7 @@ class MasterForm extends React.Component {
       firstname: "",
       lastname: "",
       email: "",
+      has_vemail: "no",
       vbbemail: "",
       phone: "",
       newsletter: "",
@@ -43,25 +44,46 @@ class MasterForm extends React.Component {
     var base =
       "Please fix the following fields before submitting your application:\n";
     var problems = "";
-    if (this.state.firstname === "") problems += " - first name\n";
-    if (this.state.lastname === "") problems += " - last name\n";
-    if (this.state.firstname.includes(' ')) problems += " - Please remove the space in your first name \n";
-    if (this.state.lastname.includes(' ')) problems += " - Please remove the space in your last name \n";
-    if (this.state.email === "") problems += " - email\n";
-    if (isNaN(this.state.phone)) problems += " - Please remove any non-numeric characters from your phone number\n"
-    if (this.state.phone.length>15) problems += " - Please enter a phone number less than 16 digits long\n"
-    if (this.state.adult === "") problems += " - whether or not you are over 18\n";
-    if (this.state.occupation === "") problems += " - what stage of life you are at\n";
-    if (this.state.referral_source === "") problems += " - referral source\n";
-    if (this.state.languages === "") problems += " - languages\n";
-    if (this.state.time_zone === "") problems += " - time zone\n";
-    if (this.state.termsCond === ""|| this.state.mentor4Months === "No") problems += " - accept Terms and Conditions\n";
-    if (this.state.charged === "") problems += " - charged or convicted\n";
+    if (this.state.firstname === "") 
+      problems += " - first name\n";
+    if (this.state.lastname === "") 
+      problems += " - last name\n";
+    if (this.state.firstname.includes(' ')) 
+      problems += " - Please remove the space in your first name \n";
+    if (this.state.lastname.includes(' ')) 
+      problems += " - Please remove the space in your last name \n";
+    if (this.state.email === "") 
+      problems += " - email\n";
+    if (this.state.vbbemail !== "" 
+      && (vbbemail.endswith("villagementors.org")
+        ||vbbemail.endswith("villagebookbuilders.org.org"))) 
+      problems += " - vbb email must end in villagementors.org or villagebookbuilders.org\n";
+    if (isNaN(this.state.phone)) 
+      problems += " - Please remove any non-numeric characters from your phone number\n"
+    if (this.state.phone.length>15) 
+      problems += " - Please enter a phone number less than 16 digits long\n"
+    if (this.state.adult === "") 
+      problems += " - whether or not you are over 18\n";
+    if (this.state.occupation === "") 
+      problems += " - what stage of life you are at\n";
+    if (this.state.referral_source === "") 
+      problems += " - referral source\n";
+    if (this.state.languages === "") 
+      problems += " - languages\n";
+    if (this.state.time_zone === "") 
+      problems += " - time zone\n";
+    if (this.state.termsCond === ""|| this.state.mentor4Months === "No") 
+      problems += " - accept Terms and Conditions\n";
+    if (this.state.charged === "") 
+      problems += " - charged or convicted\n";
     if (this.state.commit === "" || this.state.commit === "No")
       problems += " - mentoring commitment\n";
-    if (this.state.initials === "") problems += " - initials\n";
-    if (this.state.more_involved === "") problems += " - get more involved?\n";
-    if (this.state.city === "") problems += " - city\n";
+    if (this.state.initials === "") 
+      problems += " - initials\n";
+    if (this.state.more_involved === "") 
+      problems += " - get more involved?\n";
+    if (this.state.city === "") 
+      problems += " - city\n";
     if (problems === "") return false;
     return base + problems;
   };

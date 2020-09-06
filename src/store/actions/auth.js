@@ -109,7 +109,10 @@ export const authSignup = (first_name, last_name,
         city: city,
       })
       .then((res) => {
-        if(res.success) dispatch(checkAuthTimeout(3600));
+        if(res.success){
+          dispatch(checkAuthTimeout(3600));
+          alert("Success! Check your email for further instructions.")
+        } 
         else dispatch(authFail(res.data))
       })
       .catch((err) => {
