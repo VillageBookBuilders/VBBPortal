@@ -258,7 +258,7 @@ def book_sessionslot(request):
     gapi = google_apis()
     start_time = aux_fns.date_combine_time(str(myappt.start_date), int(myappt.msm))
     end_date = aux_fns.date_combine_time(str(myappt.end_date), int(myappt.msm))
-    event_id = gapi.calendar_event(
+    event_id, hangouts_link = gapi.calendar_event(
         myappt.mentor.first_name,
         myappt.mentee_computer.computer_email,
         myappt.mentor.mp.vbb_email,
@@ -270,6 +270,7 @@ def book_sessionslot(request):
         myappt.mentee_computer.room_id
     )
     myappt.event_id = event_id
+    myappt.hangouts_link = hangouts_link
     myappt.save()
     library_time = aux_fns.display_day(
         myappt.mentee_computer.library.time_zone,
@@ -285,6 +286,10 @@ def book_sessionslot(request):
             '__directorname': myappt.mentee_computer.library.program_director_name,
             '__sessionslot': library_time,
             '__mentorname': myappt.mentor.first_name +" "+ myappt.mentor.last_name,
+            '__mentoremail': myappt.mentor.email,
+            '__occupation': myappt.mentor.mp.occupation,
+            '__languages': myappt.mentor.mp.languages,
+            '__computer': str(myappt.mentee_computer)
         } 
     )
     gapi.email_send(
@@ -295,7 +300,10 @@ def book_sessionslot(request):
             '__mentorname' : myappt.mentor.first_name,
             '__sessionslot': myappt.display(),
             '__programname': myappt.mentee_computer.library.name,
-            '__programdirector': myappt.mentee_computer.library.program_director_name
+            '__programdirector': myappt.mentee_computer.library.program_director_name,
+            '__hangout': myappt.hangouts_link,
+            '__vbbemail': myappt.mentor.email,
+            '__pdemail': myappt.mentee_computer.library.program_director_email,
         },
         [myappt.mentor.mp.personal_email]
     )
@@ -305,6 +313,7 @@ def book_sessionslot(request):
         "VBB Mentor Training",
         training_mail,
         {
+            '__mentorname': myappt.mentor.first_name,
             "__whatsapp_group": myappt.mentee_computer.library.whatsapp_group
         },
         cc=[myappt.mentor.mp.personal_email]
