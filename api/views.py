@@ -85,7 +85,10 @@ def first_time_signup(request):
     serializer = MentorProfileSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response({
+            'success': 'true',
+            'serializer': serializer.data}, status=status.HTTP_201_CREATED
+        )
     return Response({
         'success': 'false',
         'message': (str(serializer.errors)),

@@ -56,10 +56,12 @@ class MasterForm extends React.Component {
       problems += " - Please remove the space in your last name \n";
     if (this.state.email === "") 
       problems += " - email\n";
+    if (this.state.email.endsWith("villagementors.org")) 
+      problems += " - cannot re-register with a villagementors.org email\n";
     if (this.state.vbbemail !== "" 
-      && (this.state.vbbemail.endswith("villagementors.org")
-        ||this.state.vbbemail.endswith("villagebookbuilders.org.org"))) 
-      problems += " - vbb email must end in villagementors.org or villagebookbuilders.org\n";
+      && (!this.state.vbbemail.endsWith("villagementors.org")
+        && !this.state.vbbemail.endsWith("villagebookbuilders.org"))) 
+      problems += " - vbb email must end in @villagementors.org or @villagebookbuilders.org\n";
     if (isNaN(this.state.phone)) 
       problems += " - Please remove any non-numeric characters from your phone number\n"
     if (this.state.phone.length>15) 
@@ -74,7 +76,7 @@ class MasterForm extends React.Component {
       problems += " - languages\n";
     if (this.state.time_zone === "") 
       problems += " - time zone\n";
-    if (this.state.termsCond === ""|| this.state.mentor4Months === "No") 
+    if (this.state.termsCond === ""|| this.state.termsCond === "No") 
       problems += " - accept Terms and Conditions\n";
     if (this.state.was_charged === "") 
       problems += " - 'charged or convicted' left unfilled\n";
@@ -103,7 +105,7 @@ class MasterForm extends React.Component {
       currentStep: 6
     })
     var charged = this.state.was_charged
-    if (this.state.was_charged==="yes"){
+    if (this.state.was_charged==="Yes"){
       charged = this.state.charged
     }
     this.props.onAuth(
