@@ -220,18 +220,20 @@ class Booking extends React.Component {
             </select>
             <br />
             <br />
-            <br style={{ paddingBottom: "-10px" }} />
-            <label htmlFor="mentor">Are you a current or returning mentor?</label>
+            <label htmlFor="mentor">Are you a current/returning mentor?</label>
             <select
               id="mentor"
               name="mentor"
               onChange={this.handleDropDownChange}
             >
-              <option value="no">No, or I am unsure</option>
+              <option value="no">No</option>
+              <option value="unsure">I'm not sure</option>
               <option value="yes">Yes</option>
             </select>
-            <div id="ex-space" />
-            {this.state.isReturning==="yes" && (
+            <br />
+            <br />
+
+            {this.state.mentor==="yes" && (
               <div>
                 <label htmlFor="library" > 
                 {/* style={{ paddingLeft: "50px" }} */}
@@ -290,22 +292,24 @@ class Booking extends React.Component {
             </select>
             <br />
             <br />
-            <div>
-              <input
-                type="checkbox"
-                id="commitment"
-                name="commitment"
-                checked={this.state.isCommitted}
-                onChange={this.handleCommitChange}
-              />
-              <label htmlFor="commitment">
-                Please check the box to confirm that you can commit to mentor every{" "}
-                {this.display_day(this.state.weekday)} at{" "}
-                {this.display_time(parseInt(this.state.time))}: 
-              </label>
-              <br />
-              <br />
-            </div>
+            { this.state.time && (
+              <div>
+                <input
+                  type="checkbox"
+                  id="commitment"
+                  name="commitment"
+                  checked={this.state.isCommitted}
+                  onChange={this.handleCommitChange}
+                />
+                <label htmlFor="commitment">
+                  Please check the box to confirm that you can commit to mentor every{" "}
+                  {this.display_day(this.state.weekday)} at{" "}
+                  {this.display_time(parseInt(this.state.time))}: 
+                </label>
+                <br />
+                <br />
+              </div>
+            )}
           </div>
           {/* <p>
             If no avaliable times work with your weekly schedule,
