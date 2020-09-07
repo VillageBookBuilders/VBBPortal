@@ -17,9 +17,8 @@ class Booking extends React.Component {
     library: 0,
     time: false,
     displayTime: "",
-    isReturning: true,
+    isReturning: "no",
     isCommitted: false,
-    sameAppointment: "no",
   };
 
   fetchBookingData = () => {
@@ -124,21 +123,6 @@ class Booking extends React.Component {
     return (msm - diffInMinutes + 10080) % 10080;
   };
 
-  handleMentorChange = () => {
-    this.setState(
-      {
-        isReturning: !this.state.isReturning,
-      },
-      () => {
-        if (!this.state.isReturning) {
-          this.setState({
-            library: 0,
-          });
-        }
-      }
-    );
-  };
-
   handleCommitChange = (e) => {
     this.setState({
       isCommitted: !this.state.isCommitted,
@@ -194,11 +178,11 @@ class Booking extends React.Component {
       <div className="twocol-container">
         <div id="booking-box">
           <h1 id="booking-header">Book Your Weekly Mentoring Session Below!</h1>
-          {/* <p>
+          <p>
             Select a day and time that you have available each week.
             <br />
             We'll match you with a child who needs you as their mentor.
-          </p> */}
+          </p>
           <br />
           <div className="booking-fields">
             <label htmlFor="language">Mentoring Language:&nbsp;</label>
@@ -236,16 +220,20 @@ class Booking extends React.Component {
             </select>
             <br />
             <br />
-            {/* <br style={{ paddingBottom: "-10px" }} /> */}
-            {/* <input
-              type="checkbox"
+            <label htmlFor="mentor">Are you a current/returning mentor?</label>
+            <select
               id="mentor"
               name="mentor"
-              onChange={this.handleMentorChange}
-            /> */}
-            {/* <label htmlFor="mentor">Are you a returning mentor?</label> */}
-            {/* <div id="ex-space" /> */}
-            {this.state.isReturning && (
+              onChange={this.handleDropDownChange}
+            >
+              <option value="no">No</option>
+              <option value="unsure">I'm not sure</option>
+              <option value="yes">Yes</option>
+            </select>
+            <br />
+            <br />
+
+            {this.state.mentor==="yes" && (
               <div>
                 <label htmlFor="library" > 
                 {/* style={{ paddingLeft: "50px" }} */}
@@ -257,7 +245,7 @@ class Booking extends React.Component {
                   onChange={this.handleDropDownChange}
                   style={{ marginTop: "0px" }}
                 >
-                  <option value="0">Select from Available Libraries:</option>
+                  <option value="0">Any Library</option>
                   {this.state.libraries &&
                     this.state.libraries.length > 0 &&
                     this.state.libraries.map((lib) => {
@@ -304,32 +292,7 @@ class Booking extends React.Component {
             </select>
             <br />
             <br />
-            {this.state.time && (
-              <div>
-                <label>Please confirm that the time and library 
-                  you have selected represent your current mentoring session time and library: </label>
-                <p>
-                  (If you book a time that is not currently yours, you will displace another mentor 
-                  from their current mentoring session. 
-                  if you wish to reschedule, please do that in 2 or 3 weeks once all mentors 
-                  have completed the transition to this new system. Thank you!)
-                </p>
-                <select
-                  name="sameAppointment"
-                  id="sameAppointment"
-                  onChange={this.handleDropDownChange}
-                  value={this.state.sameAppointment}
-                >
-                  <option value="no">No, or I am unsure</option>
-                  <option value="yes">Yes, I am sure this slot is mine</option>
-                </select>
-                <br />
-                <br />
-                <br />
-              </div>
-            )}
-
-            {this.state.sameAppointment==="yes" && (
+            { this.state.time && (
               <div>
                 <input
                   type="checkbox"
@@ -339,9 +302,9 @@ class Booking extends React.Component {
                   onChange={this.handleCommitChange}
                 />
                 <label htmlFor="commitment">
-                  Please double check that the time you have selected (every{" "}
+                  Please check the box to confirm that you can commit to mentor every{" "}
                   {this.display_day(this.state.weekday)} at{" "}
-                  {this.display_time(parseInt(this.state.time))}) is your current mentoring time
+                  {this.display_time(parseInt(this.state.time))} for at least 4 months: 
                 </label>
                 <br />
                 <br />

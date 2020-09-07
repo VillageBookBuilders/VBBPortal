@@ -85,7 +85,10 @@ def first_time_signup(request):
     serializer = MentorProfileSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response({
+            'success': 'true',
+            'serializer': serializer.data}, status=status.HTTP_201_CREATED
+        )
     return Response({
         'success': 'false',
         'message': (str(serializer.errors)),
@@ -187,7 +190,7 @@ class AvailableSessionSlotList(ListAPIView):
         # library and mentor filtering
         if library_params is None or library_params == "0":
             appts = (
-                appts.filter(mentor=None, language=language_params,msm__gte=1000000000)
+                appts.filter(mentor=None, language=language_params)
                 .values("msm")
                 .distinct()
             )

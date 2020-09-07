@@ -26,7 +26,7 @@ export class HomeSignin extends Component {
           <div id="google-box">
             <GoogleLogin
               clientId="711431548719-lpoc2lbr4bmruqo7d9emua5huvpsvqgk.apps.googleusercontent.com"
-              buttonText="Click here to Validate and Continue to the Portal"
+              buttonText="Click here to sign in!"
               onSuccess={this.validateGoogle}
               onFailure={this.responseGoogle}
               cookiePolicy={"single_host_origin"}
