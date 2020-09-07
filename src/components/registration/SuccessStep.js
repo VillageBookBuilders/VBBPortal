@@ -9,22 +9,22 @@ function SuccessStep(props) {
       <p>
         Thanks for applying! Please wait a few seconds while we validate your
         application. If everything is in order, we'll send
-        you an email at {props.state.email}) with further instructions. If you see 
+        you an email at {props.state.email} with further instructions. If you see 
         an error message above, please follow the instructions it gives or&nbsp;
         <a href="mailto:mentor@villagebookbuilders.org">
           contact our mentor advisors
         </a>
-        &nbsp;for more assistance
+        &nbsp;for more assistance.
+        <br/>
+        <br/>
+        <a
+          className="btn btn-light signin-btn"
+          type="button"
+          href="/signin/"
+        >
+          SIGN IN
+        </a>
       </p>
-      <br/>
-      <a
-        className="btn btn-light signin-btn"
-        type="button"
-        href="/signin/"
-        style={{ marginLeft: "50px" }}
-      >
-        SIGN IN
-      </a>
       <br/>
       <br/>
       <p>
@@ -34,13 +34,13 @@ function SuccessStep(props) {
         underserved communities all over the world, and we can't achieve that vision
         without you! Thank you so much for choosing to be a mentor!  
         <br/>
+        <br/>
         <a
           className="btn btn-light donate-btn"
           type="button"
           href="https://www.villagebookbuilders.org/donate/"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ marginLeft: "50px" }}
         >
           DONATE
         </a>
