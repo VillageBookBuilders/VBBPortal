@@ -54,14 +54,14 @@ function Step2(props) {
         </div>
       )}
       <label htmlFor="affiliation">
-        What organization or school are you affiliated with?
+        What corporation, organization, or Village Mentors Club are you affiliated with?
       </label>
       <input
         className="form-control"
         id="affiliation"
         name="affiliation"
         type="affiliation"
-        placeholder="ie 'NYU' - If none, leave blank"
+        placeholder="ie 'Nike' - If none, leave blank"
         value={props.state.affiliation}
         onChange={props.handleChange}
       />

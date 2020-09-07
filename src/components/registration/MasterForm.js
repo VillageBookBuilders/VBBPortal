@@ -19,10 +19,12 @@ class MasterForm extends React.Component {
       firstname: "",
       lastname: "",
       email: "",
+      has_vemail: "no",
       vbbemail: "",
       phone: "",
       newsletter: "",
       adult: "",
+      parent_name: "",
       occupation: "",
       vbb_chapter: "",
       affiliation: "",
@@ -30,7 +32,8 @@ class MasterForm extends React.Component {
       languages: "",
       time_zone: moment.tz.guess(),
       termsCond: "",
-      charged: "",
+      was_charged: "",
+      charged:"",
       commit: "",
       initials: "",
       more_involved:"",
@@ -43,25 +46,48 @@ class MasterForm extends React.Component {
     var base =
       "Please fix the following fields before submitting your application:\n";
     var problems = "";
-    if (this.state.firstname === "") problems += " - first name\n";
-    if (this.state.lastname === "") problems += " - last name\n";
-    if (this.state.firstname.includes(' ')) problems += " - Please remove the space in your first name \n";
-    if (this.state.lastname.includes(' ')) problems += " - Please remove the space in your last name \n";
-    if (this.state.email === "") problems += " - email\n";
-    if (isNaN(this.state.phone)) problems += " - Please remove any non-numeric characters from your phone number\n"
-    if (this.state.phone.length>15) problems += " - Please enter a phone number less than 16 digits long\n"
-    if (this.state.adult === "") problems += " - whether or not you are over 18\n";
-    if (this.state.occupation === "") problems += " - what stage of life you are at\n";
-    if (this.state.referral_source === "") problems += " - referral source\n";
-    if (this.state.languages === "") problems += " - languages\n";
-    if (this.state.time_zone === "") problems += " - time zone\n";
-    if (this.state.termsCond === ""|| this.state.mentor4Months === "No") problems += " - accept Terms and Conditions\n";
-    if (this.state.charged === "") problems += " - charged or convicted\n";
+    if (this.state.firstname === "") 
+      problems += " - first name\n";
+    if (this.state.lastname === "") 
+      problems += " - last name\n";
+    if (this.state.firstname.includes(' ')) 
+      problems += " - Please remove the space in your first name \n";
+    if (this.state.lastname.includes(' ')) 
+      problems += " - Please remove the space in your last name \n";
+    if (this.state.email === "") 
+      problems += " - email\n";
+    if (this.state.email.endsWith("villagementors.org")) 
+      problems += " - cannot re-register with a villagementors.org email\n";
+    if (this.state.vbbemail !== "" 
+      && (!this.state.vbbemail.endsWith("villagementors.org")
+        && !this.state.vbbemail.endsWith("villagebookbuilders.org"))) 
+      problems += " - vbb email must end in @villagementors.org or @villagebookbuilders.org\n";
+    if (isNaN(this.state.phone)) 
+      problems += " - Please remove any non-numeric characters from your phone number\n"
+    if (this.state.phone.length>15) 
+      problems += " - Please enter a phone number less than 16 digits long\n"
+    if (this.state.adult === "") 
+      problems += " - whether or not you are over 18\n";
+    if (this.state.occupation === "") 
+      problems += " - what stage of life you are at\n";
+    if (this.state.referral_source === "") 
+      problems += " - referral source\n";
+    if (this.state.languages === "") 
+      problems += " - languages\n";
+    if (this.state.time_zone === "") 
+      problems += " - time zone\n";
+    if (this.state.termsCond === ""|| this.state.termsCond === "No") 
+      problems += " - accept Terms and Conditions\n";
+    if (this.state.was_charged === "") 
+      problems += " - 'charged or convicted' left unfilled\n";
     if (this.state.commit === "" || this.state.commit === "No")
       problems += " - mentoring commitment\n";
-    if (this.state.initials === "") problems += " - initials\n";
-    if (this.state.more_involved === "") problems += " - get more involved?\n";
-    if (this.state.city === "") problems += " - city\n";
+    if (this.state.initials === "") 
+      problems += " - initials\n";
+    if (this.state.more_involved === "") 
+      problems += " - get more involved?\n";
+    if (this.state.city === "") 
+      problems += " - city\n";
     if (problems === "") return false;
     return base + problems;
   };
@@ -78,6 +104,10 @@ class MasterForm extends React.Component {
     this.setState({
       currentStep: 6
     })
+    var charged = this.state.was_charged
+    if (this.state.was_charged==="Yes"){
+      charged = this.state.charged
+    }
     this.props.onAuth(
       this.state.firstname,
       this.state.lastname,
@@ -91,7 +121,7 @@ class MasterForm extends React.Component {
       this.state.referral_source,
       this.state.languages,
       this.state.time_zone,
-      this.state.charged,
+      charged,
       this.state.initials,
       this.state.desired_involvement,
       this.state.city
