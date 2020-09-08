@@ -24,8 +24,8 @@ def first_time_signup(request):
     When a user signs up, create a mentor profile. If they are new mentors, create a vbb email and send a
     welcome email.
     """
-    fname = request.data.get("first_name")
-    lname = request.data.get("last_name")
+    fname = request.data.get("first_name").title()
+    lname = request.data.get("last_name").title()
     pemail = request.data.get("personal_email").lower()
     gapi = google_apis()
 
