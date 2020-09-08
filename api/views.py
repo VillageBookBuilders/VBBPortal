@@ -247,15 +247,11 @@ def book_sessionslot(request):
                 "message": "No available sessionslots exist with those specifications.",
             }
         )
+    #choose a random session slot from among those filtered
     myappt = random.choice(appts)
-    #print("apt", myappt) #debuggin statementing
     myappt.mentor = request.user
-    # FIXME CHANGE START DATE CALCULATION BACK TO THE CODE BELOW ONCE PHASE 1 CURRENT MENTORING TEST IS THROUGH
-    # myappt.start_date = datetime.today() + timedelta(
-    #     days=(aux_fns.diff_today_dsm(myappt.msm) + 7)
-    # )
     myappt.start_date = datetime.today() + timedelta(
-        days=(aux_fns.diff_today_dsm(myappt.msm))
+        days=(aux_fns.diff_today_dsm(myappt.msm) + 7)
     )
     myappt.end_date = myappt.start_date + timedelta(weeks=17)
     gapi = google_apis()
