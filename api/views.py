@@ -253,6 +253,7 @@ def book_sessionslot(request):
     myappt.start_date = datetime.today() + timedelta(
         days=(aux_fns.diff_today_dsm(myappt.msm) + 7)
     )
+    print("hello")
     myappt.end_date = myappt.start_date + timedelta(weeks=17)
     gapi = google_apis()
     start_time = aux_fns.date_combine_time(str(myappt.start_date), int(myappt.msm))
