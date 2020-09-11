@@ -92,7 +92,7 @@ class google_apis:
     return (primaryEmail, pwd)
 
 
-  def calendar_event(self, mentorFirstName, menteeEmail, mentorEmail, personalEmail, directorEmail, start_time, end_date, calendar_id, room, duration=.5):
+  def calendar_event(self, mentorFirstName, menteeEmail, mentorEmail, personalEmail, directorEmail, start_time, end_date, calendar_id, room, duration=1):
     calendar_service = build('calendar', 'v3', credentials=self.__mentor_cred)
     timezone = 'America/New_York'
     start_date_time_obj = datetime.strptime(start_time, '%Y-%m-%dT%H:%M:%S')
