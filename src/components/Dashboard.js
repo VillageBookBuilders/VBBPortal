@@ -83,6 +83,12 @@ class Dashboard extends React.Component {
               + Book Mentoring Session
             </a>
             <br />
+            <p>
+              Click the button below to view your google calendar. 
+              In order to access your villagementors.org calendar, 
+              you'll have to click the icon in the top right corner 
+              and switch to your villagementors.org account
+            </p>
             <a
               className="btn btn-light gcal-btn dashboard-btn"
               href="https://calendar.google.com/calendar/r"
