@@ -44,7 +44,7 @@ class MasterForm extends React.Component {
 
   hasProblems = () => {
     var base =
-      "Please fix the following fields before submitting your application:\n";
+      "Please go back and fix the following fields before submitting your application:\n";
     var problems = "";
     if (this.state.firstname === "") 
       problems += " - first name\n";
