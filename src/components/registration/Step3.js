@@ -235,10 +235,10 @@ function Step3(props) {
         commitment to your mentoring session?
       </label>
       {
-        props.adult==="No" ?
-        <p>Sign by putting your initials.</p>
-        :
+        props.state.adult==="No" ?
         <p>Please have a Parent or Guardian sign by putting their initials.</p>
+        :
+        <p>Sign by putting your initials.</p>
       }
      
       <input
