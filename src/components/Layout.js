@@ -86,7 +86,7 @@ class Layout extends React.Component {
                   type="button"
                   href="/signin/"
                 >
-                  SIGN IN
+                  HOME
                 </a>
               </div>
             )}
