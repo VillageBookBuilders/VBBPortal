@@ -302,7 +302,7 @@ class Booking extends React.Component {
                   onChange={this.handleCommitChange}
                 />
                 <label htmlFor="commitment">
-                  Please check the box to confirm that you can commit to mentor every{" "}
+                  Please <b>check the box</b> to confirm that you can commit to mentor every{" "}
                   {this.display_day(this.state.weekday)} at{" "}
                   {this.display_time(parseInt(this.state.time))} for at least 4 months: 
                 </label>
