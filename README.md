@@ -1,5 +1,7 @@
 This project is broken up into a backend and frontend. The backend contains the Django project which uses the Django Rest Framework to host a simple API. The frontend uses React and queries data from the API. The backend is found in the django apps: api and vbbportal. The frontend is a react app, and most of the code is located in the src folder.
 
+Install python and node.js beforehand!
+
 Run the following commands inside of the repository folder to get started:
 
 ```json

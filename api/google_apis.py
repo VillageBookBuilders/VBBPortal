@@ -71,7 +71,7 @@ class google_apis:
     while(userExists(primaryEmail)):
       addedID+=1
       primaryEmail = firstName + '.' + lastName + str(addedID) + '@villagementors.org'
-    pwd = 'VBB' + str(random.randint(100000000, 1000000000)) + random.choice(['!','@','#','$','%','&'])
+    pwd = 'VBB' + random.choice(['!','@','#','$','%','&']) + str(random.randint(100000000, 1000000000)) 
 
     data = ''' 
     {
