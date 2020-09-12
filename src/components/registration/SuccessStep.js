@@ -16,17 +16,9 @@ function SuccessStep(props) {
         </a>
         &nbsp;for more assistance.
         <br/>
+        .........
         <br/>
-        <a
-          className="btn btn-light signin-btn"
-          type="button"
-          href="/signin/"
-        >
-          SIGN IN
-        </a>
       </p>
-      <br/>
-      <br/>
       <p>
         While you're waiting, please once again consider making a one-time
         or recurring donation if you haven't already. Our mission is to bring
