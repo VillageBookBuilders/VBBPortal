@@ -70,13 +70,13 @@ function Step5(props) {
           name="city"
           required
           type="text"
-          placeholder="ie 'Philadelphia, PA'"
+          placeholder="For example 'Philadelphia, PA'"
           value={props.state.city}
           onChange={props.handleChange}
         />
       </div>
 
-      <div style={{ "whiteSpace": "pre-wrap", color: "red" }}>
+      <div style={{ whiteSpace: "pre-wrap", color: "red" }}>
         {props.hasProblems() && props.hasProblems()}
       </div>
 
