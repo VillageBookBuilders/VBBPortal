@@ -4,8 +4,20 @@ Install python and node.js beforehand!
 
 Run the following commands inside of the repository folder to get started:
 
+(OSx/Linux)
 ```json
 virtualenv env
+pip install -r requirements.txt
+npm i 
+npm run build
+python manage.py runserver
+```
+
+(Windows)
+```json
+py -m pip install --user virtualenv
+py -m venv env
+.\env\Scripts\activate
 pip install -r requirements.txt
 npm i 
 npm run build
