@@ -7,7 +7,10 @@ function Step1(props) {
   return (
     <div className="form-group step-form">
       {/*delete this later*/}
-      <p>This is a new portal. If you experience any problems, please contact us at mentor@villagebookbuilders.org</p>
+      <p>
+        This is a new portal. If you experience any problems, please contact us
+        at mentor@villagebookbuilders.org
+      </p>
       <label htmlFor="firstname">First Name</label>
 
       <input
@@ -16,7 +19,6 @@ function Step1(props) {
         name="firstname"
         required
         type="text"
-        placeholder="Enter first name - ie 'John'"
         value={props.state.firstname}
         onChange={props.handleChange}
       />
@@ -28,7 +30,6 @@ function Step1(props) {
         id="lastname"
         name="lastname"
         type="text"
-        placeholder="Enter last name - ie 'Doe'"
         value={props.state.lastname}
         onChange={props.handleChange}
       />
@@ -40,7 +41,6 @@ function Step1(props) {
         name="email"
         required
         type="mail"
-        placeholder="Enter email (please triple-check spelling!) - ie 'johndoe@gmail.com'"
         value={props.state.email}
         onChange={props.handleChange}
       />
@@ -51,7 +51,7 @@ function Step1(props) {
         id="phone"
         name="phone"
         type="tel"
-        placeholder="Enter phone number (digits only) ie '1234567890'"
+        placeholder="Enter phone number as digits only '1234567890'"
         value={props.state.phone}
         onChange={props.handleChange}
       />
@@ -69,7 +69,7 @@ function Step1(props) {
           <option value="yes">Yes</option>
         </select>
       </div>
-      { props.state.has_vemail==="yes" && (
+      {props.state.has_vemail === "yes" && (
         <div>
           <label htmlFor="vbbemail">
             @villagementors.org email (only if you already have one)
@@ -83,10 +83,10 @@ function Step1(props) {
             value={props.state.vbbemail}
             onChange={props.handleChange}
           />
-          <br/>
+          <br />
         </div>
-      )} 
-      <br/> 
+      )}
+      <br />
       <div>
         <label>Sign up for newsletter? &nbsp;</label>
         <select
