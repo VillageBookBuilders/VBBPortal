@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import Booking from "./Booking";
 import Dashboard from "./Dashboard";
-import MasterForm from "./registration/MasterForm";
+import MasterForm from "./registration/MasterForm/MasterForm";
 import HomeSignin from "./HomeSignin";
 // import Donation from "./registration/Donation"
 

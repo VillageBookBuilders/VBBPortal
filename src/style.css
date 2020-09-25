@@ -164,7 +164,7 @@ a {
 }
 
 :disabled,
-btn[disabled]{
+btn[disabled] {
   background-color: #4c4c49;
   color: #fffff6;
   cursor: not-allowed;
@@ -348,10 +348,6 @@ input {
   margin-top: 10px;
 }
 
-#signup-header {
-  padding: 20px;
-}
-
 .step-form {
   padding: 20px;
   max-width: 700px;
@@ -494,10 +490,6 @@ input {
   #welcome-header {
     width: 270px;
     margin: auto;
-  }
-
-  #signup-header {
-    width: 350px;
   }
 
   .goback-btn {

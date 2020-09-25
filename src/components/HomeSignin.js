@@ -7,7 +7,10 @@ import * as actions from "../store/actions/auth";
 export class HomeSignin extends Component {
   responseGoogle = (response) => {
     console.log("failure response", response);
-    alert("Google authorization failed. Please Make sure Cookies are enabled on your browser! ... ", response);
+    alert(
+      "Google authorization failed. Please Make sure Cookies are enabled on your browser! ... ",
+      response
+    );
   };
   validateGoogle = (response) => {
     this.props.onGauth(response.accessToken);
@@ -18,7 +21,7 @@ export class HomeSignin extends Component {
     return (
       <div className="twocol-container">
         <div className="column" id="signin-box">
-          <h1 id="welcome-header">Welcome to VBB Portal!</h1>
+          <h1 id="welcome-header">Welcome to the VBB Mentorship Portal!</h1>
           <h4 id="portal-purpose">
             Let's give hope to children through mentoring.
           </h4>
