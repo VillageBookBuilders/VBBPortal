@@ -54,14 +54,15 @@ function Step2(props) {
         </div>
       )}
       <label htmlFor="affiliation">
-        What corporation, organization, or Village Mentors Club are you affiliated with?
+        What corporation, organization, or Village Mentors Club are you
+        affiliated with?
       </label>
       <input
         className="form-control"
         id="affiliation"
         name="affiliation"
         type="affiliation"
-        placeholder="ie 'Nike' - If none, leave blank"
+        placeholder="For example 'Nike' - If none, leave blank"
         value={props.state.affiliation}
         onChange={props.handleChange}
       />
@@ -97,7 +98,7 @@ function Step2(props) {
         id="languages"
         name="languages"
         type="languages"
-        placeholder="ie 'Spanish, English, Some Portuguese'"
+        placeholder="For example 'Spanish, English, Some Portuguese'"
         value={props.state.languages}
         onChange={props.handleChange}
       />
@@ -111,10 +112,10 @@ function Step2(props) {
           value={props.state.time_zone}
         >
           {moment.tz.names().map((tz) => {
-            if(tz.includes("Etc/GMT")) return null;
+            if (tz.includes("Etc/GMT")) return null;
             return (
               <option key={tz} value={tz}>
-                {tz}
+                {tz.split("_").join(" ")}
               </option>
             );
           })}
