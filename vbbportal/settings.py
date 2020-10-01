@@ -26,6 +26,8 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     # Django apps
     "api",
+    # 3rd party libs
+    "django_crontab",
 ]
 
 MIDDLEWARE = [

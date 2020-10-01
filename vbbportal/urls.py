@@ -7,3 +7,7 @@ urlpatterns = [
     path("api/", include('api.urls')),
     re_path(r".*", TemplateView.as_view(template_name="index.html")),
 ]
+
+CRONJOBS = [
+    ('*/5 * * * *', 'myapp.cron.my_scheduled_job')
+]
