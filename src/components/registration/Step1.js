@@ -66,9 +66,25 @@ function Step1(props) {
 
   const handleSubscription = (e) => {
     props.handleChange(e);
-    if (e.target.value === "yes") {
-      console.log("yes");
+    if (e.target.value === "Yes") {
+      subscriptionForNewsLettes(formState);
+      console.log("after post request");
     }
+  };
+
+  const subscriptionForNewsLettes = (userData) => {
+    axios
+      .post("http://127.0.0.1:8000/api/signup/subscriptionForNewsletters/", {
+        firstName: userData.firstname,
+        lastName: userData.lastname,
+        email: userData.email,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   if (props.state.currentStep !== 1) {
@@ -110,7 +126,7 @@ function Step1(props) {
         onChange={(event) => inputChange(event)}
       />
       {errors.lastname.length > 0 ? (
-        <p className="error">{errors.firstname}</p>
+        <p className="error">{errors.lastname}</p>
       ) : null}
 
       <label htmlFor="email">Email Address</label>
