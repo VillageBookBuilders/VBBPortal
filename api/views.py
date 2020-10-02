@@ -335,3 +335,17 @@ class MySessionSlotListView(ListAPIView):
 
     def get_queryset(self):
         return self.request.user.sessionslots.all()
+
+# New api which is in the testing phase
+@api_view(["POST"])
+def sign_up_for_newsletters(request):  
+    fname = request.data.get("firstName")
+    lname = request.data.get("lastName")
+    email = request.data.get("email")
+
+    print(fname,lname,email)
+    
+    #TODO test this functionality more thoroughly
+    return Response(
+        {"success": "true"}
+    )
