@@ -289,7 +289,8 @@ def book_sessionslot(request):
             '__occupation': myappt.mentor.mp.occupation,
             '__languages': myappt.mentor.mp.languages,
             '__computer': str(myappt.mentee_computer)
-        } 
+        },
+        ['mentor@villagebookbuilders.org']
     )
     gapi.email_send(
         myappt.mentor.mp.vbb_email,
@@ -298,6 +299,7 @@ def book_sessionslot(request):
         {
             '__mentorname' : myappt.mentor.first_name,
             '__sessionslot': myappt.display(),
+            '__start': myappt.start_date,
             '__programname': myappt.mentee_computer.library.name,
             '__programdirector': myappt.mentee_computer.library.program_director_name,
             '__hangout': myappt.hangouts_link,
