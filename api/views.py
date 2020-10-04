@@ -18,6 +18,9 @@ from api.models import *
 from api.serializers import *
 from api.google_apis import *
 
+import mailchimp_marketing as MailchimpMarketing
+from mailchimp_marketing.api_client import ApiClientError
+
 @api_view(["POST"])
 def first_time_signup(request):
     """
@@ -28,7 +31,7 @@ def first_time_signup(request):
     lname = request.data.get("last_name").title()
     pemail = request.data.get("personal_email").lower()
     gapi = google_apis()
-
+ 
     #TODO test this functionality more thoroughly
     if request.data["vbb_email"] is not None and request.data["vbb_email"] != '':
         #check to see if the serializer works
@@ -342,9 +345,33 @@ def sign_up_for_newsletters(request):
     fname = request.data.get("firstName")
     lname = request.data.get("lastName")
     email = request.data.get("email")
+    phoneNumber = request.data.get("phoneNumber")
+    countryCode = request.data.get('countryCode')
 
-    print(fname,lname,email)
-    
+    mailchimp = MailchimpMarketing.Client()
+    mailchimp.set_config({
+        "api_key": "4f10e2925406ba5a1ce0edf5f766de1d-us2",#this is a temporary key
+        "server": "us2" #this is a temporary server
+    })
+
+    list_id = "cc12143c34"# this is a temporary id
+
+    member_info = {
+        "email_address": email,
+        "status": "subscribed",
+        "merge_fields": {
+        "FNAME": fname,
+        "LNAME": lname,
+        "PHONE": (f'+{countryCode}{phoneNumber}')
+        }
+    }
+
+    try:
+        response = mailchimp.lists.add_list_member(list_id, member_info)
+        print("response: {}".format(response))
+    except ApiClientError as error:
+        print("An exception occurred: {}".format(error.text))
+
     #TODO test this functionality more thoroughly
     return Response(
         {"success": "true"}
