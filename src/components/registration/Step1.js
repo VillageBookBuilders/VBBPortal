@@ -8,6 +8,7 @@ function Step1(props) {
     lastname: "",
     email: "",
     phone: "",
+    countryCode: "",
   };
 
   const [formState, setformState] = useState(defaultState);
@@ -23,13 +24,15 @@ function Step1(props) {
     email: Yup.string()
       .email("please type in a valid email address.")
       .required("Must include email address."),
-    phone: Yup.number("Please type in only ten numbers")
-      .required("Please type in only ten numbers")
-      .positive("Please type in only numbers")
-      .integer("Please type in only ten numbers")
-      .test("int", "Please enter ten numbers", (val) => {
-        let toStr = val.toString();
-        return toStr.length === 10;
+    phone: Yup.string()
+      .required("Please type in your phone number")
+      .test("int", "Please enter only digits, no spaces", (val) => {
+        return val.length >= 9 && /^\d+$/.test(val) && !/\s/.test(val);
+      }),
+    countryCode: Yup.string()
+      .required("Please type in your country code")
+      .test("int", "Please enter only digits, no spaces", (val) => {
+        return val.length >= 1 && /^\d+$/.test(val) && !/\s/.test(val);
       }),
   });
 
@@ -52,6 +55,7 @@ function Step1(props) {
           ...errors,
           [e.target.name]: "",
         });
+        // change the values in the parent container
         props.handleChange(e);
       })
       /* if the validation is unsuccessful, we can set the error message to the message
@@ -78,6 +82,8 @@ function Step1(props) {
         firstName: userData.firstname,
         lastName: userData.lastname,
         email: userData.email,
+        phoneNumber: userData.phone,
+        countryCode: userData.countryCode,
       })
       .then(function (response) {
         console.log(response);
@@ -152,7 +158,21 @@ function Step1(props) {
         value={formState.phone}
         onChange={(event) => inputChange(event)}
       />
+
       {errors.phone.length > 0 ? <p className="error">{errors.phone}</p> : null}
+      <label htmlFor="countryCode">Country code</label>
+      <input
+        className="form-control"
+        id="countryCode"
+        name="countryCode"
+        type="tel"
+        placeholder="Enter your country code (digits only) ie '1' - USA, '52' - Mexico"
+        value={formState.countryCode}
+        onChange={(event) => inputChange(event)}
+      />
+      {errors.countryCode.length > 0 ? (
+        <p className="error">{errors.countryCode}</p>
+      ) : null}
 
       <br />
       <div>
@@ -189,7 +209,8 @@ function Step1(props) {
       {props.state.firstname &&
       props.state.lastname &&
       props.state.email &&
-      props.state.phone.length === 10 ? (
+      props.state.phone.length >= 9 &&
+      formState.countryCode ? (
         <div>
           <label>Sign up for newsletter? &nbsp;</label>
           <select
