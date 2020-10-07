@@ -346,7 +346,7 @@ def sign_up_for_newsletters(request):
     lname = request.data.get("lastName")
     email = request.data.get("email")
     phoneNumber = request.data.get("phoneNumber")
-    countryCode = request.data.get('countryCode')
+    # countryCode = request.data.get('countryCode'), TODO: when we fix front-end form, we can uncomment this part
 
     mailchimp = MailchimpMarketing.Client()
     mailchimp.set_config({
@@ -362,7 +362,8 @@ def sign_up_for_newsletters(request):
         "merge_fields": {
         "FNAME": fname,
         "LNAME": lname,
-        "PHONE": (f'+{countryCode}{phoneNumber}')
+        "PHONE": phoneNumber,
+        # "PHONE": (f'+{countryCode}{phoneNumber}'), TODO: when we fix front-end form, we can uncomment this part
         }
     }
 

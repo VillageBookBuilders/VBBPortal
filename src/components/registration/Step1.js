@@ -8,7 +8,7 @@ function Step1(props) {
     lastname: "",
     email: "",
     phone: "",
-    countryCode: "",
+    // countryCode: "", TODO, make it more appeliang to a user
   };
 
   const [formState, setformState] = useState(defaultState);
@@ -29,11 +29,12 @@ function Step1(props) {
       .test("int", "Please enter only digits, no spaces", (val) => {
         return val.length >= 9 && /^\d+$/.test(val) && !/\s/.test(val);
       }),
-    countryCode: Yup.string()
-      .required("Please type in your country code")
-      .test("int", "Please enter only digits, no spaces", (val) => {
-        return val.length >= 1 && /^\d+$/.test(val) && !/\s/.test(val);
-      }),
+    // TODO, make it more appeliang to a user
+    // countryCode: Yup.string()
+    //   .required("Please type in your country code")
+    //   .test("int", "Please enter only digits, no spaces", (val) => {
+    //     return val.length >= 1 && /^\d+$/.test(val) && !/\s/.test(val);
+    //   }),
   });
 
   const inputChange = (e) => {
@@ -83,7 +84,7 @@ function Step1(props) {
         lastName: userData.lastname,
         email: userData.email,
         phoneNumber: userData.phone,
-        countryCode: userData.countryCode,
+        // countryCode: userData.countryCode, TODO, make it more appeliang to a user
       })
       .then(function (response) {
         console.log(response);
@@ -158,9 +159,10 @@ function Step1(props) {
         value={formState.phone}
         onChange={(event) => inputChange(event)}
       />
-
       {errors.phone.length > 0 ? <p className="error">{errors.phone}</p> : null}
-      <label htmlFor="countryCode">Country code</label>
+
+      {/* TODO, make it more appeliang to a user  */}
+      {/* <label htmlFor="countryCode">Country code</label>
       <input
         className="form-control"
         id="countryCode"
@@ -172,7 +174,7 @@ function Step1(props) {
       />
       {errors.countryCode.length > 0 ? (
         <p className="error">{errors.countryCode}</p>
-      ) : null}
+      ) : null} */}
 
       <br />
       <div>
@@ -209,8 +211,8 @@ function Step1(props) {
       {props.state.firstname &&
       props.state.lastname &&
       props.state.email &&
-      props.state.phone.length >= 9 &&
-      formState.countryCode ? (
+      props.state.phone.length >= 9 ? (
+        // && formState.countryCode ?( Uncomment when fix conntry code input
         <div>
           <label>Sign up for newsletter? &nbsp;</label>
           <select
