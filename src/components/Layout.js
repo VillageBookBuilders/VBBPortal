@@ -76,7 +76,8 @@ class Layout extends React.Component {
                 <a
                   className="btn btn-light signup-btn"
                   type="button"
-                  href="/signup/"
+                  href="https://www.villagebookbuilders.org/mentor/"
+
                   style={{ marginRight: "20px" }}
                 >
                   REGISTER
