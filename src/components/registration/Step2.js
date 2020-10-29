@@ -39,7 +39,7 @@ function Step2(props) {
       </div>
       {props.state.occupation === "College_Student" && (
         <div>
-          <label>Are you part of VBB Village Mentors Chapter/Club</label>
+          <label>Are you part of VBB Village Mentors Chapter? Which one?</label>
           <select
             name="vbb_chapter"
             id="vbb_chapter"
@@ -54,7 +54,7 @@ function Step2(props) {
         </div>
       )}
       <label htmlFor="affiliation">
-        What corporation, organization, or Village Mentors Club are you affiliated with?
+        What corporation, organization, or Village Mentors Chapter are you affiliated with?
       </label>
       <input
         className="form-control"
