@@ -356,9 +356,8 @@ def sign_up_for_newsletters(request):
     mailchimp_config = os.path.join("api","mailchimp_config.json")
     with open(mailchimp_config) as infile:
         data = json.load(infile)
-    mailchimp.set_config(data)
-
-    list_id = "cc12143c34"# this is a temporary id
+    mailchimp.set_config(data['keys'])
+    list_id = data["listid"]["id"]
 
     member_info = {
         "email_address": email,

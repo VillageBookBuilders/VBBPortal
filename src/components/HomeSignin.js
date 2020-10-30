@@ -50,7 +50,7 @@ export class HomeSignin extends Component {
             <a
               className="btn btn-light signup-btn"
               type="button"
-              href="/signup/"
+              href="https://www.villagebookbuilders.org/mentor/"
             >
               REGISTER
             </a>
