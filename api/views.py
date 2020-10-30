@@ -20,6 +20,7 @@ from api.google_apis import *
 
 import mailchimp_marketing as MailchimpMarketing
 from mailchimp_marketing.api_client import ApiClientError
+import json
 
 @api_view(["POST"])
 def first_time_signup(request):
