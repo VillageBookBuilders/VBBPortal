@@ -352,10 +352,10 @@ def sign_up_for_newsletters(request):
     # countryCode = request.data.get('countryCode'), TODO: when we fix front-end form, we can uncomment this part
 
     mailchimp = MailchimpMarketing.Client()
-    mailchimp.set_config({
-        "api_key": "4f10e2925406ba5a1ce0edf5f766de1d-us2",#this is a temporary key
-        "server": "us2" #this is a temporary server
-    })
+    mailchimp_config = os.path.join("api","mailchimp_config.json")
+    with open(mailchimp_config) as infile:
+        data = json.load(infile)
+    mailchimp.set_config(data)
 
     list_id = "cc12143c34"# this is a temporary id
 
