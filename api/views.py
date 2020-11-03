@@ -328,7 +328,7 @@ def book_sessionslot(request):
     gapi.email_send(
         myappt.mentee_computer.library.program_director_email,
         "New Mentoring Session Booked for " + library_time,
-        newMentorNotice_mail
+        newMentorNotice_mail,
         {
             '__directorname': myappt.mentee_computer.library.program_director_name,
             '__sessionslot': library_time,
