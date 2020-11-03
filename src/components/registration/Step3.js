@@ -15,13 +15,13 @@ function Step3(props) {
         organization whicharranges for mentoring (“mentoring”) of school
         children by volunteer Volunteers. By signing up toprovide mentoring, you
         (“Volunteer”) are entering into a binding agreement with Non-Profit and
-        agree toterms and conditions herein.WHEREAS, Volunteer desires to
+        agree toterms and conditions herein.<br/><br/>WHEREAS, Volunteer desires to
         provide mentoring services as arranged by Non-Profit, and willgain and
-        benefit from being provided such mentoring opportunities; andWHEREAS,
+        benefit from being provided such mentoring opportunities; and WHEREAS,
         the parties desire to specify the terms under which such mentoring shall
-        beprovided;NOW THEREFORE, in consideration below describe covenants and
+        beprovided;<br/><br/>NOW THEREFORE, in consideration below describe covenants and
         promises between theparties, the receipt and sufficiency of which is
-        hereby acknowledged, the parties agree as follows: 1.Mentoring.
+        hereby acknowledged, the parties agree as follows: <br/><br/>1.Mentoring.
         Volunteer shall provide mentoring services as assigned by Non-Profit,
         subject to theterms and requirements of this agreement. Volunteer
         acknowledges and agrees that it shall receive nocompensation of any kind
@@ -30,20 +30,20 @@ function Step3(props) {
         student of the family of the mentoredstudent. Volunteer agrees with
         Non-Profit that the education, skill and experience constitute
         compensationsufficient to warrant consideration between the parties.
-        2.Standards of Conduct. Volunteer shall maintain the highest standard of
+        <br/><br/>2.Standards of Conduct. Volunteer shall maintain the highest standard of
         conduct in allinteractions with students, other volunteers and teachers,
         and any other person they come into contactwith while serving as a
         volunteer with Non-Profit. Volunteer shall not discuss, display, or
         portray lewd,indecent or inappropriate subject, images, or pictures at
         any time. Volunteer shall respect the individualityand privacy of all
         mentored students, and shall treat such students with the highest
-        respect. 3.Termination. Non-Profit retains the right to terminate the
+        respect. <br/><br/>3.Termination. Non-Profit retains the right to terminate the
         services of Volunteer at any time forany reason or no reason whatsoever.
         This contract constitutes a right to work contract and can beterminated
         by either party at any time and for reason. In the event of any breach
         of this Agreement byVolunteer, this Agreement shall be automatically
         terminated unless Non-Profit notifies Volunteer that theAgreement is
-        still in force and effect. 4.Confidentiality. In the course of providing
+        still in force and effect. <br/><br/>4.Confidentiality. In the course of providing
         mentoring services, Volunteer may acquireconfidential information from
         Non-Profit or from mentored students and/or their families.
         Confidentialinformation includes, but is not limited to, all lists, data
@@ -64,7 +64,7 @@ function Step3(props) {
         Volunteer as a result of a breach of any of the covenants contained in
         this paragraph 4 or any otherclause contained within this employment
         contract, he or she will be responsible for the reasonableattorney's
-        fees accumulated as a result of said breach. 5.Indemnification. Each
+        fees accumulated as a result of said breach. <br/><br/>5.Indemnification. Each
         party shall indemnify and holt the other party and its offices, agents,
         andemployees harmless from and against all liabilities, damages, losses,
         actions, or causes of action, costsand expenses, including reasonable
@@ -79,15 +79,15 @@ function Step3(props) {
         acts of Volunteer, regardless of the natureof those acts, the only
         exception being if such acts by Volunteer were part of the day to day
         activities ofhis or her job with Non Profit and no negligence nor
-        intentional conduct on the part of Volunteeroccurred. 6.Volunteer.
+        intentional conduct on the part of Volunteeroccurred. <br/><br/>6.Volunteer.
         Volunteer understands that, as a volunteer, Volunteer will receive no
         compensation orremuneration for services and will not be eligible for
         any employee benefits. Volunteer acknowledges thatthey are not an
-        employee. 7.Intellectual Property. Volunteer hereby irrevocably permits,
+        employee. <br/><br/>7.Intellectual Property. Volunteer hereby irrevocably permits,
         authorizes, grants, and licenses toNon-Profit and its affiliates,
         successors, and assigns, and their respective licensees, and the
         employees,officers, directors, and agents of each and all of them
-        (“Authorized Persons”): (i) the rights to display,publicly perform,
+        (“Authorized Persons”): <br/><br/>(i) the rights to display,publicly perform,
         exhibit, transmit, broadcast, reproduce, record, photograph, digitize,
         modify, alter, edit,adapt, create derivative works, exploit, sell, rent,
         license, otherwise use, and permit others to use myname, image,
@@ -96,11 +96,11 @@ function Step3(props) {
         the universe in any medium or format (now existing orhereafter created),
         without further consent from or compensation to me (and Non-Profit shall
         be theexclusive owner of all rights, including copyright, in the
-        Materials); and (ii) the entire right, title, andinterest, in and to the
+        Materials); and <br/><br/>(ii) the entire right, title, andinterest, in and to the
         Materials and all intellectual property rights in the Materials arising
         in anyjurisdiction throughout the universe in perpetuity, including all
         registration, renewal, and reversion rights,and the right to sue to
-        enforce such copyrights against infringers. By agreeing to these terms
+        enforce such copyrights against infringers. <br/><br/>By agreeing to these terms
         andconditions, Volunteer acknowledges and agrees that Volunteer has no
         right to review or approve Materialsbefore they are used by Non-Profit,
         and that Non-Profit has no liability to me for any editing or
@@ -109,7 +109,7 @@ function Step3(props) {
         or Non-Profit’s presentation of me. Any credit or other acknowledgment
         of me, if any,shall be determined by Non-Profit in Non-Profit’s sole
         discretion. Non-Profit has no obligation to createor use the Materials
-        or to exercise any rights given by this Agreement. To the extent
+        or to exercise any rights given by this Agreement. <br/><br/>To the extent
         permitted byapplicable law, Volunteer hereby irrevocably waives all
         legal and equitable rights relating to all liabilities,claims, demands,
         actions, suits, damages, and expenses, including but not limited to
@@ -127,39 +127,39 @@ function Step3(props) {
         Volunteer understands Non-Profit is relying on this Agreement and will
         incursignificant expense in its reliance, and Volunteer agrees that this
         Agreement cannot be terminated,rescinded, or modified, in whole or in
-        part.8.Entire Agreement. This agreement embodies the entire ”four
+        part.<br/><br/>8.Entire Agreement. This agreement embodies the entire ”four
         corners” of the agreement betweenthe parties, and replaces any prior
         understandings or discussions of the parties. This Agreement may onlybe
-        changed or modified in writing, signed by both parties. 9.Successors and
+        changed or modified in writing, signed by both parties. <br/><br/>9.Successors and
         Assigns. All of the terms and conditions of this Agreement are binding
         on thesuccessors and assigns of both parties. Volunteer may not assign
         this Agreement or its duties under thisAgreement to any other party,
         without the written consent of Non Profit. Non Profit may not sell
         orassign its rights under this Agreement without the prior written
-        consent of Volunteer. 10.Governing Law. This Agreement shall be governed
+        consent of Volunteer. <br/><br/>10.Governing Law. This Agreement shall be governed
         by and construed in accordance with thelaws of the State of Utah. Venue
         for any legal action between the parties shall be Utah County,
-        Utah.11.Dispute Resolution. In the event of a dispute between the
+        Utah.<br/><br/>11.Dispute Resolution. In the event of a dispute between the
         parties regarding this Agreement, theparties shall first negotiate in
         good faith to see if such dispute can be resolved. If any claim or
         action isfiled in court by either party respecting this Agreement, the
         prevailing party shall be entitled, in additionto all expenses, costs or
         damages, to reasonable attorneys’ fees, whether or not such controversy
-        waslitigated or prosecuted to judgment. 12.Severability. If any term or
+        waslitigated or prosecuted to judgment. <br/><br/>12.Severability. If any term or
         provision of this Agreement shall be held to be invalid orunenforceable,
         the remainder of this Agreement shall not be affected thereby. Each term
         and provision ofthis Agreement shall be valid and enforced to the
-        fullest extent permitted by law.13.Notices. Any notice provided for or
+        fullest extent permitted by law.<br/><br/>13.Notices. Any notice provided for or
         concerning this agreement shall be in writing and be deemedsufficiently
         given when hand delivered or sent by certified or registered mail if
-        sent to the respectiveaddress of each party. 14.Headings and Drafting.
+        sent to the respectiveaddress of each party. <br/><br/>14.Headings and Drafting.
         The headings used herein are for purposes of convenience only andshould
         not be used in construing or interpreting the provisions hereof. In all
         questions of interpretation ofthis agreement, the parties shall jointly
         be considered to have been the drafters of the same. ThisAgreement may
         be executed in counterparts. Facsimile signatures of this agreement
         shall be consideredbinding, and the same as original
-        signatures.15.Compliance with Law. Each party warrants that all times
+        signatures.<br/><br/>15.Compliance with Law. Each party warrants that all times
         they are and will remain in compliancewith all applicable federal, state
         and local laws pertaining to the services provided for in this
         agreement. Failure to comply with this paragraph by Volunteer or anyone
@@ -185,13 +185,12 @@ function Step3(props) {
 
       <div>
         <label htmlFor="charged">
-          Have you ever been arrested, charged, or convicted of child abuse or
-          molestation of any form?
+          Have you ever been arrested, charged, or convicted of any crime?
         </label>
         <select
-          name="charged"
-          id="charged"
-          value={props.state.charged}
+          name="was_charged"
+          id="was_charged"
+          value={props.state.was_charged}
           onChange={props.handleChange}
         >
           <option value="No choice">-</option>
@@ -199,6 +198,21 @@ function Step3(props) {
           <option value="No">No</option>
         </select>
       </div>
+      { props.state.was_charged==="Yes" && (
+        <div>
+          <label htmlFor="charged">
+            If yes, please briefly explain each case below:
+          </label>
+          <textarea
+            className="form-control"
+            id="charged"
+            name="charged"
+            placeholder=""
+            value={props.state.charged}
+            onChange={props.handleChange}
+          />
+        </div>
+      )}  
 
       <div>
         <label htmlFor="commit">
@@ -221,10 +235,10 @@ function Step3(props) {
         commitment to your mentoring session?
       </label>
       {
-        props.adult==="No" ?
-        <p>Sign by putting your initials.</p>
-        :
+        props.state.adult==="No" ?
         <p>Please have a Parent or Guardian sign by putting their initials.</p>
+        :
+        <p>Sign by putting your initials.</p>
       }
      
       <input

@@ -164,6 +164,14 @@ a {
   -webkit-appearance: none;
 }
 
+:disabled,
+btn[disabled]{
+  background-color: #4c4c49;
+  color: #fffff6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .btn:hover {
   background-color: #4c4c49;
   color: #b5b5b5;

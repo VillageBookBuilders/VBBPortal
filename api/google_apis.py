@@ -16,6 +16,7 @@ from email.mime.multipart import MIMEMultipart
 from bs4 import BeautifulSoup
 import re
 import random
+import string
 # from dateutil.relativedelta import relativedelta
 class google_apis:
   ''''
@@ -69,7 +70,7 @@ class google_apis:
     while(userExists(primaryEmail)):
       addedID+=1
       primaryEmail = firstName + '.' + lastName + str(addedID) + '@villagementors.org'
-    pwd = 'VBB' + str(random.randint(100000000, 1000000000)) + random.choice(['!','@','#','$','%','&'])
+    pwd = 'VBB' + random.choice(['!','@','#','$','%','&']) + str(random.randint(100000000, 1000000000)) 
 
     data = ''' 
     {
@@ -90,7 +91,7 @@ class google_apis:
     return (primaryEmail, pwd)
 
 
-  def calendar_event(self, mentorFirstName, menteeEmail, mentorEmail, personalEmail, directorEmail, start_time, end_date, calendar_id, room, duration=.5):
+  def calendar_event(self, mentorFirstName, menteeEmail, mentorEmail, personalEmail, directorEmail, start_time, end_date, calendar_id, room, duration=1):
     calendar_service = build('calendar', 'v3', credentials=self.__mentor_cred)
     timezone = 'America/New_York'
     start_date_time_obj = datetime.strptime(start_time, '%Y-%m-%dT%H:%M:%S')
@@ -126,9 +127,14 @@ class google_apis:
         {'method': 'popup', 'minutes': 10}, # pop up reminder, 10 min before event
         ],
       },
+      'conferenceData': {
+        'createRequest': {
+          'requestId': ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+        }
+      },
     }
-    event_obj = calendar_service.events().insert(calendarId=calendar_id, body=event).execute()
-    return(event_obj['id']) 
+    event_obj = calendar_service.events().insert(calendarId=calendar_id, body=event, sendUpdates="all", conferenceDataVersion=1).execute()
+    return(event_obj['id'], event_obj['hangoutLink']) 
 
   def email_send(self, to, subject, templatePath, extraData=None, cc=None):
     """
@@ -289,6 +295,8 @@ class google_apis:
 # def testFunction():
 #   g = google_apis()
 #  print("subscribing")
+  # g = google_apis()
+#   print("subscribing")
 #   g.group_subscribe("mentor.collaboration@villagebookbuilders.org", "ed.ringger@villagementors.org")
 #   welcome_mail = os.path.join("api", "emails", "templates", "welcomeLetter.html")
 
@@ -314,6 +322,7 @@ class google_apis:
   #   training_mail,
   #   cc=["edringger@gmail.com"]
   # )
+
 
   # event_id = g.calendar_event(
   #      "TestXime",

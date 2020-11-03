@@ -46,7 +46,7 @@ class MentorProfile(models.Model):
     referral_source = models.CharField(max_length=200, null=True, blank=True)
     languages = models.CharField(max_length=70, null=True, blank=True)
     time_zone = models.CharField(max_length=40, null=True)
-    charged = models.CharField(max_length=3, null=True)
+    charged = models.TextField(max_length=1024, null=True)
     initials = models.CharField(max_length=6, null=True)
     desired_involvement = models.CharField(max_length=200, null=True, blank=True)
     city = models.CharField(max_length=70, null=True, blank=True)

@@ -64,8 +64,11 @@ class MentorProfileAdmin(admin.ModelAdmin):
     readonly_fields = ("id",)
     search_fields = (
         "id",
-        "__str__",
-        "user",
+        "user__first_name",
+        "user__last_name",
+        "user__username",
+        "first_name",
+        "last_name",
         "time_zone",
         "personal_email",
         "vbb_email",
@@ -96,8 +99,8 @@ class MenteeComputerAdmin(admin.ModelAdmin):
     readonly_fields = ("id",)
     search_fields = (
         "id",
-        "library",
-        "language",
+        "library__name",
+        "language__name",
         "computer_number",
         "computer_email",
         "room_id",
@@ -114,21 +117,27 @@ class SessionSlotAdmin(admin.ModelAdmin):
         "msm",
         "start_date",
         "end_date",
-        "event_id",
+        "hangouts_link",
         "mentor_notes",
     )
-    readonly_fields = ("id",)
+    readonly_fields = ("id","msm","mentee_computer")
     search_fields = (
         "id",
-        "mentor",
-        "mentee_computer",
-        "language",
+        "mentee_computer__library__name",
+        "mentee_computer__computer_email",
+        "mentor__mp__first_name",
+        "mentor__mp__last_name",
+        "mentor__mp__personal_email",
+        "mentor__mp__vbb_email",
+        "mentor__first_name",
+        "mentor__last_name",
+        "mentor__username",
+        "language__name",
         "msm",
         "start_date",
         "end_date",
         "event_id",
     )
-
 
 admin.site.register(Library, LibraryAdmin)
 admin.site.register(Language, LanguageAdmin)

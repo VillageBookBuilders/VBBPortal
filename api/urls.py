@@ -4,6 +4,7 @@ from .views import SessionDetailView
 
 urlpatterns = [
     path("signup/", first_time_signup),
+    path("signup/subscriptionForNewsletters/",sign_up_for_newsletters ),
     path("googlelogin/", GoogleLogin.as_view()),
     path("checksignin/", check_signin),
     path("generate/", generate_sessionslots),
