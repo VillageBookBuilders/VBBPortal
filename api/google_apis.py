@@ -1,4 +1,3 @@
-
 import os
 from oauth2client import file, client
 from google.oauth2 import service_account
@@ -270,22 +269,44 @@ class google_apis:
       return r.text
 
 
+  def update_event(self, calendar_id, event_id, end_date=None, start_time=None, end_time=None):
+    calendar_service = build('calendar', 'v3', credentials=self.__mentor_cred)
+    event = calendar_service.events().get(calendarId=calendar_id, eventId=event_id).execute()
+    print(end_date) 
+    print('event_id: ' , event_id)
+   # print('old event: ' , event)
+    if (end_date != None):
+      end_date_formated = end_date.replace(':', '')
+      end_date_formated = end_date_formated.replace('-', '')
+      end_date_formated += 'Z'
+      event['recurrence'] = ['RRULE:FREQ=WEEKLY;UNTIL=' + end_date_formated]
+   # event['summary'] = 'update worked'
+    updated_event = calendar_service.events().update(calendarId=calendar_id, eventId=event['id'], body=event).execute()
+    print('updated_event: ', updated_event)
+    #return updated_event['recurrence'] = []
+
     
-    
-# # FOR TESTING PURPOSES -- REMOVE LATER
+
+
+
+
+
+  # # FOR TESTING PURPOSES -- REMOVE LATER
 # def testFunction():
+#   g = google_apis()
+#  print("subscribing")
   # g = google_apis()
 #   print("subscribing")
 #   g.group_subscribe("mentor.collaboration@villagebookbuilders.org", "ed.ringger@villagementors.org")
 #   welcome_mail = os.path.join("api", "emails", "templates", "welcomeLetter.html")
-  
+
 #   sessionConfirm_mail = os.path.join("api","emails","templates", "sessionConfirm.html")
 #   training_mail = os.path.join("api","emails","templates", "training.html")
 #   newMentorNotice_mail = os.path.join("api","emails","templates", "newMentorNotice.html")
 
   # g.email_send(
   #  "edringger@gmail.com",        # personal email form form
-  #  "Welcome to the VBB Family!",                
+  #  "Welcome to the VBB Family!",
   #  welcome_mail,
   #  {
   #    '__first_name': "Shwetha",                 # first name from form
@@ -297,27 +318,38 @@ class google_apis:
 
   # g.email_send(
   #   "ed.test1@villagebookbuilders.org",        # personal email form form
-  #   "Training",                
+  #   "Training",
   #   training_mail,
   #   cc=["edringger@gmail.com"]
   # )
-  # g.calendar_event(
-  #   "TestShwetha",
-  #   "ed.ringger@villagementors.org", 
-  #   "edringger@gmail.com",
-  #   "edringger@gmail.com", 
-  #   "edringger@gmail.com",
-  #   "2020-09-12T12:30:00", "2020-09-20T22:00:00", 
-  #   "villagebookbuilders.org_eee2mt82196fil8qvsn7mvqn9k@group.calendar.google.com", 
-  #   "c_188apa1pg08nkg9pn621lmhbfc0f04gnepkmor31ctim4rrfddh7aqbcchin4spedtp6e@resource.calendar.google.com")
-  # g.calendar_event(
-  #   "TestShwetha",
-  #   "sohan.kalva.test2@villagementors.org", 
-  #   "shwetha.test1@villagebookbuilders.org",
-  #   "shwetha.shinju@gmail.com", 
-  #   "shwetha.shinju2@gmail.com",
-  #   "2020-08-12T23:30:00", "2020-09-10T22:00:00", 
-  #   "villagebookbuilders.org_eee2mt82196fil8qvsn7mvqn9k@group.calendar.google.com", 
-  #   "c_188apa1pg08nkg9pn621lmhbfc0f04gnepkmor31ctim4rrfddh7aqbcchin4spedtp6e@resource.calendar.google.com")
-  
-# testFunction()#TODO: DO NOT FORGET TO COMMENT THIS OUT WHEN YOU ARE DONE TESTING!
+
+
+  # event_id = g.calendar_event(
+  #      "TestXime",
+  #      "sohatesttß@villagementors.org",
+  #      "ximena.rodriguez1@villagementors.org",
+  #      "shwetha@gmail.com",
+  #      "shwetha@gmail.com",
+  #      "2020-10-23T23:30:00", "2020-12-10T22:00:00",
+  #      "c_oha2uv7abp2vs6jlrl96aeoje8@group.calendar.google.com",
+  #      "ximena.rodriguez1@villagementors.org")
+  # #  #   "c_188apa1pg08nkg9pn621lmhbfc0f04gnepkmor31ctim4rrfddh7aqbcchin4spedtp6e@resource.calendar.google.com")
+  #print(event_id)
+
+ # g.update_event(
+    
+# #      "sohatesttß@villagementors.org",
+  #  "ximena.rodriguez1@villagementors.org",
+  #     "shwetha@gmail.com",
+  #     "shwetha@gmail.com",
+  #    "2020-10-23T23:30:00", "2020-12-10T22:00:00",
+ ## "c_oha2uv7abp2vs6jlrl96aeoje8@group.calendar.google.com",
+  #"ximena.rodriguez1@villagementors.org",
+  ##"ljg8ar4q4e5l2hg18h4epqtc34",
+  #"2022-10-27T22:00:00")
+  #  "c_188apa1pg08nkg9pn621lmhbfc0f04gnepkmor31ctim4rrfddh7aqbcchin4spedtp6e@resource.calendar.google.com")
+
+#   print("updated")
+
+
+# testFunction()
