@@ -93,7 +93,7 @@ class google_apis:
 
   def calendar_event(self, mentorFirstName, menteeEmail, mentorEmail, personalEmail, directorEmail, start_time, end_date, calendar_id, room, duration=1):
     calendar_service = build('calendar', 'v3', credentials=self.__mentor_cred)
-    timezone = 'America/New_York'
+    timezone = 'UTC'
     start_date_time_obj = datetime.strptime(start_time, '%Y-%m-%dT%H:%M:%S')
     end_time = start_date_time_obj + timedelta(hours=duration)
     end_date_formated = end_date.replace(':', '')
@@ -272,9 +272,6 @@ class google_apis:
   def update_event(self, calendar_id, event_id, end_date=None, start_time=None, end_time=None):
     calendar_service = build('calendar', 'v3', credentials=self.__mentor_cred)
     event = calendar_service.events().get(calendarId=calendar_id, eventId=event_id).execute()
-    print(end_date) 
-    print('event_id: ' , event_id)
-   # print('old event: ' , event)
     if (end_date != None):
       end_date_formated = end_date.replace(':', '')
       end_date_formated = end_date_formated.replace('-', '')
@@ -285,7 +282,16 @@ class google_apis:
     print('updated_event: ', updated_event)
     #return updated_event['recurrence'] = []
 
-    
+  def shift_event(self, calendar_id, event_id):
+    calendar_service = build('calendar', 'v3', credentials=self.__mentor_cred)
+    event = calendar_service.events().get(calendarId=calendar_id, eventId=event_id).execute()
+    print('event_id: ' , event_id)
+    event['start']['timeZone'] = "UTC"
+    event['end']['timeZone'] = "UTC"
+   # event['summary'] = 'update worked'
+    updated_event = calendar_service.events().update(calendarId=calendar_id, eventId=event['id'], body=event).execute()
+    print('updated_event: ', updated_event)
+    #return updated_event['recurrence'] = []
 
 
 
@@ -293,6 +299,10 @@ class google_apis:
 
   # # FOR TESTING PURPOSES -- REMOVE LATER
 # def testFunction():
+  # g = google_apis()
+  # g.shift_event("c_oha2uv7abp2vs6jlrl96aeoje8@group.calendar.google.com","0vjr0aj0e3nv1tmc2ui2mtshbi")
+
+
 #   g = google_apis()
 #  print("subscribing")
   # g = google_apis()

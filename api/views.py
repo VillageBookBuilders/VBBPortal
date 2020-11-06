@@ -499,3 +499,18 @@ def sign_up_for_newsletters(request):
         {"success": "true"}
     )
 
+@api_view(["POST"])
+def shift_slots(request):
+    """
+    Shifts all session slots to be encoded in UTC instead of EST
+    """
+    # OLD URL example:  api/generate/?computer=3&language=1&startday=0&endday=4&opentime=5&closetime=6
+    # computer_params = request.query_params.get("computer")
+    gapi = google_apis()
+    allslots = SessionSlot.objects.all()
+    for slot in allslots:
+        slot.msm += 240
+        if slot.mentor and slot.event_id:
+            gapi.shift_event(slot.mentee_computer.library.calendar_id,slot.event_id)
+        slot.save()
+    return Response({"success": "true"})

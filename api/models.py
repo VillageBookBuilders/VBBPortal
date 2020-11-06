@@ -109,7 +109,7 @@ class SessionSlot(models.Model):
 
     def __str__(self):
         return aux_fns.display_day(
-            "US/Eastern",
+            "UTC",
             self.msm,
             self.end_date,
         )
