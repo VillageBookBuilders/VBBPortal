@@ -15,10 +15,11 @@ class LanguageSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class MySessionSlotListSerializer(serializers.ModelSerializer):
+class SessionSlotSerializer(serializers.ModelSerializer):
     class Meta:
         model = SessionSlot
-        fields = ("display","event_id")
+        fields = ("id", "mentor","display", "event_id", "end_date", "mentor_notes")
+
 
 class MentorProfileSerializer(serializers.ModelSerializer):
     class Meta:
