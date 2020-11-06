@@ -504,16 +504,26 @@ def shift_slots(request):
     """
     Shifts all session slots to be encoded in UTC instead of EST
     """
-    # OLD URL example:  api/generate/?computer=3&language=1&startday=0&endday=4&opentime=5&closetime=6
-    # computer_params = request.query_params.get("computer")
-    gapi = google_apis()
-    allslots = SessionSlot.objects.all()
-    for slot in allslots:
-        slot.msm += 240
-        if slot.mentor and slot.event_id:
+    def _writelog(logstr):
+        with open("log.txt",'a') as writefile:
+            writefile.write(logstr + '\n')
+    try:
+        gapi = google_apis()
+        allslots = SessionSlot.objects.all()
+        for slot in allslots:
             try:
-                gapi.shift_event(slot.mentee_computer.library.calendar_id,slot.event_id)
+                slot.msm += 240
+                if slot.mentor and slot.event_id:
+                    try:
+            
+                        gapi.shift_event(slot.mentee_computer.library.calendar_id,slot.event_id)
+                        _writelog("Successfully added {}".format(slot.display()))
+                    except:
+                        _writelog("Failed to update google event for {}".format(slot.display()))
+                slot.save()
+                _writelog("Successfully added (without g-event) {}".format(slot.display()))
             except:
-                print("missing event")
-        slot.save()
+                _writelog("Failed to add {}".format(slot.display()))
+    except:
+        return Response({"success":"false"})
     return Response({"success": "true"})
