@@ -311,17 +311,22 @@ class Booking extends React.Component {
               </div>
             )}
           </div>
-          {/* <p>
+          <p>
+            IMPORTANT NOTICE: if you are in a country where daylight savings is observed, please plan accordingly.
+            None of our Libraries observe daylight savings time, and as such, all appointments follow the Universal Time Schedule.
+            (They do not "spring forward" or "fall back". they remain constant throughout the whole year)
+          </p>
+          <br />
+
+          <p>
             If no avaliable times work with your weekly schedule,
-            <br />
             <a href="mailto:mentor@villagebookbuilders.org">
               {" "}
               Contact the mentor advisors {" "}
             </a>
-            at mentor@villagebookbuilders.org. <br />
+            at mentor@villagebookbuilders.org.
             Please include potential times available in the email! 
-          </p> */}
-          <br />
+          </p>
           <br />
           <a href="/" type="button" className="btn goback-btn">
             GO BACK
