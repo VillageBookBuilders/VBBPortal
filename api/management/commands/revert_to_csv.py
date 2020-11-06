@@ -25,7 +25,7 @@ class Command(BaseCommand):
                 id = splitline[0]
                 msm = splitline[-3]
                 _writelog(str(id) + " " + str(int(msm)+240))
-                slot = SessionSlot.objects.get(pk=28)
+                slot = SessionSlot.objects.get(pk=id)
                 slot.msm = int(msm)+240
                 slot.save()
 
