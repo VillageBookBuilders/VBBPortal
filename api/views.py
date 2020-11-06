@@ -513,17 +513,16 @@ def shift_slots(request):
         for slot in allslots:
             try:
                 slot.msm += 240
-                if slot.mentor and slot.event_id:
+                if slot.mentor and slot.event_id and slot.mentor:
                     try:
-            
                         gapi.shift_event(slot.mentee_computer.library.calendar_id,slot.event_id)
-                        _writelog("Successfully added {}".format(slot.display()))
-                    except:
-                        _writelog("Failed to update google event for {}".format(slot.display()))
+                        _writelog("Successfully added {}".format(slot.id))
+                    except Exception as e:
+                        _writelog("{} Failed to update google event for {}".format(str(e),slot.id))
                 slot.save()
-                _writelog("Successfully added (without g-event) {}".format(slot.display()))
+                _writelog("Successfully added (without g-event) {}".format(slot.id))
             except:
-                _writelog("Failed to add {}".format(slot.display()))
-    except:
-        return Response({"success":"false"})
+                _writelog("Failed to add {}".format(slot.id))
+    except Exception as e:
+        return Response({"success":"false", "exception":str(e)})
     return Response({"success": "true"})
