@@ -511,6 +511,9 @@ def shift_slots(request):
     for slot in allslots:
         slot.msm += 240
         if slot.mentor and slot.event_id:
-            gapi.shift_event(slot.mentee_computer.library.calendar_id,slot.event_id)
+            try:
+                gapi.shift_event(slot.mentee_computer.library.calendar_id,slot.event_id)
+            except:
+                print("missing event")
         slot.save()
     return Response({"success": "true"})
