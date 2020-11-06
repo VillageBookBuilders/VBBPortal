@@ -110,16 +110,16 @@ class Booking extends React.Component {
     return time12 + mins + "pm";
   };
 
-  shift_time = (msm, isEastern) => {
+  shift_time = (msm, isUTC) => {
     var now = moment();
     now.tz(this.state.time_zone);
     var localOffset = now.utcOffset();
-    //eastern time zone is the server standard as of 8/1/2020
+    //universal time zone is the server standard as of 8/1/2020
     now.tz("UTC");
-    var easternOffset = now.utcOffset();
-    var diffInMinutes = localOffset - easternOffset;
-    //isEastern designates whether the given msm is in Eastern or the local time_zone
-    if (isEastern) return (msm + diffInMinutes + 10080) % 10080;
+    var utcOffset = now.utcOffset();
+    var diffInMinutes = localOffset - utcOffset;
+    //isUTC designates whether the given msm is in UTC or the local time_zone
+    if (isUTC) return (msm + diffInMinutes + 10080) % 10080;
     return (msm - diffInMinutes + 10080) % 10080;
   };
 
@@ -311,17 +311,22 @@ class Booking extends React.Component {
               </div>
             )}
           </div>
-          {/* <p>
+          <p>
+            IMPORTANT NOTICE: if you are in a country where daylight savings is observed, please plan accordingly.
+            None of our Libraries observe daylight savings time, and as such, all appointments follow the Universal Time Schedule.
+            (They do not "spring forward" or "fall back". they remain constant throughout the whole year)
+          </p>
+          <br />
+
+          <p>
             If no avaliable times work with your weekly schedule,
-            <br />
             <a href="mailto:mentor@villagebookbuilders.org">
               {" "}
               Contact the mentor advisors {" "}
             </a>
-            at mentor@villagebookbuilders.org. <br />
+            at mentor@villagebookbuilders.org.
             Please include potential times available in the email! 
-          </p> */}
-          <br />
+          </p>
           <br />
           <a href="/" type="button" className="btn goback-btn">
             GO BACK
