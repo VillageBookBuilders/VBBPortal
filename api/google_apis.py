@@ -285,12 +285,12 @@ class google_apis:
   def shift_event(self, calendar_id, event_id):
     calendar_service = build('calendar', 'v3', credentials=self.__mentor_cred)
     event = calendar_service.events().get(calendarId=calendar_id, eventId=event_id).execute()
-    print('event_id: ' , event_id)
+    # print('event_id: ' , event_id)
     event['start']['timeZone'] = "UTC"
     event['end']['timeZone'] = "UTC"
    # event['summary'] = 'update worked'
     updated_event = calendar_service.events().update(calendarId=calendar_id, eventId=event['id'], body=event).execute()
-    print('updated_event: ', updated_event)
+    # print('updated_event: ', updated_event)
     #return updated_event['recurrence'] = []
 
 
