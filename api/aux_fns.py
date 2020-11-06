@@ -76,7 +76,7 @@ def display_day(tzname, msm, end_date=None, show_tz=False):
     if msm is None:
         return "msm is None"
     today = datetime.datetime.now()
-    tz1, tz2= timezone("US/Eastern"), timezone(tzname)
+    tz1, tz2= timezone("UTC"), timezone(tzname)
     delta = (tz2.localize(today) - tz1.localize(today).astimezone(tz2))
     diff = 1440*delta.days + round(delta.seconds / 60)
     newmsm = int((msm - diff + 10080) % 10080)
