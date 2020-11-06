@@ -25,7 +25,7 @@ class SessionDetails extends React.Component {
     };
     const sessionid = this.props.match.params.sessionid;
     axios
-      .get(`http://127.0.0.1:8000/api/session/${sessionid}`)
+      .get(`https://portal.villagebookbuilders.org/api/session/${sessionid}`)
       .then((res) => {
         console.log("res : ", res);
         console.log("rd: ", res.data.display);
@@ -55,7 +55,7 @@ class SessionDetails extends React.Component {
     const sessionid = this.props.match.params.sessionid;
   //  const endDate = this.state.endDate;
     axios
-      .patch(`http://127.0.0.1:8000/api/update/${sessionid}`, {
+      .patch(`https://portal.villagebookbuilders.org/api/update/${sessionid}`, {
       
         end_date: this.state.endDate,
         mentor_notes: this.state.mentorNotes,
@@ -77,7 +77,7 @@ class SessionDetails extends React.Component {
    const mentor = this.state.mentor;
    console.log("Mentor", mentor);
    axios
-      .patch(`http://127.0.0.1:8000/api/update/${sessionid}`, {
+      .patch(`https://portal.villagebookbuilders.org/api/update/${sessionid}`, {
 
         end_date: getDateStr(0), 
         mentor: null,    
