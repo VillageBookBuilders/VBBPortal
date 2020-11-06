@@ -19,7 +19,7 @@ class Command(BaseCommand):
 
         with open("export.csv", "r") as infile:
             lines = infile.readlines()
-            for line in lines[1:5]:
+            for line in lines[1:]:
                 splitline = line.split(",")
                 _writelog(str(splitline))
                 id = splitline[0]
