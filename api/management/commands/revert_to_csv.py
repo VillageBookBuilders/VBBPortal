@@ -19,13 +19,13 @@ class Command(BaseCommand):
 
         with open("export.csv", "r") as infile:
             lines = infile.readlines()
-            for line in lines[1:5]:
+            for line in lines[1:]:
                 splitline = line.split(",")
                 _writelog(str(splitline))
                 id = splitline[0]
                 msm = splitline[-3]
                 _writelog(str(id) + " " + str(int(msm)+240))
-                slot = SessionSlot.objects.get(pk=28)
+                slot = SessionSlot.objects.get(pk=id)
                 slot.msm = int(msm)+240
                 slot.save()
 
