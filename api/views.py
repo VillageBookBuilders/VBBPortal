@@ -498,31 +498,3 @@ def sign_up_for_newsletters(request):
     return Response(
         {"success": "true"}
     )
-
-@api_view(["POST"])
-def shift_slots(request):
-    """
-    Shifts all session slots to be encoded in UTC instead of EST
-    """
-    def _writelog(logstr):
-        with open("log.txt",'a') as writefile:
-            writefile.write(logstr + '\n')
-    try:
-        gapi = google_apis()
-        allslots = SessionSlot.objects.all()
-        for slot in allslots:
-            try:
-                slot.msm += 240
-                if slot.mentor and slot.event_id and slot.mentor:
-                    try:
-                        gapi.shift_event(slot.mentee_computer.library.calendar_id,slot.event_id)
-                        _writelog("Successfully added {}".format(slot.id))
-                    except Exception as e:
-                        _writelog("{} Failed to update google event for {}".format(str(e),slot.id))
-                slot.save()
-                _writelog("Successfully added (without g-event) {}".format(slot.id))
-            except:
-                _writelog("Failed to add {}".format(slot.id))
-    except Exception as e:
-        return Response({"success":"false", "exception":str(e)})
-    return Response({"success": "true"})
