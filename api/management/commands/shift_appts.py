@@ -21,21 +21,16 @@ class Command(BaseCommand):
             allslots = SessionSlot.objects.all()
             for slot in allslots:
                 try:
-                    slot.msm += 240
-                    if slot.mentor and slot.event_id and slot.mentor:
+                    if slot.mentor and slot.event_id:
                         try:
                             gapi.shift_event(slot.mentee_computer.library.calendar_id,slot.event_id)
-                            _writelog("Successfully added {}".format(slot.id))
+                            _writelog("Successfully updated google event for {}".format(slot.id))
                         except Exception as e:
                             _writelog("{} Failed to update google event for {}".format(str(e),slot.id))
-                    slot.save()
-                    _writelog("Successfully added (without g-event) {}".format(slot.id))
+                    else:
+                        _writelog("No google event for slot {}".format(slot.id))
                 except:
                     _writelog("Failed to add {}".format(slot.id))
         except Exception as e:
             return str(e)
         return "true"
-
-#FIXME add a weeks warning
-#FIXME add a command for checking all session slots against their corresponding google event 
-# and make sure the google event is extended appropriately
