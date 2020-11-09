@@ -109,14 +109,18 @@ class SessionSlot(models.Model):
 
     def __str__(self):
         return aux_fns.display_day(
-            "US/Eastern",
+            "UTC",
             self.msm,
             self.end_date,
         )
 
     def display(self):
+        if self.mentor is None:
+            timezone = "UTC"
+        else:
+            timezone = self.mentor.mp.time_zone
         return aux_fns.display_day(
-            self.mentor.mp.time_zone,
+            timezone,
             self.msm,
             self.end_date,
             True

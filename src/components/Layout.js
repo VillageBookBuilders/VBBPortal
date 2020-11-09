@@ -76,7 +76,7 @@ class Layout extends React.Component {
                 <a
                   className="btn btn-light signup-btn"
                   type="button"
-                  href="/signup/"
+                  href="https://www.villagebookbuilders.org/mentor/"
                   style={{ marginRight: "20px" }}
                 >
                   REGISTER
@@ -99,7 +99,7 @@ class Layout extends React.Component {
           {this.props.children}
         </div>
 
-        <footer>&copy; Village Book Builders | All Rights Reserved</footer>
+        <footer>&copy; <a href="https://www.villagebookbuilders.org"> Village Book Builders</a> | All Rights Reserved</footer>
       </div>
     );
   }
