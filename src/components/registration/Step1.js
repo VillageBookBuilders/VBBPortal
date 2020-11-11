@@ -79,7 +79,7 @@ function Step1(props) {
 
   const subscriptionForNewsLettes = (userData) => {
     axios
-      .post("http://127.0.0.1:8000/api/signup/subscriptionForNewsletters/", {
+      .post("http://127.0.0.1:8000/api/register/subscriptionForNewsletters/", {
         firstName: userData.firstname,
         lastName: userData.lastname,
         email: userData.email,

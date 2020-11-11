@@ -90,7 +90,7 @@ export const authSignup = (first_name, last_name,
   return (dispatch) => {
     dispatch(authStart());
     axios
-      .post("http://127.0.0.1:8000/api/signup/", {
+      .post("http://127.0.0.1:8000/api/register/", {
         first_name: first_name,
         last_name: last_name,
         personal_email: personal_email,
