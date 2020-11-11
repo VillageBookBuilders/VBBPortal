@@ -258,7 +258,7 @@ const mapDispatchToProps = (dispatch) => {
       city
     ) =>
       dispatch(
-        actions.authSignup(
+        actions.authRegister(
           firstname,
           lastname,
           email,

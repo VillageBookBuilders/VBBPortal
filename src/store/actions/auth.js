@@ -83,14 +83,14 @@ const checkSignIn = (token, dispatch) => {
     });
 };
 
-export const authSignup = (first_name, last_name, 
+export const authRegister = (first_name, last_name, 
   personal_email, vbb_email, phone, adult, occupation, 
   vbb_chapter, affiliation, referral_source, languages, 
   time_zone, charged, initials, desired_involvement, city) => {
   return (dispatch) => {
     dispatch(authStart());
     axios
-      .post("https://portal.villagebookbuilders.org/api/signup/", {
+      .post("https://portal.villagebookbuilders.org/api/register/", {
         first_name: first_name,
         last_name: last_name,
         personal_email: personal_email,

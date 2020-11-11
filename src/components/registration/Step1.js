@@ -79,7 +79,7 @@ function Step1(props) {
 
   const subscriptionForNewsLettes = (userData) => {
     axios
-      .post("https://portal.villagebookbuilders.org/api/signup/subscriptionForNewsletters/", {
+      .post("https://portal.villagebookbuilders.org/api/register/subscriptionForNewsletters/", {
         firstName: userData.firstname,
         lastName: userData.lastname,
         email: userData.email,

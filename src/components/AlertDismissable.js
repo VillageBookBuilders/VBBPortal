@@ -15,7 +15,7 @@ function AlertDismissible(props) {
                 Sorry, you need to use a villagementors.org Gsuite account to log in to this website. 
                 If you do not have a village mentors account, please&nbsp;
                 <a
-                  href="/signup/"
+                  href="https://www.villagebookbuilders.org/mentor/"
                 >
                   sign up
                 </a>
