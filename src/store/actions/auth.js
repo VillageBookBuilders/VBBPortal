@@ -83,7 +83,7 @@ const checkSignIn = (token, dispatch) => {
     });
 };
 
-export const authSignup = (first_name, last_name, 
+export const authregister = (first_name, last_name, 
   personal_email, vbb_email, phone, adult, occupation, 
   vbb_chapter, affiliation, referral_source, languages, 
   time_zone, charged, initials, desired_involvement, city) => {
