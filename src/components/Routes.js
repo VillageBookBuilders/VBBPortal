@@ -14,7 +14,7 @@ function Routes() {
       <PrivateRoute exact path="/" component={Dashboard} />
       <PrivateRoute exact path="/booking/" component={Booking} />
       <Route exact path="/signin/" component={HomeSignin} />
-      <Route exact path="/signup/" component={MasterForm} />
+      <Route exact path="/register/" component={MasterForm} />
       <Route
         exact
         path="/sessiondetails/:sessionid/"
