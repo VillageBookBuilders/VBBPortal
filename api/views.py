@@ -23,6 +23,7 @@ import mailchimp_marketing as MailchimpMarketing
 from mailchimp_marketing.api_client import ApiClientError
 import json
 
+
 @api_view(["POST"])
 def first_time_signup(request):
     """
@@ -34,10 +35,9 @@ def first_time_signup(request):
     pemail = request.data.get("personal_email").lower()
     gapi = google_apis()
 
- 
-    #TODO test this functionality more thoroughly
+    # TODO test this functionality more thoroughly
     if request.data["vbb_email"] is not None and request.data["vbb_email"] != '':
-        #check to see if the serializer works
+        # check to see if the serializer works
         serializer = MentorProfileSerializer(data=request.data)
         if not (serializer.is_valid()):
             return Response(
@@ -69,7 +69,7 @@ def first_time_signup(request):
         )
     else:
         # check to see if the serializer works
-        request.data["vbb_email"] = "mentor@villagebookbuilders.org"
+        request.data["vbb_email"] = "temp@villagebookbuilders.org"
         serializer = MentorProfileSerializer(data=request.data)
         if not (serializer.is_valid()):
             return Response(
@@ -113,7 +113,8 @@ def first_time_signup(request):
     return Response({
         'success': 'false',
         'message': (str(serializer.errors)),
-    })#FIXME use proper protocol and add a status
+    })  # FIXME use proper protocol and add a status
+
 
 class GoogleLogin(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
@@ -291,7 +292,7 @@ def book_sessionslot(request):
                 "message": "No available sessionslots exist with those specifications.",
             }
         )
-    #choose a random session slot from among those filtered
+    # choose a random session slot from among those filtered
     myappt = random.choice(appts)
     myappt.mentor = request.user
     myappt.start_date = datetime.today() + timedelta(
@@ -333,7 +334,7 @@ def book_sessionslot(request):
             '__directorname': myappt.mentee_computer.library.program_director_name,
             '__sessionslot': library_time,
             '__start': myappt.start_date.strftime("%x"),
-            '__mentorname': myappt.mentor.first_name +" "+ myappt.mentor.last_name,
+            '__mentorname': myappt.mentor.first_name + " " + myappt.mentor.last_name,
             '__mentoremail': myappt.mentor.email,
             '__occupation': myappt.mentor.mp.occupation,
             '__languages': myappt.mentor.mp.languages,
@@ -346,7 +347,7 @@ def book_sessionslot(request):
         "New Mentoring Session Booked for " + myappt.display(),
         sessionConfirm_mail,
         {
-            '__mentorname' : myappt.mentor.first_name,
+            '__mentorname': myappt.mentor.first_name,
             '__sessionslot': myappt.display(),
             '__start': myappt.start_date.strftime("%x"),
             '__programname': myappt.mentee_computer.library.name,
@@ -366,7 +367,7 @@ def book_sessionslot(request):
             '__mentorname': myappt.mentor.first_name,
             "__whatsapp_group": myappt.mentee_computer.library.whatsapp_group
         },
-        cc=[myappt.mentor.mp.personal_email] 
+        cc=[myappt.mentor.mp.personal_email]
     )
     gapi.group_subscribe(
         myappt.mentee_computer.library.announcements_group,
@@ -376,7 +377,7 @@ def book_sessionslot(request):
         myappt.mentee_computer.library.announcements_group, myappt.mentor.mp.vbb_email
     )
     gapi.group_subscribe(
-        myappt.mentee_computer.library.collaboration_group, myappt.mentor.mp.vbb_email       
+        myappt.mentee_computer.library.collaboration_group, myappt.mentor.mp.vbb_email
     )
     # FIXME - Add try/except/finally blocks for error checking (not logged in, sessionslot got taken before they refreshed)
     return Response(
@@ -395,6 +396,7 @@ class SessionSlotListView(ListAPIView):
 
     def get_queryset(self):
         return self.request.user.sessionslots.all()
+
 
 class SessionDetailView(APIView):
     permission_classes = (IsAuthenticated,)
@@ -439,13 +441,14 @@ class SessionDetailUpdateView(UpdateAPIView):
         serializer = SessionSlotSerializer(sessionslot)
 
         return Response(serializer.data)
-        
+
     def patch(self, request, pk, format=None):
         sessionslot = self.get_object(pk)
         gapi = google_apis()
-        print("ENDDATEEEEEEE *****************" , request.data.get("end_date"))
+        print("ENDDATEEEEEEE *****************", request.data.get("end_date"))
         end_date = request.data.get("end_date")
-        end_date = aux_fns.date_combine_time(str(end_date), int(sessionslot.msm))
+        end_date = aux_fns.date_combine_time(
+            str(end_date), int(sessionslot.msm))
         calendar_id = sessionslot.mentee_computer.library.calendar_id
         event_id = sessionslot.event_id
       #  gapi.update_event(calendar_id, event_id, end_date)
@@ -462,8 +465,10 @@ class SessionDetailUpdateView(UpdateAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
  # New api which is in the testing phase
+
+
 @api_view(["POST"])
-def sign_up_for_newsletters(request):  
+def sign_up_for_newsletters(request):
     fname = request.data.get("firstName")
     lname = request.data.get("lastName")
     email = request.data.get("email")
@@ -471,7 +476,7 @@ def sign_up_for_newsletters(request):
     # countryCode = request.data.get('countryCode'), TODO: when we fix front-end form, we can uncomment this part
 
     mailchimp = MailchimpMarketing.Client()
-    mailchimp_config = os.path.join("api","mailchimp_config.json")
+    mailchimp_config = os.path.join("api", "mailchimp_config.json")
     with open(mailchimp_config) as infile:
         data = json.load(infile)
     mailchimp.set_config(data['keys'])
@@ -481,10 +486,10 @@ def sign_up_for_newsletters(request):
         "email_address": email,
         "status": "subscribed",
         "merge_fields": {
-        "FNAME": fname,
-        "LNAME": lname,
-        "PHONE": phoneNumber,
-        # "PHONE": (f'+{countryCode}{phoneNumber}'), TODO: when we fix front-end form, we can uncomment this part
+            "FNAME": fname,
+            "LNAME": lname,
+            "PHONE": phoneNumber,
+            # "PHONE": (f'+{countryCode}{phoneNumber}'), TODO: when we fix front-end form, we can uncomment this part
         }
     }
 
@@ -494,7 +499,7 @@ def sign_up_for_newsletters(request):
     except ApiClientError as error:
         print("An exception occurred: {}".format(error.text))
 
-    #TODO test this functionality more thoroughly
+    # TODO test this functionality more thoroughly
     return Response(
         {"success": "true"}
     )
