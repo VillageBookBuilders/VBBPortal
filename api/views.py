@@ -443,19 +443,16 @@ class SessionDetailUpdateView(UpdateAPIView):
     def patch(self, request, pk, format=None):
         sessionslot = self.get_object(pk)
         gapi = google_apis()
-        print("ENDDATEEEEEEE *****************" , request.data.get("end_date"))
+
         end_date = request.data.get("end_date")
         end_date = aux_fns.date_combine_time(str(end_date), int(sessionslot.msm))
         calendar_id = sessionslot.mentee_computer.library.calendar_id
         event_id = sessionslot.event_id
       #  gapi.update_event(calendar_id, event_id, end_date)
         newId = gapi.update_event(calendar_id, event_id, end_date)
-      #  print("SUCCESSFULLY ", newId, "ENDDATEEEEEEEE ", end_date)
         sessionslot.save()
         serializer = SessionSlotSerializer(
             sessionslot, data=request.data, partial=True)
-  #      with open("log.txt", "a") as readfile:
-  #          readfile.write(str(request.data) + "\n")
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
