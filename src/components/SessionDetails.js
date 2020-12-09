@@ -114,7 +114,7 @@ class SessionDetails extends React.Component {
                 </h4>
               </div>
               <div className="d-block mb-2">
-                <label className="ml-4">Hangout Link {this.state.hangoutLink} <br /></label> </div>
+                <label className="ml-4">Hangout Link <a href={this.state.hangoutLink}>{this.state.hangoutLink}</a> </label> </div>
               <div className="d-block mb-2">
                 <label className="ml-4">Adjust End Date:</label>
                 <input
