@@ -14,6 +14,7 @@ class SessionDetails extends React.Component {
     readyToApplyChanges: false,
     didCommunicate: "",
     proceedToUnbook: "",
+    hangoutLink: "",
   };
 
   fetchSessionSlotData = () => {
@@ -29,13 +30,15 @@ class SessionDetails extends React.Component {
       .then((res) => {
         console.log("res : ", res);
         console.log("rd: ", res.data.display);
+        console.log("rddddddd: ", res.data.hangouts_link);
         this.setState({
-          //   sessionslot: res.data,
+          //  sessionslot: res.data,
           id: res.data.id,
           display: res.data.display,
           endDate: res.data.end_date,
           mentorNotes: res.data.mentor_notes,
           mentor: res.data.mentor,
+          hangoutLink: res.data.hangouts_link,
         });
       })
       .catch((err) => {
@@ -111,6 +114,8 @@ class SessionDetails extends React.Component {
                 </h4>
               </div>
               <div className="d-block mb-2">
+                <label className="ml-4">Hangout Link <a href={this.state.hangoutLink}>{this.state.hangoutLink}</a> </label> </div>
+              <div className="d-block mb-2">
                 <label className="ml-4">Adjust End Date:</label>
                 <input
                   type="date"
@@ -123,7 +128,6 @@ class SessionDetails extends React.Component {
                       endDate: event.target.value,
                       readyToApplyChanges: true,
                     });
-                   // console.log("newDate: ", this.state.endDate);
                   }}
                 />
               </div>
