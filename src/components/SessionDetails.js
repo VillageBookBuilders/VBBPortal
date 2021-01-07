@@ -115,22 +115,6 @@ class SessionDetails extends React.Component {
               </div>
               <div className="d-block mb-2">
                 <label className="ml-4">Hangout Link <a href={this.state.hangoutLink}>{this.state.hangoutLink}</a> </label> </div>
-              <div className="d-block mb-2">
-                <label className="ml-4">Adjust End Date:</label>
-                <input
-                  type="date"
-                  className="mx-4"
-                  value={this.state.endDate}
-                  min={getDateStr(14)} // min is 2 weeks out
-                  max={getDateStr(365)} // max is 1 year out
-                  onChange={(event) => {
-                    this.setState({
-                      endDate: event.target.value,
-                      readyToApplyChanges: true,
-                    });
-                  }}
-                />
-              </div>
               <div className="d-block w-100 mb-2 px-4">
                 <label>
                   Add/Edit Notes: <br />
