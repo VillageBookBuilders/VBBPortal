@@ -324,8 +324,8 @@ class google_apis:
 
   
   # # FOR TESTING PURPOSES -- REMOVE LATER
-def testFunction():
-  g = google_apis()
+# def testFunction():
+#   g = google_apis()
   # g.shift_event("c_oha2uv7abp2vs6jlrl96aeoje8@group.calendar.google.com","0vjr0aj0e3nv1tmc2ui2mtshbi")
 
 
@@ -359,15 +359,15 @@ def testFunction():
   #   cc=["edringger@gmail.com"]
   # )
 
-  event_id = g.calendar_event(
-      "Test",
-      "sohatestt@villagementors.org",
-      "ximena.rodriguez1@villagementors.org",
-      "shwethatest@gmail.com",
-      "shwethatest@gmail.com",
-      "2021-01-12T23:30:00", "2021-12-30T22:00:00",
-      "c_oha2uv7abp2vs6jlrl96aeoje8@group.calendar.google.com",
-      "ximena.rodriguez1@villagementors.org")
+  # event_id = g.calendar_event(
+  #     "Test",
+  #     "sohatestt@villagementors.org",
+  #     "ximena.rodriguez1@villagementors.org",
+  #     "shwethatest@gmail.com",
+  #     "shwethatest@gmail.com",
+  #     "2021-01-12T23:30:00", "2021-12-30T22:00:00",
+  #     "c_oha2uv7abp2vs6jlrl96aeoje8@group.calendar.google.com",
+  #     "ximena.rodriguez1@villagementors.org")
   # #     "c_188apa1pg08nkg9pn621lmhbfc0f04gnepkmor31ctim4rrfddh7aqbcchin4spedtp6e@resource.calendar.google.com")
   # print(event_id)
 
@@ -378,4 +378,4 @@ def testFunction():
   # "kvcra7bn6auga9fd9ld13na3k4",
   # "2021-05-10T22:00:00")
 
-testFunction()
+# testFunction()
