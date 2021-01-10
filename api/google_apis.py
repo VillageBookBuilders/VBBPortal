@@ -118,7 +118,7 @@ class google_apis:
         'timeZone': timezone,
       },
       'recurrence': [
-        'RRULE:FREQ=WEEKLY;UNTIL=' + end_date_formated
+          'RRULE:FREQ=WEEKLY'
       ],
       'attendees': [
         {'email': menteeEmail},
@@ -143,7 +143,6 @@ class google_apis:
     }
     event_obj = calendar_service.events().insert(calendarId=calendar_id, body=event,
                                         sendUpdates="all", conferenceDataVersion=1).execute()
-    print ("hangoutliiiiiiiiink", event_obj['hangoutLink'])
                                     
     return(event_obj['id'], event_obj['hangoutLink'])
 
@@ -290,9 +289,8 @@ class google_apis:
       end_date_formated = end_date.replace(':', '')
       end_date_formated = end_date_formated.replace('-', '')
       end_date_formated += 'Z'
-      event['recurrence'] = ['RRULE:FREQ=WEEKLY;UNTIL=' + end_date_formated]
+      event['recurrence'] = ['RRULE:FREQ=WEEKLY']
       
-   # event['summary'] = 'update worked'
     updated_event = calendar_service.events().update(
         calendarId=calendar_id, eventId=event['id'], body=event).execute()
 
@@ -306,7 +304,7 @@ class google_apis:
     # print('event_id: ' , event_id)
     event['start']['timeZone'] = "UTC"
     event['end']['timeZone'] = "UTC"
-   # event['summary'] = 'update worked'
+    event['summary'] = 'update worked'
     updated_event = calendar_service.events().update(
         calendarId=calendar_id, eventId=event['id'], body=event).execute()
     # print('updated_event: ', updated_event)
@@ -315,7 +313,6 @@ class google_apis:
   def remove_end_date(self, calendar_id, event_id):
     calendar_service = build('calendar', 'v3', credentials=self.__mentor_cred)
     event = calendar_service.events().get(calendarId=calendar_id, eventId=event_id).execute()
-    # print('event_id: ' , event_id)
     event['recurrence'] = ['RRULE:FREQ=WEEKLY']
     updated_event = calendar_service.events().update(calendarId=calendar_id, eventId=event['id'], body=event).execute()
     # print('updated_event: ', updated_event)
@@ -327,8 +324,8 @@ class google_apis:
 
   
   # # FOR TESTING PURPOSES -- REMOVE LATER
-# def testFunction():
-#   g = google_apis()
+def testFunction():
+  g = google_apis()
   # g.shift_event("c_oha2uv7abp2vs6jlrl96aeoje8@group.calendar.google.com","0vjr0aj0e3nv1tmc2ui2mtshbi")
 
 
@@ -362,30 +359,23 @@ class google_apis:
   #   cc=["edringger@gmail.com"]
   # )
 
-  # g.calendar_event(
-  #       "TestXime",
-  #       "sohatesttxß@villagementors.org",
-  #       "ximena.rodriguez1@villagementors.org",
-  #       "shwethax@gmail.com",
-  #       "shwethax@gmail.com",
-  #       "2020-12-23T23:30:00", "2020-12-30T22:00:00",
-  #       "c_oha2uv7abp2vs6jlrl96aeoje8@group.calendar.google.com",
-   #     "ximena.rodriguez1@villagementors.org")
-   #    "c_188apa1pg08nkg9pn621lmhbfc0f04gnepkmor31ctim4rrfddh7aqbcchin4spedtp6e@resource.calendar.google.com")
+  event_id = g.calendar_event(
+      "Test",
+      "sohatestt@villagementors.org",
+      "ximena.rodriguez1@villagementors.org",
+      "shwethatest@gmail.com",
+      "shwethatest@gmail.com",
+      "2021-01-12T23:30:00", "2021-12-30T22:00:00",
+      "c_oha2uv7abp2vs6jlrl96aeoje8@group.calendar.google.com",
+      "ximena.rodriguez1@villagementors.org")
+  # #     "c_188apa1pg08nkg9pn621lmhbfc0f04gnepkmor31ctim4rrfddh7aqbcchin4spedtp6e@resource.calendar.google.com")
+  # print(event_id)
 
- # g.update_event(
-    
-# #      "sohatesttß@villagementors.org",
-  #  "ximena.rodriguez1@villagementors.org",
-  #     "shwetha@gmail.com",
-  #     "shwetha@gmail.com",
-  #    "2020-10-23T23:30:00", "2020-12-10T22:00:00",
- ## "c_oha2uv7abp2vs6jlrl96aeoje8@group.calendar.google.com",
-  # "ximena.rodriguez1@villagementors.org",
- ## "ljg8ar4q4e5l2hg18h4epqtc34",
- ## "2022-10-27T22:00:00")
-  #  "c_188apa1pg08nkg9pn621lmhbfc0f04gnepkmor31ctim4rrfddh7aqbcchin4spedtp6e@resource.calendar.google.com")
 
-#   print("updated")
+  # g.update_event(
 
-#testFunction()
+  # "c_oha2uv7abp2vs6jlrl96aeoje8@group.calendar.google.com",
+  # "kvcra7bn6auga9fd9ld13na3k4",
+  # "2021-05-10T22:00:00")
+
+testFunction()
