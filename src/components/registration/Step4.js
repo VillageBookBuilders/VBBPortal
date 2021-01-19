@@ -1,5 +1,5 @@
 import React from "react";
-// import Donation from './Donation'
+import Donation from './Donation'
 
 function Step4(props) {
   if (props.state.currentStep !== 4) {
@@ -28,7 +28,7 @@ function Step4(props) {
       </a>
       <br />
       <br />
-      {/* <div>
+      <div>
           <Donation/>
         </div>
         <div>
@@ -69,7 +69,7 @@ function Step4(props) {
             type="text"
             placeholder="Homer Simpson"
           />  
-        </div> */}
+        </div>
     </div>
   );
 }
