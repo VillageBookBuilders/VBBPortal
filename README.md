@@ -22,6 +22,7 @@ pip install -r requirements.txt
 npm i 
 npm run build
 python manage.py runserver
+python manage.py migrate
 ```
 
 These commands (respectively)
