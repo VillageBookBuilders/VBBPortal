@@ -118,7 +118,7 @@ class google_apis:
         'timeZone': timezone,
       },
       'recurrence': [
-          'RRULE:FREQ=WEEKLY'
+          'RRULE:FREQ=WEEKLY' #  removed end date variable [ + end_date_formated ]
       ],
       'attendees': [
         {'email': menteeEmail},
