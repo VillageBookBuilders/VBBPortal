@@ -343,11 +343,11 @@ def book_sessionslot(request):
     )
     gapi.email_send(
         myappt.mentor.mp.vbb_email,
-        "New Mentoring Session Booked for " + myappt.display(),
+        "New Mentoring Session Booked for " + library_time,  #myappt.display(), removing end_date from the email
         sessionConfirm_mail,
         {
             '__mentorname' : myappt.mentor.first_name,
-            '__sessionslot': myappt.display(),
+            '__sessionslot': library_time,   # myappt.display(), removing end_date from the email
             '__start': myappt.start_date.strftime("%x"),
             '__programname': myappt.mentee_computer.library.name,
             '__programdirector': myappt.mentee_computer.library.program_director_name,
