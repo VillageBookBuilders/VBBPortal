@@ -317,7 +317,7 @@ def book_sessionslot(request):
     myappt.hangouts_link = hangouts_link
     myappt.save()
     library_time = aux_fns.display_day(
-        myappt.mentee_computer.library.time_zone, myappt.msm, myappt.end_date
+        myappt.mentee_computer.library.time_zone, myappt.msm  #Remove end_date from headmaster email
     )
     newMentorNotice_mail = os.path.join(
         "api", "emails", "templates", "newMentorNotice.html"
