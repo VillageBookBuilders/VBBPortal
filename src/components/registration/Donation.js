@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react'
 import {loadStripe} from '@stripe/stripe-js';
 import {ReactComponent as Circle} from './circle.svg'
 import {ReactComponent as Tick} from './tick.svg'
-const stripePromise = loadStripe('pk_test_8EURQq6ARdRXnNH6AiQh0gXQ');
 
 
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUB_KEY || 'pk_test_8EURQq6ARdRXnNH6AiQh0gXQ');
+const port = 8000
+const successUrl = process.env.SUCCESS_URL || `http://localhost:${port}/register`
+const cancelUrl = process.env.CANCEL_URL || `http://localhost:${port}/register`
 
 const dynamicContent = {
   monthly: {
@@ -76,8 +79,8 @@ function Donation() {
         quantity: 1,
       }],
       mode: freq ? 'subscription' : 'payment',
-      successUrl: 'http://localhost:3000/register',
-      cancelUrl: 'http://localhost:3000/register',
+      successUrl: successUrl,
+      cancelUrl: cancelUrl,
     })
     // If `redirectToCheckout` fails due to a browser or network
     // error, display the localized error message to your customer
