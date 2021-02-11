@@ -671,6 +671,28 @@ input {
   border-radius: 1rem;
 }
 
+ .donateButton  h1{
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.donateButton:hover {
+  background: #ff914c73;
+  color: whitesmoke;
+  -webkit-box-shadow: inset 0px 0px 5px #706e6e;
+     -moz-box-shadow: inset 0px 0px 5px #706e6e;
+          box-shadow: inset 0px 0px 5px #706e6e;
+   outline: black;
+}
+/* .donateButton:active {
+  background: #ffbd59;
+  -webkit-box-shadow: inset 0px 0px 5px #706e6e;
+     -moz-box-shadow: inset 0px 0px 5px #706e6e;
+          box-shadow: inset 0px 0px 5px #706e6e;
+   outline: none;
+} */
+
+
 .iconContainer{
   width: 2rem;
   margin: 0 1rem;
@@ -678,4 +700,5 @@ input {
 .donation-form p{
   font-size: 13px;
 }
+
 /* END Donation form styles /register step 4 ===========================*/

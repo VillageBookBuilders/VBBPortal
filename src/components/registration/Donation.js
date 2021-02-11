@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react'
 import {loadStripe} from '@stripe/stripe-js';
 import {ReactComponent as Circle} from './circle.svg'
 import {ReactComponent as Tick} from './tick.svg'
+import { BrowserRouter, Link, NavLink, Router, useHistory } from 'react-router-dom';
 
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUB_KEY || 'pk_test_8EURQq6ARdRXnNH6AiQh0gXQ');
-const port = 8000
+const port = 3000
 const successUrl = process.env.SUCCESS_URL || `http://localhost:${port}/register`
 const cancelUrl = process.env.CANCEL_URL || `http://localhost:${port}/register`
+const donateUrl = process.env.CANCEL_URL || `http://localhost:${port}/donate`
 
 const dynamicContent = {
   monthly: {
@@ -65,10 +67,10 @@ const dynamicContent = {
 }
 
 
-function Donation() {
+function Donation({realDonation}) {
   const [freq, setFreq] = useState(true)
   const [tier, setTier] = useState(freq ? (dynamicContent.monthly) : (dynamicContent.once))
-  const [selectedTier, setSelectedTier] = useState({name: 't1', priceId:'price_1II0XgDskGpJFQkEtxjy3J07'})
+  const [selectedTier, setSelectedTier] = useState({name: 't2', priceId:'price_1II0XgDskGpJFQkE9HtqmxTB'})
   console.log('here --> ', selectedTier);
   const { t1, t2, t3 } = tier
   const handleCheckOutDonations = async () => {
@@ -98,10 +100,10 @@ function Donation() {
     const newFreq = e.target.getAttribute('name')
     if (newFreq === 'monthly') {
       setFreq(true)
-      setSelectedTier({name: "t1", priceId: "price_1II0XgDskGpJFQkEtxjy3J07"})
+      setSelectedTier({name: "t2", priceId: "price_1II0XgDskGpJFQkE9HtqmxTB"})
     } else {
       setFreq(false)
-      setSelectedTier({name: "t1", priceId: "price_1IIM7SDskGpJFQkEcVr83Exs"})
+      setSelectedTier({name: "t2", priceId: "price_1IIM7SDskGpJFQkEgBoptfc4"})
     }
   }
   useEffect(() => {
@@ -146,9 +148,15 @@ function Donation() {
           <p>A monthly donation of $5 will allow your mentee to have regular access to a computer, 
             headphones, Wi-Fi connection, a safe learning environment, 
             and Khan Academy's award-winning educational programs.</p>
-            <div className='donateButton' onClick={handleCheckOutDonations}>
-              <h1>Donate!</h1>
-            </div>
+            { realDonation ? 
+              <div className='donateButton btn' onClick={handleCheckOutDonations}>
+                <h1>Confirm donation </h1>
+              </div> 
+              :
+              <NavLink className='donateButton btn' to="/donate/" target={"_blank"} 
+              onClick={(event) => {event.preventDefault(); window.open(window.location.pathname);}}>
+                <h1>Donate</h1>
+              </NavLink>}
           </div>
         </div>
       </div>
