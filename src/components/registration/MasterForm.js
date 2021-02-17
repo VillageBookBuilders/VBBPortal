@@ -15,7 +15,7 @@ class MasterForm extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.state = {
-      currentStep: 3,
+      currentStep: 1,
       firstname: "",
       lastname: "",
       email: "",
