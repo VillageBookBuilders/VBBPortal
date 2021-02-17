@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react'
 import {loadStripe} from '@stripe/stripe-js';
 import {ReactComponent as Circle} from './circle.svg'
 import {ReactComponent as Tick} from './tick.svg'
-import { BrowserRouter, Link, NavLink, Router, useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUB_KEY || 'pk_test_8EURQq6ARdRXnNH6AiQh0gXQ');
 const port = 3000
 const successUrl = process.env.SUCCESS_URL || `http://localhost:${port}/register`
-const cancelUrl = process.env.CANCEL_URL || `http://localhost:${port}/register`
-const donateUrl = process.env.CANCEL_URL || `http://localhost:${port}/donate`
+const cancelUrl = process.env.CANCEL_URL || `http://localhost:${port}/thankYouForYourSupport`
 
 const dynamicContent = {
   monthly: {
@@ -88,7 +87,6 @@ function Donation({realDonation}) {
     // error, display the localized error message to your customer
     // using `error.message`.
   };
-
   const handleSelectTier = e => {
     const eventTierName = e.target.getAttribute('name')
     if (eventTierName !== null){
@@ -153,8 +151,8 @@ function Donation({realDonation}) {
                 <h1>Confirm donation </h1>
               </div> 
               :
-              <NavLink className='donateButton btn' to="/donate/" target={"_blank"} 
-              onClick={(event) => {event.preventDefault(); window.open(window.location.pathname);}}>
+              <NavLink className='donateButton btn' to="/donate/" 
+              onClick={(event) => {event.preventDefault(); window.open(window.location.pathname.replace('register','donate'));}}>
                 <h1>Donate</h1>
               </NavLink>}
           </div>
