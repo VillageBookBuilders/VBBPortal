@@ -6,9 +6,9 @@ import {ReactComponent as Tick} from './tick.svg'
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUB_KEY || 'pk_test_8EURQq6ARdRXnNH6AiQh0gXQ');
 const port = 3000
-const successUrl = process.env.SUCCESS_URL || `http://localhost:${port}/register`
-const cancelUrl = process.env.CANCEL_URL || `http://localhost:${port}/thankYouForYourSupport`
-
+const successUrl = process.env.SUCCESS_URL || `http://localhost:${port}/thankyou`
+const cancelUrl = process.env.CANCEL_URL || `http://localhost:${port}/tryagain`
+console.log(successUrl, cancelUrl);
 const dynamicContent = {
   monthly: {
     t1: {
