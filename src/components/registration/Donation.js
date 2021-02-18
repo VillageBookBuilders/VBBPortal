@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import {loadStripe} from '@stripe/stripe-js';
 import {ReactComponent as Circle} from './circle.svg'
 import {ReactComponent as Tick} from './tick.svg'
-import { NavLink } from 'react-router-dom';
 
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUB_KEY || 'pk_test_8EURQq6ARdRXnNH6AiQh0gXQ');
@@ -70,13 +69,12 @@ function Donation({realDonation}) {
   const [freq, setFreq] = useState(true)
   const [tier, setTier] = useState(freq ? (dynamicContent.monthly) : (dynamicContent.once))
   const [selectedTier, setSelectedTier] = useState({name: 't2', priceId:'price_1II0XgDskGpJFQkE9HtqmxTB'})
-  console.log('here --> ', selectedTier);
   const { t1, t2, t3 } = tier
   const handleCheckOutDonations = async () => {
     const stripe = await stripePromise;
     const { error } = await stripe.redirectToCheckout({
       lineItems: [{
-        price: selectedTier.priceId, // Replace with the ID of your price
+        price: selectedTier.priceId, 
         quantity: 1,
       }],
       mode: freq ? 'subscription' : 'payment',
@@ -108,7 +106,6 @@ function Donation({realDonation}) {
     setTier(freq ? (dynamicContent.monthly) : (dynamicContent.once))
   }, [freq])
   return(
-    <>
     <div className='donation-form-container'>
       <div className='donation-form'>
         <div className='freq-buttons-container'>
@@ -122,7 +119,7 @@ function Donation({realDonation}) {
               : <Circle name='t1' onClick={handleSelectTier}/>}
               </div>
             <h1>{t1.priceDisplay}</h1>
-            <p>{t1.description}</p>
+            <h6>{t1.description}</h6>
           </div>
           <div className={t2.className} >
             <div className='iconContainer'>
@@ -130,7 +127,7 @@ function Donation({realDonation}) {
               : <Circle name='t2' onClick={handleSelectTier}/>}
               </div>
             <h1>{t2.priceDisplay}</h1>
-            <p>{t2.description}</p>
+            <h6>{t2.description}</h6>
           </div>
           <div className={t3.className} >
             <div className='iconContainer'>
@@ -138,7 +135,7 @@ function Donation({realDonation}) {
               : <Circle name='t3' onClick={handleSelectTier}/>}
               </div>
             <h1>{t3.priceDisplay}</h1>
-            <p>{t3.description}</p>
+            <h6>{t3.description}</h6>
           </div>
         </div>
         <div className='custom-and-submit'>
@@ -146,20 +143,13 @@ function Donation({realDonation}) {
           <p>A monthly donation of $5 will allow your mentee to have regular access to a computer, 
             headphones, Wi-Fi connection, a safe learning environment, 
             and Khan Academy's award-winning educational programs.</p>
-            { realDonation ? 
-              <div className='donateButton btn' onClick={handleCheckOutDonations}>
-                <h1>Confirm donation </h1>
-              </div> 
-              :
-              <NavLink className='donateButton btn' to="/donate/" 
-              onClick={(event) => {event.preventDefault(); window.open(window.location.pathname.replace('register','donate'));}}>
-                <h1>Donate</h1>
-              </NavLink>}
+          <div className='donateButton btn' onClick={handleCheckOutDonations}>
+            <h1>Donate!</h1>
+          </div>
           </div>
         </div>
       </div>
     </div>
-    </>
   );
 }
 

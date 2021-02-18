@@ -18,8 +18,8 @@ function Routes(props) {
       <Route exact path="/signin/" component={HomeSignin} />
       <Route exact path="/register/" component={MasterForm} />
       <Route exact path="/donate/" component={Donation}/>
-      <Route exact path="/thanyou/" component={thankYouPage}/>
-      <Route exact path="/tryagain/" component={TryAgainPage}/>
+      <Route exact path="/thankYou/" component={thankYouPage}/>
+      <Route exact path="/tryAgain/" component={TryAgainPage}/>
       <PrivateRoute
         exact
         path="/sessiondetails/:sessionid/"
