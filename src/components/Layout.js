@@ -35,8 +35,8 @@ class Layout extends React.Component {
             <img src={miniLogo} alt="Logo" style={{ width: "45px" }} />
           </a>
           <a href="/" id="bar-header-link">
-            <h1 id="bar-header" style={{ marginBottom: "-25px" }}>
-              Vbb Portal
+            <h1 id="bar-header" style={{ width: "500px", marginBottom: "-25px" }}>
+              Village Portal
               <span className="badge badge-secondary">NEW</span>
             </h1>
           </a>
