@@ -12,52 +12,48 @@ console.log(successUrl, cancelUrl);
 const dynamicContent = {
   monthly: {
     t1: {
-      priceDisplay: '$10',
-      priceId: 'price_1II0XgDskGpJFQkEtxjy3J07',
-      description: `Wow! You’re amazing! As little as $10 will pay for two to three books,
-      and it is guaranteed to change the life of the children at our village libraries.`,
+      priceDisplay: '$11.33',
+      priceId: 'price_1IRk3IDskGpJFQkEbQ2iSjWl',
+      description: `$11.33 allows a child to be mentored for 1 month (includes digital and physical infrastructure maintenance costs)`,
       className: 'tier1 tierBase tierSelected',
       name: 't1'
     },
     t2: {
-      priceDisplay: '$25',
-      priceId: 'price_1II0XgDskGpJFQkE9HtqmxTB',
-      description: `Donating the amount you’d spend on a dinner for two; can purchase text books that 
-      will aid in increasing the literacy education for a student in a third-world country!`,
+      priceDisplay: '$30',
+      priceId: 'price_1IRk3IDskGpJFQkEjWtRwWPU',
+      description: `$30 Due to the small space and the multiple mentors sessions that we have these noise cancelling headphones
+       help to provide a high quality session for both the mentor and mentee.`,
       className: 'tier2 tierBase',
       name: 't2'
     },
     t3: {
-      priceDisplay: '$50',
-      priceId: 'price_1II0XgDskGpJFQkEVkqCYRUc',
-      description: `$50 is an incredible donation! Thank you for reaching out and making a difference 
-      in the lives of children that you’ve never even met.`,
+      priceDisplay: '$250',
+      priceId: 'price_1IRk3IDskGpJFQkEMF9BfXwr',
+      description: `$250 helps to provide a computer that will serve 30 mentees per week.`,
       className: 'tier3 tierBase',
       name: 't3'
     }
   },
   once: {
     t1: {
-      priceDisplay: '$10',
-      priceId: 'price_1IIM7SDskGpJFQkEcVr83Exs',
-      description: `Wow! You’re amazing! As little as $10 will pay for two to three books,
-      and it is guaranteed to change the life of the children at our village libraries.`,
+      priceDisplay: '$11.33',
+      priceId: 'price_1IRk3IDskGpJFQkE5CgQmARD',
+      description: `$11.33 allows a child to be mentored for 1 month (includes digital and physical infrastructure maintenance costs)`,
       className: 'tier1 tierBase tierSelected',
       name: 't1'
     },
     t2: {
-      priceDisplay: '$62',
-      priceId: 'price_1IIM7SDskGpJFQkEgBoptfc4',
-      description: `Donating the amount you’d spend on a dinner for two can purchase text books that 
-      will aid in increasing the literacy education for a student in a third-world country!`,
+      priceDisplay: '$30',
+      priceId: 'price_1IRk3IDskGpJFQkE68ea0zWi',
+      description: `$30 Due to the small space and the multiple mentors sessions
+       that we have these noise cancelling headphones help to provide a high quality session for both the mentor and mentee.`,
       className: 'tier2 tierBase',
       name: 't2'
     },
     t3: {
-      priceDisplay: '$200',
-      priceId: 'price_1IIM7SDskGpJFQkEbtJnLqND',
-      description: `$200 is an incredible donation! 
-      Thank you for reaching out and making a difference in the lives of children that you’ve never even met.`,
+      priceDisplay: '$250',
+      priceId: 'price_1IRk3IDskGpJFQkEZJ9xBp3w',
+      description: `$250 helps to provide a computer that will serve 30 mentees per week.`,
       className: 'tier3 tierBase',
       name: 't3'
     }
@@ -68,7 +64,7 @@ const dynamicContent = {
 function Donation({realDonation}) {
   const [freq, setFreq] = useState(true)
   const [tier, setTier] = useState(freq ? (dynamicContent.monthly) : (dynamicContent.once))
-  const [selectedTier, setSelectedTier] = useState({name: 't2', priceId:'price_1II0XgDskGpJFQkE9HtqmxTB'})
+  const [selectedTier, setSelectedTier] = useState({name: 't2', priceId:'price_1IRk3IDskGpJFQkEjWtRwWPU'})
   const { t1, t2, t3 } = tier
   const handleCheckOutDonations = async () => {
     const stripe = await stripePromise;
@@ -96,10 +92,10 @@ function Donation({realDonation}) {
     const newFreq = e.target.getAttribute('name')
     if (newFreq === 'monthly') {
       setFreq(true)
-      setSelectedTier({name: "t2", priceId: "price_1II0XgDskGpJFQkE9HtqmxTB"})
+      setSelectedTier({name: "t2", priceId: "price_1IRk3IDskGpJFQkEjWtRwWPU"}) // 30 per month
     } else {
       setFreq(false)
-      setSelectedTier({name: "t2", priceId: "price_1IIM7SDskGpJFQkEgBoptfc4"})
+      setSelectedTier({name: "t2", priceId: "price_1IRk3IDskGpJFQkE68ea0zWi"}) // 30 once
     }
   }
   useEffect(() => {
