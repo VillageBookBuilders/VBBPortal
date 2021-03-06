@@ -17,7 +17,7 @@ python manage.py runserver
 ```json
 py -m pip install --user virtualenv
 py -m venv env
-env\Scripts\activate.bat
+env\Scripts\activate.bat // If on GitBash source ./env/Scripts/activate instead
 pip install -r requirements.txt
 npm i 
 npm run build

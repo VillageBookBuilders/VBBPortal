@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import *
 from .views import SessionDetailView
+from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     path("register/", first_time_signup),

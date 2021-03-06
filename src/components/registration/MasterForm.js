@@ -9,6 +9,7 @@ import Step3 from "./Step3";
 import Step4 from "./Step4";
 import Step5 from "./Step5";
 import SuccessStep from "./SuccessStep";
+import './registrationStyles.css'
 
 class MasterForm extends React.Component {
   constructor(props) {
