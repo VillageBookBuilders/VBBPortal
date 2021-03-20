@@ -118,15 +118,32 @@
         margin: 0 .8rem;
     }
   }
-  .ytVid{
-    width:"800px";
-    height:"450px"
+  @media (min-width: 200px) {
+    .donation-form-container{
+      width: 95%;
+      .donation-form {
+        width: 90%;
+      }
+    }
+    .freqbtn h5{
+      font-size: 1rem;
+    }
+    .donation-form h6{
+      font-size: .3rem;
+      margin: 0 .3rem;
+    }
+    .donation-form p{
+      font-size: .5rem;
+    }
+    .donateButton {
+      height: 2rem;
+    }
+    
+     .donateButton  h1{
+      font-size: .5rem;
+    }
   }
   @media (min-width: 320px) {
-    .ytVid{
-        width:"160px";
-        height:"90px"
-      }
     .amount-options {
         h6 {
         max-width: 50%;
@@ -145,7 +162,7 @@
         margin: 0 1.5%;
       }
     .donation-form-container{
-        width: 100%;
+        width: 95%;
         height: 80vh;
     }
     .donation-form{
@@ -170,6 +187,58 @@
     }
   }
 
+  @media (min-width: 540px) {
+    .amount-options {
+        h6 {
+        font-size: .6rem;
+        margin: 0 2rem;
+
+        }
+    }
+    .freqbtn h5{
+      font-size: 1.5rem;
+    }
+    .donation-form {
+        p{
+            font-size: 1rem;
+          }
+        h1{
+            font-size: 2rem;
+        }
+    }
+    .donateButton {
+      height: 3rem;
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  }
+  @media (min-width: 700px) {
+    .amount-options {
+        h6 {
+        font-size: .8rem;
+        margin: 0 2rem;
+
+        }
+    }
+    .freqbtn h5{
+      font-size: 2.5rem;
+    }
+    .donation-form {
+        p{
+            font-size: 1.5rem;
+          }
+        h1{
+            font-size: 2.5rem;
+        }
+    }
+    .donateButton {
+      height: 3rem;
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  }
     @media (min-width: 1920px) {
       .freqbtn h5{
         font-size: 3rem;
