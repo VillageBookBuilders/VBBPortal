@@ -111,7 +111,15 @@
   font-size: 0.8rem;
   margin: 0 0.8rem;
 }
+.ytVid {
+  width: "800px";
+  height: "450px";
+}
 @media (min-width: 320px) {
+  .ytVid {
+    width: "160px";
+    height: "90px";
+  }
   .amount-options h6 {
     max-width: 50%;
     font-size: 0.4rem;

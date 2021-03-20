@@ -2,6 +2,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import './registrationStyles.css'
 function Step4(props) {
+  const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+  const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+  const ytVidWidth = vw > 540 ? '800px' : '267px'
+  const ytVidHeigth = vw > 540 ? '450px' : '150px'
   if (props.state.currentStep !== 4) {
     return null;
   }
@@ -12,7 +16,7 @@ function Step4(props) {
       <h4>GO TO BRINGING HOPE THROUGH EDUCATION</h4>
       <p>All online donations cover the mentor program and other in-country projects like libraries, solar panels, books, and computers. </p>
       
-      <iframe className='ytVid'
+      <iframe width={ytVidWidth} height={ytVidHeigth}
       src="https://www.youtube.com/embed/saahzNO1-aU?controls=0&autoplay=1" 
       frameborder="0" 
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
