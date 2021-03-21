@@ -7,17 +7,17 @@ export default function TryAgainPage() {
             <div className='taContentCard'>
                 <div className='taContentCardLeft'>
                 <img src='https://www.villagebookbuilders.org/wp-content/uploads/2020/04/Peru-Border-01-2-768x771.png'
-                style={{maxHeight:'100%'}}
+                style={{maxHeight:'95%', maxWidth:'95%'}}
                 />
                 </div>
                 <div className='taContentCardRigth'>
                 <h1>Sorry! It looks like something went wrong....</h1>
                 <h6>Please close these window and click donate again or
-                go to <br/>
+                go to: <br/>
                 <a
                 style={{textDecoration:'none', color:'black'}}
                 href='https://www.villagebookbuilders.org/donate/'>
-                  https://www.villagebookbuilders.org/donate/ </a>
+                  <br/><h6>villagebookbuilders.org/donate/</h6> </a><br/>
                 to donate through our home page.
                 </h6>
                 <h6>
