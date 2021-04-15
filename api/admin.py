@@ -48,8 +48,8 @@ class MentorProfileAdmin(admin.ModelAdmin):
         "time_zone",
         "personal_email",
         "vbb_email",
-        "isVerified"
-        "isVerified_notes"
+        "isVerified",
+        "isVerified_notes",
         "phone",
         "languages",
         "adult",
