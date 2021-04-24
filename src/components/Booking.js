@@ -4,6 +4,7 @@ import moment from "moment";
 import "moment-timezone";
 import { connect } from "react-redux";
 import menteeComputer from "../images/vbb-mentee-computer.png";
+import { Redirect, Route } from "react-router";
 
 class Booking extends React.Component {
   state = {
@@ -19,7 +20,29 @@ class Booking extends React.Component {
     displayTime: "",
     isReturning: "no",
     isCommitted: false,
+    isVerified: "false"
   };
+
+  fetchVerification = () => {
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+    axios.defaults.xsrfCookieName = "csrftoken";
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${this.props.token}`,
+    };
+    axios
+      .get("http://127.0.0.1:8000/api/verify/")
+      .then((res) => {
+        this.setState({
+          isVerified: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("There was an error in retrieving your verification status", err);
+      });
+  };
+
 
   fetchBookingData = () => {
     axios
@@ -47,6 +70,7 @@ class Booking extends React.Component {
 
   componentDidMount() {
     this.fetchBookingData();
+    this.fetchVerification();
   }
 
   fetchTimes = () => {
@@ -176,6 +200,11 @@ class Booking extends React.Component {
   render() {
     return (
       <div className="twocol-container">
+          {this.state.isVerified !== "true" && 
+          <Redirect
+          to="/"
+          />
+        } 
         <div id="booking-box">
           <h1 id="booking-header">Book Your Weekly Mentoring Session Below!</h1>
           <p>

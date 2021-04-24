@@ -6,6 +6,27 @@ import { connect } from "react-redux";
 class Dashboard extends React.Component {
   state = {
     sessionslots: [],
+    isVerified: "false"
+  };
+
+  fetchVerification = () => {
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+    axios.defaults.xsrfCookieName = "csrftoken";
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${this.props.token}`,
+    };
+    axios
+      .get("http://127.0.0.1:8000/api/verify/")
+      .then((res) => {
+        this.setState({
+          isVerified: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("There was an error in retrieving your verification status", err);
+      });
   };
 
   fetchSessionSlotData = () => {
@@ -21,6 +42,7 @@ class Dashboard extends React.Component {
         this.setState({
           sessionslots: res.data,
         });
+        alert("Your account is still pending verification. Please try again once you have been approved.");
       })
       .catch((err) => {
         console.log(err);
@@ -30,6 +52,7 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     this.fetchSessionSlotData();
+    this.fetchVerification();
   }
 
   render() {
@@ -65,7 +88,7 @@ class Dashboard extends React.Component {
                   color: "#ff914d",
                 }}
               >
-                <b>Uh oh!</b> You don't have any mentoring sessions booked yet.
+                 <b>Uh oh!</b> You don't have any mentoring sessions booked yet.
               </h4>
               <h4
                 style={{
@@ -79,6 +102,7 @@ class Dashboard extends React.Component {
             </>
           )}
           <div className="btns">
+          {this.state.isVerified === "true" &&
             <a
               href="/booking/"
               className="btn btn-light book-btn dashboard-btn"
@@ -86,6 +110,7 @@ class Dashboard extends React.Component {
             >
               + Book Mentoring Session
             </a>
+            }
             <br />
             <p>
               Click the button below to view your google calendar. 
@@ -93,13 +118,13 @@ class Dashboard extends React.Component {
               you'll have to click the icon in the top right corner 
               and switch to your villagementors.org account
             </p>
-            <a
-              className="btn btn-light gcal-btn dashboard-btn"
-              href="https://calendar.google.com/calendar/r"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ marginTop: "5px", marginBottom: "30px" }}
-            >
+              <a
+                className="btn btn-light gcal-btn dashboard-btn"
+                href="https://calendar.google.com/calendar/r"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ marginTop: "5px", marginBottom: "30px" }}
+              >
               View My Sessions Calendar
             </a>
           </div>

@@ -63,6 +63,11 @@ class MentorProfileAdmin(admin.ModelAdmin):
         "initials",
         "advisor_notes",
     )
+    
+    list_editable = ( 
+        "isVerified",
+        "isVerified_notes")
+
     readonly_fields = ("id",)
     search_fields = (
         "id",
