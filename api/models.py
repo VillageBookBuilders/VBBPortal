@@ -92,14 +92,16 @@ class SessionSlot(models.Model):
         on_delete=models.SET_NULL,
         related_name="sessionslots",
         null=True,
-        blank=True,
+        blank=True,  
     )
+    
     mentee_computer = models.ForeignKey(
         MenteeComputer,
         on_delete=models.SET_NULL,
         related_name="sessionslots",
         null=True,
     )
+    
     language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True)
     msm = models.PositiveIntegerField(null=True, 
         validators=[MinValueValidator(0), MaxValueValidator(10079)])
