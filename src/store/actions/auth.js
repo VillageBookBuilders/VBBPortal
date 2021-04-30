@@ -45,7 +45,7 @@ export const gAuth = (googleToken) => {
   return (dispatch) => {
     dispatch(authStart());
     axios
-      .post(`${baseUrl}api/googlelogin/`, {
+      .post("http://127.0.0.1:8000/api/googlelogin/", {
         access_token: googleToken,
       })
       .then((res) => {
@@ -66,7 +66,7 @@ const checkSignIn = (token, dispatch) => {
     Authorization: `Token ${token}`,
   };
   axios
-    .get(`${baseUrl}api/checksignin/`)
+    .get("http://127.0.0.1:8000/api/checksignin/")
     .then((res) => {
       if(res.data.success==="true"){
         const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
@@ -92,7 +92,7 @@ export const authRegister = (first_name, last_name,
   return (dispatch) => {
     dispatch(authStart());
     axios
-      .post(`${baseUrl}api/register/`, {
+      .post("http://127.0.0.1:8000/api/register/", {
         first_name: first_name,
         last_name: last_name,
         personal_email: personal_email,
