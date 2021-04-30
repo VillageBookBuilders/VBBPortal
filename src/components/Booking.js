@@ -249,7 +249,7 @@ class Booking extends React.Component {
             </select>
             <br />
             <br />
-            <label htmlFor="mentor">Are you a current/returning mentor?</label>
+            <label htmlFor="mentor">Do you want to pick a specific library?</label>
             <select
               id="mentor"
               name="mentor"
