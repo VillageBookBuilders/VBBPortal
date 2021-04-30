@@ -20,7 +20,7 @@ class Dashboard extends React.Component {
       .get("http://127.0.0.1:8000/api/verify/")
       .then((res) => {
         this.setState({
-          isVerified: res.data,
+          isVerified: String(res.data),
         });
       })
       .catch((err) => {
@@ -42,7 +42,6 @@ class Dashboard extends React.Component {
         this.setState({
           sessionslots: res.data,
         });
-        alert("Your account is still pending verification. Please try again once you have been approved.");
       })
       .catch((err) => {
         console.log(err);
@@ -77,7 +76,11 @@ class Dashboard extends React.Component {
                 );
               })}
             </ul>
-          ) : (
+          ) 
+          : 
+          (
+            (this.state.isVerified == "true") ? (
+            <div>
             <>
               <h4
                 style={{
@@ -100,9 +103,7 @@ class Dashboard extends React.Component {
                 Press the green button below to make your first booking!
               </h4>
             </>
-          )}
           <div className="btns">
-          {this.state.isVerified === "true" &&
             <a
               href="/booking/"
               className="btn btn-light book-btn dashboard-btn"
@@ -110,7 +111,7 @@ class Dashboard extends React.Component {
             >
               + Book Mentoring Session
             </a>
-            }
+            
             <br />
             <p>
               Click the button below to view your google calendar. 
@@ -128,6 +129,22 @@ class Dashboard extends React.Component {
               View My Sessions Calendar
             </a>
           </div>
+          </div>) 
+          : 
+          (
+            <h4
+            style={{
+              textIndent: "0px",
+              fontStyle: "italic",
+              color: "#6ac66b",
+            }}
+          >
+          Your account is currently <b>pending verification.</b> Once you've been verified, check back here to schedule your mentoring sessions.
+          </h4>
+          )
+          
+          )}
+
           {/* <MentorProfile /> */}
         </div>
         <div className="column col-card" id="mentoring-resources-box">
