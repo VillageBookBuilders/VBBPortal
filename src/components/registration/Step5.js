@@ -76,7 +76,7 @@ function Step5(props) {
         />
       </div>
 
-      <div style={{ "whiteSpace": "pre-wrap", color: "red" }}>
+      <div style={{ "whiteSpace": "pre-wrap", color: "red", textAlign: 'center', fontWeight: "bold" }}>
         {props.hasProblems() && props.hasProblems()}
       </div>
 
