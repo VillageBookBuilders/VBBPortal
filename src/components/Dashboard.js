@@ -15,6 +15,7 @@ class Dashboard extends React.Component {
     axios.defaults.headers = {
       "Content-Type": "application/json",
       Authorization: `Token ${this.props.token}`,
+      'Access-Control-Allow-Origin':'*'
     };
     axios
       .get("http://127.0.0.1:8000/api/verify/")

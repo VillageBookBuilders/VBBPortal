@@ -30,7 +30,7 @@ python manage.py runserver
 py -m pip install --user virtualenv
 py -m venv env
 env\Scripts\activate.bat
-pip install -r requirements.txt
+pip install -r requirements.txt (`Try this one if you're getting [Errno 13]   pip install -r requirements.txt --user)
 npm i 
 npm run build
 python manage.py runserver

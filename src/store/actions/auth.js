@@ -81,7 +81,7 @@ const checkSignIn = (token, dispatch) => {
     })
     .catch((err) => {
       console.log(err);
-      dispatch(authFail(err));
+      dispatch(authFail(err, 'this'));
     });
 };
 

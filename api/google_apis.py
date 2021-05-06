@@ -57,7 +57,10 @@ class google_apis:
     headers = {
       # 'Authorization': 'Bearer' delegated_credentials.token,
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': ["http://localhost:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",]
     }
     # checking if the email id already exists, adds an id to the end to differentiate
     addedID = 0  # on repeat, email will start from firstname.lastname1@villagementors.org
