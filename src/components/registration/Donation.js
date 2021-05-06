@@ -7,8 +7,8 @@ import {ReactComponent as Tick} from './tick.svg'
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUB_KEY || 'pk_test_8EURQq6ARdRXnNH6AiQh0gXQ');
 // this is the publishable test key, change to live publishable key when possible (not secret for now)
 const port = 8000
-const successUrl = process.env.SUCCESS_URL || `http://localhost:${port}/thankyou`
-const cancelUrl = process.env.CANCEL_URL || `http://localhost:${port}/tryagain`
+const successUrl = process.env.SUCCESS_URL || `https://portal.villagebookbuilders.org/thankyou`
+const cancelUrl = process.env.CANCEL_URL || `https://portal.villagebookbuilders.org/tryagain`
 console.log(successUrl, cancelUrl);
 const dynamicContent = {
   monthly: {
