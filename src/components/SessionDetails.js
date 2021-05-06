@@ -115,7 +115,7 @@ class SessionDetails extends React.Component {
               </div>
               <div className="d-block mb-2">
                 <label className="ml-4">Hangout Link <a href={this.state.hangoutLink}>{this.state.hangoutLink}</a> </label> </div>
-              <div className="d-block mb-2">
+              {/* <div className="d-block mb-2">
                 <label className="ml-4">Adjust End Date:</label>
                 <input
                   type="date"
@@ -130,7 +130,7 @@ class SessionDetails extends React.Component {
                     });
                   }}
                 />
-              </div>
+              </div> */}
               <div className="d-block w-100 mb-2 px-4">
                 <label>
                   Add/Edit Notes: <br />
@@ -149,12 +149,12 @@ class SessionDetails extends React.Component {
                 />
               </div>
               <div className="d-block my-2 w-100 p-3">
-                <button
+                {/* <button
                   className="btn unbook-btn d-block mx-auto mt-2 mb-5 btn-light unbook-btn"
                   onClick={this.onUnbookFirstClick}
                 >
                   UNBOOK THIS SLOT
-                </button>
+                </button> */}
                 <br />
                 <a
                   href="/"
