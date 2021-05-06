@@ -18,9 +18,9 @@ class Booking extends React.Component {
     library: 0,
     time: false,
     displayTime: "",
-    isReturning: "no",
+    isReturning: "yes",
     isCommitted: false,
-    isVerified: "false"
+    isVerified: "true"
   };
 
   fetchVerification = () => {
@@ -36,6 +36,7 @@ class Booking extends React.Component {
         this.setState({
           isVerified: res.data,
         });
+        alert(res.data)
       })
       .catch((err) => {
         console.log(err);
@@ -200,7 +201,7 @@ class Booking extends React.Component {
   render() {
     return (
       <div className="twocol-container">
-          {this.state.isVerified !== "true" && 
+          {this.state.isVerified === "false" && 
           <Redirect
           to="/"
           />
@@ -247,7 +248,8 @@ class Booking extends React.Component {
                 );
               })}
             </select>
-            <br />
+            
+            {/* <br />
             <br />
             <label htmlFor="mentor">Do you want to pick a specific library?</label>
             <select
@@ -258,11 +260,12 @@ class Booking extends React.Component {
               <option value="no">No</option>
               <option value="unsure">I'm not sure</option>
               <option value="yes">Yes</option>
-            </select>
+            </select> */}
             <br />
             <br />
 
-            {this.state.mentor==="yes" && (
+            {
+            // this.state.mentor==="yes" && (
               <div>
                 <label htmlFor="library" > 
                 {/* style={{ paddingLeft: "50px" }} */}
@@ -288,7 +291,8 @@ class Booking extends React.Component {
                 <br />
                 <br />
               </div>
-            )}
+            // )
+            }
             {/* <br /> */}
             <label htmlFor="weekday">Day of the Week:&nbsp;</label>
             <select
