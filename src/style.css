@@ -580,3 +580,292 @@ input {
     display: none;
   }
 }
+
+/* START Donation form styles register step 4 ==============================*/
+.donation-form-container{
+  background-image: url("https://www.villagebookbuilders.org/wp-content/uploads/2019/08/playful-girls.jpg");
+  background-size: cover;
+  margin: 5% auto;
+  width: 70%;
+  height: 70vh;
+  border-radius: 1rem;
+}
+.donation-form{
+  width: 55%;
+  height: 100%;
+  margin-left: 5%;
+}
+.freq-buttons-container{
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.freqbtn{
+  background-color: #FF914C;
+  width: 40%;
+  height: 40%;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 1rem;
+}
+.freqbtn h5{
+  padding-top: 0;
+  margin: 0;
+  font-size: 2rem;
+}
+.freqSelected {
+  background-color: #f2f2e9;
+  border: .2rem solid #FF914C;
+}
+.amount-options{
+  width: 100%;
+  height: 35%;
+}
+.custom-and-submit{
+  background-color: #f2f2e9;
+  width: 100%;
+  height: 35%;
+  border-radius: 0 0 1rem 1rem;
+}
+.tierBase{
+  width: 100%;
+  height: 33%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.tier1{
+  background-color: #FF914C;
+  border-radius: 1rem 1rem 0 0;
+}
+
+.tier2{
+  background-color: #549BEA;
+}
+
+.tier3{
+  background-color: #61CE70;
+  width: 100%;
+  height: 34%;
+}
+.custom-and-submit-content-container{
+  width: 80%;
+  max-height: 100%;
+  margin-left: 10%;
+  padding-top: 5%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.donateButton {
+  width: 40%;
+  height: 2rem;
+  background-color: #ff914d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  margin: 0 auto;
+}
+
+ .donateButton  h1{
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+}
+
+.donateButton:hover {
+  background: #ff914c73;
+  color: whitesmoke;
+  -webkit-box-shadow: inset 0px 0px 5px #706e6e;
+     -moz-box-shadow: inset 0px 0px 5px #706e6e;
+          box-shadow: inset 0px 0px 5px #706e6e;
+   outline: black;
+}
+
+.iconContainer{
+  width: 2rem;
+  margin: 0 1rem;
+}
+.donation-form h6{
+  font-size: .8rem;
+  margin: 0 .8rem;
+}
+.donation-form p{
+  font-size: .8rem;
+}
+  @media (min-width: 1920px) {
+    .freqbtn h5{
+      font-size: 3rem;
+    }
+    .donation-form h6{
+      font-size: 1rem;
+      margin: 0 1.5rem;
+    }
+    .donation-form p{
+      font-size: 1.2rem;
+    }
+    .donateButton {
+      height: 4rem;
+    }
+    
+     .donateButton  h1{
+      font-size: 3rem;
+    }
+  }
+  @media (min-width: 2560px) {
+    .freqbtn h5{
+      font-size: 4rem;
+    }
+    .donation-form h6{
+      font-size: 2rem;
+      margin: 0 2.5rem;
+    }
+    .donation-form p{
+      font-size: 2rem;
+    }
+    .donateButton {
+      height: 5rem;
+    }
+    
+     .donateButton  h1{
+      font-size: 4rem;
+    }
+  }
+/* END Donation form styles /register step 4 ===========================*/
+/* Thankyou Page Styles */
+.tpContainer{
+  width: 80vw;
+  height: 60vh;
+  margin: 10vh auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tpContentCard{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+}
+.tpContentCardLeft{
+  max-width: 60%;
+  max-height: auto;
+
+}
+.tpContentCardRigth{
+  max-width: 40%;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-content: space-between;
+}
+@media (min-width: 1920px) {
+  .tpContainer{
+    width: 70vw;
+  }
+  .tpContentCard h1{
+    font-size: 5rem;
+  }
+  .tpContentCard h2{
+    font-size: 2rem;
+  }
+  .tpContentCard h6{
+    font-size: 1.2rem;
+  }
+  .tpContentCard p{
+    font-size: 2rem;
+  }
+}
+@media (min-width: 2560px) {
+  .tpContainer{
+    width: 50vw;
+  }
+  .tpContentCard h1{
+    font-size: 6rem;
+  }
+  .tpContentCard h2{
+    font-size: 3rem;
+  }
+  .tpContentCard h6{
+    font-size: 1.5rem;
+  }
+  .tpContentCard p{
+    font-size: 2.5rem;
+  }
+}
+/* Tray Agin  Page Styles */
+.taContainer{
+  width: 80vw;
+  height: 60vh;
+  margin: 10vh auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.taContentCard{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+}
+.taContentCardLeft{
+  max-width: 60%;
+  max-height: auto;
+
+}
+.taContentCardRigth{
+  max-width: 40%;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-content: space-between;
+}
+.taContainer h6{
+  font-size: .8rem;
+}
+@media (min-width: 1920px) {
+  .taContainer{
+    width: 70vw;
+  }
+  .taContentCard h1{
+    font-size: 5rem;
+  }
+  .taContentCard h2{
+    font-size: 2rem;
+  }
+  .taContentCard h6{
+    font-size: 1.2rem;
+  }
+  .taContentCard p{
+    font-size: 2rem;
+  }
+}
+@media (min-width: 2560px) {
+  .taContainer{
+    width: 50vw;
+  }
+  .taContentCard h1{
+    font-size: 6rem;
+  }
+  .taContentCard h2{
+    font-size: 3rem;
+  }
+  .taContentCard h6{
+    font-size: 1.5rem;
+  }
+  .taContentCard p{
+    font-size: 2.5rem;
+  }
+}

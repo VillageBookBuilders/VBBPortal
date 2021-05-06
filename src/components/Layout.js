@@ -35,8 +35,8 @@ class Layout extends React.Component {
             <img src={miniLogo} alt="Logo" style={{ width: "45px" }} />
           </a>
           <a href="/" id="bar-header-link">
-            <h1 id="bar-header" style={{ marginBottom: "-25px" }}>
-              Vbb Portal
+            <h1 id="bar-header" style={{ width: "500px", marginBottom: "-25px" }}>
+              Village Portal
               <span className="badge badge-secondary">NEW</span>
             </h1>
           </a>
@@ -73,6 +73,14 @@ class Layout extends React.Component {
               </div>
             ) : (
               <div className="btn-pair">
+                <a
+                  className="btn btn-light signout-btn"
+                  type="button"
+                  href="/donate/"
+                  style={{ marginRight: "20px" }}
+                >
+                  GIVE
+                </a>
                 <a
                   className="btn btn-light signup-btn"
                   type="button"

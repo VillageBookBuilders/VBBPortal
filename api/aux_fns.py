@@ -81,18 +81,9 @@ def display_day(tzname, msm, end_date=None, show_tz=False):
     diff = 1440*delta.days + round(delta.seconds / 60)
     newmsm = int((msm - diff + 10080) % 10080)
     tz_disp = " (" + tzname + " time)" if show_tz else ""
-    if end_date is None:
-        return (
-            msm_to_day_name(newmsm)
-            + "s @ "
-            + msm_to_12hr(newmsm)
-            + tz_disp
-        )
     return (
         msm_to_day_name(newmsm)
         + "s @ "
         + msm_to_12hr(newmsm)
         + tz_disp
-        + " until "
-        + str(end_date.strftime("%x"))
     )
