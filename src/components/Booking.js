@@ -4,6 +4,7 @@ import moment from "moment";
 import "moment-timezone";
 import { connect } from "react-redux";
 import menteeComputer from "../images/vbb-mentee-computer.png";
+import { Redirect, Route } from "react-router";
 
 class Booking extends React.Component {
   state = {
@@ -17,9 +18,32 @@ class Booking extends React.Component {
     library: 0,
     time: false,
     displayTime: "",
-    isReturning: "no",
+    isReturning: "yes",
     isCommitted: false,
+    isVerified: "true"
   };
+
+  fetchVerification = () => {
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+    axios.defaults.xsrfCookieName = "csrftoken";
+    axios.defaults.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${this.props.token}`,
+    };
+    axios
+      .get("http://127.0.0.1:8000/api/verify/")
+      .then((res) => {
+        this.setState({
+          isVerified: res.data,
+        });
+        alert(res.data)
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("There was an error in retrieving your verification status", err);
+      });
+  };
+
 
   fetchBookingData = () => {
     axios
@@ -47,6 +71,7 @@ class Booking extends React.Component {
 
   componentDidMount() {
     this.fetchBookingData();
+    this.fetchVerification();
   }
 
   fetchTimes = () => {
@@ -176,6 +201,11 @@ class Booking extends React.Component {
   render() {
     return (
       <div className="twocol-container">
+          {this.state.isVerified === "false" && 
+          <Redirect
+          to="/"
+          />
+        } 
         <div id="booking-box">
           <h1 id="booking-header">Book Your Weekly Mentoring Session Below!</h1>
           <p>
@@ -218,9 +248,10 @@ class Booking extends React.Component {
                 );
               })}
             </select>
+            
+            {/* <br />
             <br />
-            <br />
-            <label htmlFor="mentor">Are you a current/returning mentor?</label>
+            <label htmlFor="mentor">Do you want to pick a specific library?</label>
             <select
               id="mentor"
               name="mentor"
@@ -229,11 +260,12 @@ class Booking extends React.Component {
               <option value="no">No</option>
               <option value="unsure">I'm not sure</option>
               <option value="yes">Yes</option>
-            </select>
+            </select> */}
             <br />
             <br />
 
-            {this.state.mentor==="yes" && (
+            {
+            // this.state.mentor==="yes" && (
               <div>
                 <label htmlFor="library" > 
                 {/* style={{ paddingLeft: "50px" }} */}
@@ -259,7 +291,8 @@ class Booking extends React.Component {
                 <br />
                 <br />
               </div>
-            )}
+            // )
+            }
             {/* <br /> */}
             <label htmlFor="weekday">Day of the Week:&nbsp;</label>
             <select

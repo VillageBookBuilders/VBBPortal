@@ -1,3 +1,15 @@
+Village Portal is a open-sourced ``school-based mentoring managment platform``. Development is lead by Village Book Builders volunteers. Village Book Builders accelerates learners globally through virutal mentoring, learning libraries, and specialed educational community-wide interventions. Village Portal helps schedule hundreds of virtual volunteer mentors in global time zones. Other Features are in development. 
+
+
+### New Front-End of Village Portal @ https://github.com/VilllageBookBuilders/frontend-vbb-portal.git
+
+### New Back-End of Village Portal @ https://github.com/VilllageBookBuilders/backend-vbb-portal.git
+
+
+To Help, questions, comments, concerns, Email US at @ support@villagebookbuilders.org. 
+    Our DEV Taskboard: https://app.zenhub.com/workspaces/villagebookbuilders-5f662d2ba0525c27f3a90388/board. 
+        Join our weekly meetings: https://meet.google.com/btm-gwyo-uwr on Saturday at 9AM 
+
 This project is broken up into a backend and frontend. The backend contains the Django project which uses the Django Rest Framework to host a simple API. The frontend uses React and queries data from the API. The backend is found in the django apps: api and vbbportal. The frontend is a react app, and most of the code is located in the src folder.
 
 Install python and node.js beforehand!
@@ -22,6 +34,7 @@ pip install -r requirements.txt
 npm i 
 npm run build
 python manage.py runserver
+python manage.py migrate
 ```
 
 These commands (respectively)

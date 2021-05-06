@@ -7,7 +7,7 @@ from django.db.models import Q
 from django.shortcuts import render
 from rest_auth.registration.views import SocialLoginView
 from rest_framework.decorators import api_view
-from rest_framework.generics import (ListAPIView, UpdateAPIView)
+from rest_framework.generics import (ListAPIView, UpdateAPIView, RetrieveAPIView)
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
@@ -211,7 +211,6 @@ class LanguageListView(ListAPIView):
     serializer_class = LanguageSerializer
     permission_classes = (AllowAny,)
 
-
 class AvailableSessionSlotList(ListAPIView):
     """
     Returns a list of available sessionslot times based on a mentor's preference (queries specific fields by primary key).
@@ -396,6 +395,22 @@ class SessionSlotListView(ListAPIView):
     def get_queryset(self):
         return self.request.user.sessionslots.all()
 
+
+class MentorVerifiedView(APIView):
+    """
+    Returns bool indicating if mentor has been verified.
+    """
+
+    permission_classes = (IsAuthenticated,)
+    serializer_class = MentorProfileSerializer
+
+    def get(self, request):
+        mentor = MentorProfile.objects.get(user=self.request.user)
+        serialzer = MentorProfileSerializer(mentor)
+        print(serialzer.data['isVerified'])
+        return Response(serialzer.data['isVerified'])
+
+
 class SessionDetailView(APIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = SessionSlotSerializer
@@ -443,19 +458,16 @@ class SessionDetailUpdateView(UpdateAPIView):
     def patch(self, request, pk, format=None):
         sessionslot = self.get_object(pk)
         gapi = google_apis()
-        print("ENDDATEEEEEEE *****************" , request.data.get("end_date"))
+
         end_date = request.data.get("end_date")
         end_date = aux_fns.date_combine_time(str(end_date), int(sessionslot.msm))
         calendar_id = sessionslot.mentee_computer.library.calendar_id
         event_id = sessionslot.event_id
       #  gapi.update_event(calendar_id, event_id, end_date)
         newId = gapi.update_event(calendar_id, event_id, end_date)
-      #  print("SUCCESSFULLY ", newId, "ENDDATEEEEEEEE ", end_date)
         sessionslot.save()
         serializer = SessionSlotSerializer(
             sessionslot, data=request.data, partial=True)
-  #      with open("log.txt", "a") as readfile:
-  #          readfile.write(str(request.data) + "\n")
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

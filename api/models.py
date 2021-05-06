@@ -51,6 +51,8 @@ class MentorProfile(models.Model):
     desired_involvement = models.CharField(max_length=200, null=True, blank=True)
     city = models.CharField(max_length=70, null=True, blank=True)
     advisor_notes = models.TextField(max_length=512,null=True,blank=True)
+    isVerified = models.BooleanField(default=False, null=False)
+    isVerified_notes = models.TextField(max_length=512,null=True,blank=True)
 
     def __str__(self):
         return self.first_name + " " + self.last_name
@@ -90,14 +92,16 @@ class SessionSlot(models.Model):
         on_delete=models.SET_NULL,
         related_name="sessionslots",
         null=True,
-        blank=True,
+        blank=True,  
     )
+    
     mentee_computer = models.ForeignKey(
         MenteeComputer,
         on_delete=models.SET_NULL,
         related_name="sessionslots",
         null=True,
     )
+    
     language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True)
     msm = models.PositiveIntegerField(null=True, 
         validators=[MinValueValidator(0), MaxValueValidator(10079)])
