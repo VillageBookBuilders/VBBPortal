@@ -73,13 +73,23 @@ class Layout extends React.Component {
               </div>
             ) : (
               <div className="btn-pair">
-                <a
+                {/* <a
                   className="btn btn-light signout-btn"
                   type="button"
                   href="/donate/"
                   style={{ marginRight: "20px" }}
                 >
                   GIVE
+                </a> */}
+                <a
+                  className="btn btn-light signout-btn"
+                  type="button"
+                  href="https://www.villagebookbuilders.org/donate/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ marginRight: "20px" }}
+                >
+                  DONATE
                 </a>
                 <a
                   className="btn btn-light signup-btn"
