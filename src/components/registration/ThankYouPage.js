@@ -10,12 +10,16 @@ export default function ThankYouPage() {
                 />
                 </div>
                 <div className='tpContentCardRigth'>
-                <h1>Thank you so much for donating!....</h1>
-                <h2>And, of course, thank you for choosing to be a mentor!</h2>
-                <h6>
-                Our mission is to bring books, computers, and reliable internet to children living in rural undeserved communities all over the world, and we can't achieve that vision without you.
-                </h6>
-                <p>You can close this window now</p>
+                <h1>Thank you so much for donating!</h1>
+                <h2></h2>
+                <p>
+                ... and, of course, thank you for choosing to be a mentor!
+                <br/><br/>
+                Our mission is to bring books, computers, and reliable internet to children 
+                living in rural underserved communities all over the world, and we can't achieve
+                 that vision without you. 
+                 <br/><br/>
+                 (You can close this tab now)</p>
                 </div>
             </div>
         </div>
