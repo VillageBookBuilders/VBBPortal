@@ -31,7 +31,7 @@ class Booking extends React.Component {
       Authorization: `Token ${this.props.token}`,
     };
     axios
-      .get("http://127.0.0.1:8000/api/verify/")
+      .get("https://portal.villagebookbuilders.org/api/verify/")
       .then((res) => {
         this.setState({
           isVerified: res.data,
