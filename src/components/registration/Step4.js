@@ -16,11 +16,20 @@ function Step4(props) {
       frameborder="0" 
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       
-      <NavLink className='donateButton btn' to="/donate/" 
+      {/* <NavLink className='donateButton btn' to="/donate/" 
           onClick={(event) => {event.preventDefault(); window.open(window.location.pathname.replace('register','donate'));}}>
           <h1>Donate</h1>
-      </NavLink>
-
+      </NavLink> */}
+      <a
+        className="btn btn-success btn-block"
+        type="button"
+        href="https://www.villagebookbuilders.org/donate/"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ marginBottom: "20px", marginTop: "20px" }}
+      >
+        DONATE HERE
+      </a>
       
       </div>
     </div>
