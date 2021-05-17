@@ -36,7 +36,7 @@ class Booking extends React.Component {
         this.setState({
           isVerified: res.data,
         });
-        alert(res.data)
+        // alert(res.data)
       })
       .catch((err) => {
         console.log(err);
