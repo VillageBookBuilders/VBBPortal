@@ -49,7 +49,6 @@ class MentorProfileAdmin(admin.ModelAdmin):
         "personal_email",
         "vbb_email",
         "isVerified",
-        "isVerified_notes",
         "phone",
         "languages",
         "adult",
@@ -65,8 +64,7 @@ class MentorProfileAdmin(admin.ModelAdmin):
     )
     
     list_editable = ( 
-        "isVerified",
-        "isVerified_notes")
+        "isVerified",)
 
     readonly_fields = ("id",)
     search_fields = (
