@@ -356,17 +356,17 @@ def book_sessionslot(request):
         },
         [myappt.mentor.mp.personal_email],
     )
-    training_mail = os.path.join("api", "emails", "templates", "training.html")
-    gapi.email_send(
-        myappt.mentor.mp.vbb_email,
-        "VBB Mentor Training",
-        training_mail,
-        {
-            '__mentorname': myappt.mentor.first_name,
-            "__whatsapp_group": myappt.mentee_computer.library.whatsapp_group
-        },
-        cc=[myappt.mentor.mp.personal_email] 
-    )
+    # training_mail = os.path.join("api", "emails", "templates", "training.html")
+    # gapi.email_send(
+    #     myappt.mentor.mp.vbb_email,
+    #     "VBB Mentor Training",
+    #     training_mail,
+    #     {
+    #         '__mentorname': myappt.mentor.first_name,
+    #         "__whatsapp_group": myappt.mentee_computer.library.whatsapp_group
+    #     },
+    #     cc=[myappt.mentor.mp.personal_email] 
+    # )
     gapi.group_subscribe(
         myappt.mentee_computer.library.announcements_group,
         myappt.mentor.mp.personal_email,
