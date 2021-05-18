@@ -125,6 +125,7 @@ class google_apis:
         {'email': mentorEmail},
         {'email': personalEmail},
         {'email': directorEmail},
+        {'email': 'fred@fireflies.ai'},
         {'email': room, 'resource': "true"}
       ],
       'reminders': {
