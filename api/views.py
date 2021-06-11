@@ -314,6 +314,9 @@ def book_sessionslot(request):
     library_time = aux_fns.display_day(
         myappt.mentee_computer.library.time_zone, myappt.msm, myappt.end_date
     )
+
+    #send the new mentor notice email to the program director,
+    #send the session confirmation email to the new mentor.
     newMentorNotice_mail = os.path.join(
         "api", "emails", "templates", "newMentorNotice.html"
     )
@@ -352,17 +355,8 @@ def book_sessionslot(request):
         },
         [myappt.mentor.mp.personal_email],
     )
-    # training_mail = os.path.join("api", "emails", "templates", "training.html")
-    # gapi.email_send(
-    #     myappt.mentor.mp.vbb_email,
-    #     "VBB Mentor Training",
-    #     training_mail,
-    #     {
-    #         '__mentorname': myappt.mentor.first_name,
-    #         "__whatsapp_group": myappt.mentee_computer.library.whatsapp_group
-    #     },
-    #     cc=[myappt.mentor.mp.personal_email] 
-    # )
+
+    #subscribe them to their library specific google groups
     gapi.group_subscribe(
         myappt.mentee_computer.library.announcements_group,
         myappt.mentor.mp.personal_email,
