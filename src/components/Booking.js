@@ -4,7 +4,7 @@ import moment from "moment";
 import "moment-timezone";
 import { connect } from "react-redux";
 import menteeComputer from "../images/vbb-mentee-computer.png";
-import { Redirect, Route } from "react-router";
+import { Redirect } from "react-router";
 
 class Booking extends React.Component {
   state = {

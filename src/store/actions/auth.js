@@ -1,6 +1,6 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
-const baseUrl = process.env.REACT_APP_BASE_URL
+// const baseUrl = process.env.REACT_APP_BASE_URL
 
 
 export const authStart = () => {
