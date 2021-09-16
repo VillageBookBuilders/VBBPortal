@@ -79,7 +79,7 @@ class Dashboard extends React.Component {
           ) 
           : 
           (
-            (this.state.isVerified == "true") ? (
+            (this.state.isVerified === "true") ? (
             <div>
             <>
               <h4
@@ -91,16 +91,28 @@ class Dashboard extends React.Component {
                   color: "#ff914d",
                 }}
               >
-                 <b>Uh oh!</b> You don't have any mentoring sessions booked yet.
+                 It looks like you don't have any mentoring sessions booked yet.
               </h4>
               <h4
                 style={{
+                  fontSize: "22px",
+                  fontWeight: "400",
+                  fontStyle: "italic",
+                  textIndent: "0px",
+                  color: "#ff914d",
+                }}
+              >
+                 If you just booked one, it may take a few seconds to load.
+              </h4>
+              <h4
+                style={{
+                  fontSize: "20px",
                   textIndent: "0px",
                   fontStyle: "italic",
                   color: "#6ac66b",
                 }}
               >
-                Press the green button below to make your first booking!
+                Otherwise, press the green button below to make your first booking!
               </h4>
             </>
           <div className="btns">

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 function Step4(props) {
   if (props.state.currentStep !== 4) {
     return null;
@@ -11,7 +11,7 @@ function Step4(props) {
       <h4>GOES TO BRINGING HOPE THROUGH EDUCATION</h4>
       <p>All online donations cover the mentor program and other in-country projects like libraries, solar panels, bathrooms, books, and computers. </p>
       
-      <iframe width="800px" height="450px" 
+      <iframe width="800px" height="450px" title='video frame'
       src="https://www.youtube.com/embed/saahzNO1-aU?controls=0&autoplay=1" 
       frameborder="0" 
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

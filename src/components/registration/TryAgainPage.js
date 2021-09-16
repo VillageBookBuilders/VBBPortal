@@ -8,6 +8,7 @@ export default function TryAgainPage() {
                 <div className='taContentCardLeft'>
                 <img src='https://www.villagebookbuilders.org/wp-content/uploads/2020/04/Peru-Border-01-2-768x771.png'
                 style={{maxHeight:'100%'}}
+                alt='kidsreading2.png'
                 />
                 </div>
                 <div className='taContentCardRigth'>
