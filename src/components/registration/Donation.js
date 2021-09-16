@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import {loadStripe} from '@stripe/stripe-js';
+// import {loadStripe} from '@stripe/stripe-js';
 import {ReactComponent as Circle} from './circle.svg'
 import {ReactComponent as Tick} from './tick.svg'
 
 
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUB_KEY || 'pk_test_8EURQq6ARdRXnNH6AiQh0gXQ');
+// const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUB_KEY || 'pk_test_8EURQq6ARdRXnNH6AiQh0gXQ');
 // this is the publishable test key, change to live publishable key when possible (not secret for now)
 const port = 8000
 const successUrl = process.env.SUCCESS_URL || `http://localhost:${port}/thankyou`
@@ -72,16 +72,16 @@ function Donation({realDonation}) {
   const [selectedTier, setSelectedTier] = useState({name: 't2', priceId:'price_1II0XgDskGpJFQkE9HtqmxTB'})
   const { t1, t2, t3 } = tier
   const handleCheckOutDonations = async () => {
-    const stripe = await stripePromise;
-    const { error } = await stripe.redirectToCheckout({
-      lineItems: [{
-        price: selectedTier.priceId, 
-        quantity: 1,
-      }],
-      mode: freq ? 'subscription' : 'payment',
-      successUrl: successUrl,
-      cancelUrl: cancelUrl,
-    })
+    // const stripe = await stripePromise;
+    // const { error } = await stripe.redirectToCheckout({
+    //   lineItems: [{
+    //     price: selectedTier.priceId, 
+    //     quantity: 1,
+    //   }],
+    //   mode: freq ? 'subscription' : 'payment',
+    //   successUrl: successUrl,
+    //   cancelUrl: cancelUrl,
+    // })
     // If `redirectToCheckout` fails due to a browser or network
     // error, display the localized error message to your customer
     // using `error.message`.

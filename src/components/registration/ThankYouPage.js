@@ -7,11 +7,11 @@ export default function ThankYouPage() {
                 <div className='tpContentCardLeft'>
                 <img src='https://www.villagebookbuilders.org/wp-content/uploads/2020/04/Mexico-Border-01-1-768x771.png'
                 style={{maxHeight:'100%'}}
-                />
+                alt='kidsreading.png'/>
                 </div>
                 <div className='tpContentCardRigth'>
                 <h1>Thank you so much for donating!</h1>
-                <h2></h2>
+                {/* <h2></h2> */}
                 <p>
                 ... and, of course, thank you for choosing to be a mentor!
                 <br/><br/>
