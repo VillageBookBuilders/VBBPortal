@@ -61,21 +61,32 @@ class Dashboard extends React.Component {
           <h1 className="vbb-header">My Weekly Mentoring Session</h1>
 
           {this.state.sessionslots && this.state.sessionslots.length > 0 ? (
-            <ul>
-              {this.state.sessionslots.map((apt) => {
-                console.log(apt);
-                return (
-                  <li className="mb-2 mr-2" key={apt.id} value={apt.event_id}>
-                    <a
-                      className="session-details-link"
-                      href={`/sessiondetails/${apt.id}/`}
-                    >
-                      {apt.display}
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
+            <div>
+              <ul>
+                {this.state.sessionslots.map((apt) => {
+                  console.log(apt);
+                  return (
+                    <li className="mb-2 mr-2" key={apt.id} value={apt.event_id}>
+                      <a
+                        className="session-details-link"
+                        href={`/sessiondetails/${apt.id}/`}
+                      >
+                        {apt.display}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+              <div className="btns">
+                <a
+                  href="/booking/"
+                  className="btn btn-light book-btn dashboard-btn"
+                  style={{ marginTop: "20px", fontSize: "20px" }}
+                >
+                  + Book Another Session
+                </a>
+              </div>
+            </div>
           ) 
           : 
           (
@@ -102,7 +113,7 @@ class Dashboard extends React.Component {
                   color: "#ff914d",
                 }}
               >
-                 If you just booked one, it may take a few seconds to load.
+                 If you just booked one, it may take several seconds to load.
               </h4>
               <h4
                 style={{
