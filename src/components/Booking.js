@@ -277,7 +277,7 @@ class Booking extends React.Component {
                   onChange={this.handleDropDownChange}
                   style={{ marginTop: "0px" }}
                 >
-                  <option value="0">Any Library</option>
+                  {/* <option value="0">Any Library</option> */}
                   {this.state.libraries &&
                     this.state.libraries.length > 0 &&
                     this.state.libraries.map((lib) => {
