@@ -15,7 +15,7 @@ class Booking extends React.Component {
     language: 1,
     weekday: 0,
     displayDay: "",
-    library: 0,
+    library: 1,
     time: false,
     displayTime: "",
     isReturning: "yes",
