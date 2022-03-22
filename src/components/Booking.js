@@ -15,7 +15,7 @@ class Booking extends React.Component {
     language: 1,
     weekday: 0,
     displayDay: "",
-    library: 1,
+    library: 0,
     time: false,
     displayTime: "",
     isReturning: "yes",
@@ -277,7 +277,7 @@ class Booking extends React.Component {
                   onChange={this.handleDropDownChange}
                   style={{ marginTop: "0px" }}
                 >
-                  {/* <option value="0">Any Library</option> */}
+                  <option value="0">-------</option>
                   {this.state.libraries &&
                     this.state.libraries.length > 0 &&
                     this.state.libraries.map((lib) => {
