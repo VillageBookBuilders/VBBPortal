@@ -12,7 +12,7 @@ class Booking extends React.Component {
     languages: {},
     times: [],
     time_zone: moment.tz.guess(),
-    language: 1,
+    language: 0,
     weekday: 0,
     displayDay: "",
     library: 0,
@@ -221,6 +221,7 @@ class Booking extends React.Component {
               id="language"
               onChange={this.handleDropDownChange}
             >
+              <option key="0" value="0">-------</option>
               {this.state.languages &&
                 this.state.languages.length > 0 &&
                 this.state.languages.map((lang) => {
@@ -277,7 +278,7 @@ class Booking extends React.Component {
                   onChange={this.handleDropDownChange}
                   style={{ marginTop: "0px" }}
                 >
-                  <option value="0">-------</option>
+                  <option key="0" value="0">-------</option>
                   {this.state.libraries &&
                     this.state.libraries.length > 0 &&
                     this.state.libraries.map((lib) => {
