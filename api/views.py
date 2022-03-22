@@ -217,44 +217,41 @@ class AvailableSessionSlotList(ListAPIView):
     permission_classes = (AllowAny,)
 
     def get(self, request):
-        appts = SessionSlot.objects.all()
+        appts = SessionSlot.objects.none()
         library_params = self.request.query_params.get("library")
         language_params = self.request.query_params.get("language")
         min_msm_params = int(self.request.query_params.get("min_msm"))
         max_msm_params = int(self.request.query_params.get("max_msm"))
 
         # library and mentor filtering
-        if library_params is None or library_params == "0":
-            appts = (
-                SessionSlot.objects.none()
+        if library_params is None or library_params == "0" or language_params is None or language_params=='0':
+            pass
+            # appts = SessionSlot.objects.none()
+            # appts = (
                 #old behavior, get slots from any available library
                 # appts.filter(mentor=None, language=language_params)
                 # .values("msm")
                 # .distinct()
-            )
+            # )
         else:
-            appts = (
-                appts.filter(
+            appts = SessionSlot.objects.filter(
                     mentor=None,
                     mentee_computer__library=library_params,
                     language=language_params,
-                )
-                .values("msm")
-                .distinct()
-            )
+                ).values("msm").distinct()
 
-        # msm filtering
-        if min_msm_params < 0:
-            appts = appts.filter(
-                Q(msm__lt=max_msm_params) | Q(msm__gte=10080 + min_msm_params)
-            )
-        elif max_msm_params >= 10080:
-            appts = appts.filter(
-                Q(msm__lt=max_msm_params - 10080) | Q(msm__gte=min_msm_params)
-            )
-        else:
-            appts = appts.filter(msm__gte=min_msm_params,
-                                 msm__lt=max_msm_params)
+            # msm filtering
+            if min_msm_params < 0:
+                appts = appts.filter(
+                    Q(msm__lt=max_msm_params) | Q(msm__gte=10080 + min_msm_params)
+                )
+            elif max_msm_params >= 10080:
+                appts = appts.filter(
+                    Q(msm__lt=max_msm_params - 10080) | Q(msm__gte=min_msm_params)
+                )
+            else:
+                appts = appts.filter(msm__gte=min_msm_params,
+                                    msm__lt=max_msm_params)
 
         return Response(appts.order_by("msm"))
 
@@ -265,16 +262,17 @@ def book_sessionslot(request):
     Gets an sessionslot list at a given time based on preferences then randomly picks one sessionslot and populates it with the mentor's name (queries specific fields by primary key).
     URL example:  api/book/?library=1&language=1&msm=1
     """
-    appts = SessionSlot.objects.all()
+    appts = SessionSlot.objects.none()
     library_params = request.query_params.get("library")
     language_params = request.query_params.get("language")
     msm_params = request.query_params.get("msm")
 
-    if library_params is None or library_params == "0":
-        appts = appts.filter(
-            mentor=None, language=language_params, msm=msm_params,)
+    if library_params is None or library_params == "0" or language_params is None or language_params=='0':
+        pass
+        # appts = SessionSlot.objects.none()
+        #appts.filter(mentor=None, language=language_params, msm=msm_params,)
     else:
-        appts = appts.filter(
+        appts = appts = SessionSlot.objects.filter(
             mentor=None,
             mentee_computer__library=library_params,
             language=language_params,
