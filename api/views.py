@@ -223,12 +223,18 @@ class AvailableSessionSlotList(ListAPIView):
         min_msm_params = int(self.request.query_params.get("min_msm"))
         max_msm_params = int(self.request.query_params.get("max_msm"))
 
+        print("lib", library_params)
+        print("lang", language_params)
         # library and mentor filtering
         if library_params is None or library_params == "0":
+            print("libin", library_params)
+            print("langin", language_params)
             appts = (
-                appts.filter(mentor=None, language=language_params)
-                .values("msm")
-                .distinct()
+                SessionSlot.objects.none()
+                #old behavior, get slots from any available library
+                # appts.filter(mentor=None, language=language_params)
+                # .values("msm")
+                # .distinct()
             )
         else:
             appts = (
