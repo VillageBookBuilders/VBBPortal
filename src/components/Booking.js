@@ -156,7 +156,7 @@ class Booking extends React.Component {
 
   handleDropDownChange = (e) => {
     var newState = {};
-    //newState["time"] = false; //FIXME make sure the time drop down is unselected so the user isn't confused.
+    newState["time"] = false; //FIXME make sure the time drop down is unselected so the user isn't confused.
     newState[e.target.name] = e.target.value;
     console.log(newState);
     this.setState(newState, () => {
@@ -212,6 +212,8 @@ class Booking extends React.Component {
             Select a day and time that you have available each week.
             <br />
             We'll match you with a child who needs you as their mentor.
+            <br /><br/>
+            (please be patient as the dropdowns may take a second or two to display options)
           </p>
           <br />
           <div className="booking-fields">
