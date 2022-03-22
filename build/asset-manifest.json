@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.493634d3.chunk.css",
+    "main.js": "/static/js/main.9509dd57.chunk.js",
+    "main.js.map": "/static/js/main.9509dd57.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.e327d292.js",
+    "runtime-main.js.map": "/static/js/runtime-main.e327d292.js.map",
+    "static/js/2.1af984ef.chunk.js": "/static/js/2.1af984ef.chunk.js",
+    "static/js/2.1af984ef.chunk.js.map": "/static/js/2.1af984ef.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.f6c6039f4addfcf2b0e1c92ca7ce1275.js": "/precache-manifest.f6c6039f4addfcf2b0e1c92ca7ce1275.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.493634d3.chunk.css.map": "/static/css/main.493634d3.chunk.css.map",
+    "static/js/2.1af984ef.chunk.js.LICENSE.txt": "/static/js/2.1af984ef.chunk.js.LICENSE.txt",
+    "static/media/circle.5789b31a.svg": "/static/media/circle.5789b31a.svg",
+    "static/media/tick.7a38a381.svg": "/static/media/tick.7a38a381.svg",
+    "static/media/vbb-full-logo.png": "/static/media/vbb-full-logo.b628022f.png",
+    "static/media/vbb-in-action.png": "/static/media/vbb-in-action.c676dc5c.png",
+    "static/media/vbb-mentee-computer.png": "/static/media/vbb-mentee-computer.7ad1e10c.png",
+    "static/media/vbb-picture-logo.png": "/static/media/vbb-picture-logo.1a7d0324.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e327d292.js",
+    "static/js/2.1af984ef.chunk.js",
+    "static/css/main.493634d3.chunk.css",
+    "static/js/main.9509dd57.chunk.js"
+  ]
+}
