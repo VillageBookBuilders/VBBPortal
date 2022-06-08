@@ -337,7 +337,7 @@ def book_sessionslot(request):
             '__languages': myappt.mentor.mp.languages,
             '__computer': str(myappt.mentee_computer)
         },
-        ['mentor@villagebookbuilders.org', "miguel.bucio@villagebookbuilders.org"]
+        ['mentor@villagebookbuilders.org']
     )
     gapi.email_send(
         myappt.mentor.mp.vbb_email,
@@ -353,7 +353,7 @@ def book_sessionslot(request):
             '__vbbemail': myappt.mentor.email,
             '__pdemail': myappt.mentee_computer.library.program_director_email,
         },
-        [myappt.mentor.mp.personal_email, "miguel.bucio@villagebookbuilders.org"],
+        [myappt.mentor.mp.personal_email],
     )
 
     #subscribe them to their library specific google groups
